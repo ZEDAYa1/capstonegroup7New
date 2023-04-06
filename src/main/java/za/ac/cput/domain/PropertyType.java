@@ -1,4 +1,4 @@
-package za.ac.cput.dDomain;
+package za.ac.cput.domain;
 
 public class PropertyType {
     String apartment;

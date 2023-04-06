@@ -1,4 +1,4 @@
-package za.ac.cput.Ffactory;
+package za.ac.cput.factory;
 
 public class PropertyFactory {
 }
