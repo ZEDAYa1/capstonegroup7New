@@ -1,3 +1,9 @@
+/*
+ * Property.java
+ * This is the property entity
+ * Author: Tshegofatso Molefe {219001235}
+ * Date: 6 April 2023
+ * */
 package za.ac.cput.domain;
 
 import java.util.Objects;
@@ -12,8 +18,8 @@ public class Property {
     private boolean garageAvailable;
 
 
-    public Property() {
-    }
+//    public Property() {
+//    }
 
     private Property(Builder builder) {
         this.propertyID = builder.propertyID;
@@ -134,7 +140,7 @@ public class Property {
         }
 
         public Property build(){
-            return new Property(this);
+            return new Property(this); //Anonymous object
         }
 
     }

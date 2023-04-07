@@ -1,3 +1,9 @@
+/*
+ * ClientFactory.java
+ * This is the ClientFactory class
+ * Author: Tshegofatso Molefe {219001235}
+ * Date: 6 April 2023
+ * */
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Client;
@@ -15,7 +21,7 @@ public class ClientFactory {
             return null;
         }
 
-        Client client = new Client.Builder().clientID(clientID)
+        Client client = new Client.Builder().setClientID(clientID)
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)

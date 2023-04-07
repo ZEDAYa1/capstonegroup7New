@@ -1,3 +1,9 @@
+/*
+ * Address.java
+ * This is the Address class for the Property entity
+ * Author: Tshegofatso Molefe {219001235}
+ * Date: 6 April 2023
+ * */
 package za.ac.cput.domain;
 
 public class Address {

@@ -1,3 +1,9 @@
+/*
+ * Client.java
+ * This is the client entity
+ * Author: Tshegofatso Molefe {219001235}
+ * Date: 6 April 2023
+ * */
 package za.ac.cput.domain;
 
 import java.util.Objects;
@@ -63,10 +69,11 @@ public class Client {
     public static class Builder{
         private String clientID, firstName, lastName, email, mobileNumber;
 
-        public Builder clientID(String clientID) {
-            this.firstName = clientID;
+        public Builder setClientID(String clientID) {
+            this.clientID = clientID;
             return this;
         }
+
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
