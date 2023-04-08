@@ -15,11 +15,11 @@ public class Address {
     public Address(){
 
     }
-    public Address(String streetNum, String streetName, String city, String province) {
-        this.streetNum = streetNum;
-        this.streetName = streetName;
-        this.city = city;
-        this.province = province;
+    public Address(Builder builder) {
+        this.streetNum = builder.streetNum;
+        this.streetName = builder.streetName;
+        this.city = builder.city;
+        this.province = builder.province;
     }
 
     public String getStreetNum() {
@@ -62,5 +62,43 @@ public class Address {
                 ", city='" + city + '\'' +
                 ", province='" + province + '\'' +
                 '}';
+    }
+    public static class Builder{
+        String streetNum;
+        String streetName;
+        String city;
+        String province;
+
+        public Builder setStreetNum(String streetNum) {
+            this.streetNum = streetNum;
+            return this;
+        }
+
+        public Builder setStreetName(String streetName) {
+            this.streetName = streetName;
+            return this;
+        }
+
+        public Builder setCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder setProvince(String province) {
+            this.province = province;
+            return this;
+        }
+
+        public Builder copy(Address address) {
+            this.streetNum = address.streetNum;
+            this.streetName = address.streetName;
+            this.city = address.city;
+            this.province = address.province;
+            return null;
+        }
+
+        public Address build(){
+            return new Address(this);
+        }
     }
 }
