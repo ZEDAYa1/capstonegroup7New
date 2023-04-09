@@ -12,7 +12,6 @@ public class PropertyType {
     String townhouse;
 
     public PropertyType(){
-
     }
     public PropertyType(Builder builder) {
         this.apartment = builder.apartment;
