@@ -26,8 +26,12 @@ public class PropertyFactory {
         String propertyID = Helper.generateId();
 
         Property property = new Property.Builder().setPropertyID(propertyID)
-                .setPropertyType(new PropertyType())
-                .setAddress(new Address())
+                .setPropertyType(propertyType)
+                .setAddress(address)
+                .setRent(rent)
+                .setBedsNum(bedsNum)
+                .setBathsNum(bathsNum)
+                .setGarageAvailable(garageAvailable)
                 .build();
         return property;
 
