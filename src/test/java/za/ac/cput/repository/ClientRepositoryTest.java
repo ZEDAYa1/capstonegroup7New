@@ -54,4 +54,5 @@ class ClientRepositoryTest {
         System.out.println("Show all clients");
         System.out.println(repository.getAll());
     }
+
 }
