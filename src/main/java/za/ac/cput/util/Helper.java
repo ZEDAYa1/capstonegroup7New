@@ -8,14 +8,24 @@
 package za.ac.cput.util;
 
 import org.apache.commons.validator.routines.EmailValidator;
-
+// 220097429
+import java.util.Date;
+=======
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+// master
 import java.util.UUID;
 
 public class Helper {
     public static boolean isNullOrEmpty(String s){
         if(s == null || s.isEmpty() ||s.equalsIgnoreCase("null")){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isDateNull(Date date){
+        if(date == null ){
             return true;
         }
         return false;
