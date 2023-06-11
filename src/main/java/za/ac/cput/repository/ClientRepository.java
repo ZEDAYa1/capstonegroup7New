@@ -5,7 +5,7 @@ import za.ac.cput.domain.Client;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ClientRepository implements iClientRepository {
+public class ClientRepository implements IClientRepository {
     private static ClientRepository repository = null;
     private Set<Client> clientDB = null;
 
