@@ -1,13 +1,12 @@
 package za.ac.cput.repository;
 
 
-import za.ac.cput.domain.Client;
 import za.ac.cput.domain.Property;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class PropertyRepository implements iPropertyRepository {
+public class PropertyRepository implements IPropertyRepository {
     private static PropertyRepository repository = null;
     private Set<Property> propertyDB = null;
 
