@@ -27,8 +27,7 @@ class PropertyRepositoryTest {
     void a_create() {
         Property created = repository.create(property);
         assertNotNull(property.getPropertyID(), created.getPropertyID());
-        System.out.println(created);
-
+        System.out.println("Property created :" + created);
     }
 
     @Test

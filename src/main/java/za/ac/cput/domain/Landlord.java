@@ -9,29 +9,29 @@ public class Landlord {
 
     private String landlordId;
 
-    private String landlordFirstName;
+    private String firstName;
 
-    private String landlordLastName;
+    private String lastName;
 
-    private String landlordEmail;
+    private String contactNumber;
 
-    private String landlordPassword;
+    private String email;
 
-    private String landlordPhone;
+    private String password;
 
-    private String landlordAddress;
+    private String address;
 
     private Landlord() {
     }
 
     public Landlord(Builder builder) {
         this.landlordId = builder.landlordId;
-        this.landlordFirstName = builder.landlordFirstName;
-        this.landlordLastName = builder.landlordLastName;
-        this.landlordEmail = builder.landlordEmail;
-        this.landlordPassword = builder.landlordPassword;
-        this.landlordPhone = builder.landlordPhone;
-        this.landlordAddress = builder.landlordAddress;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.contactNumber = builder.contactNumber;
+        this.email = builder.email;
+        this.password = builder.password;
+        this.address = builder.address;
     }
 
     public String getLandlordId() {
@@ -39,94 +39,94 @@ public class Landlord {
     }
 
     public String getLandlordFirstName() {
-        return landlordFirstName;
+        return firstName;
     }
 
     public String getLandlordLastName() {
-        return landlordLastName;
-    }
-
-    public String getLandlordEmail() {
-        return landlordEmail;
-    }
-
-    public String getLandlordPassword() {
-        return landlordPassword;
+        return lastName;
     }
 
     public String getLandlordPhone() {
-        return landlordPhone;
+        return contactNumber;
+    }
+
+    public String getLandlordEmail() {
+        return email;
+    }
+
+    public String getLandlordPassword() {
+        return password;
     }
 
     public String getLandlordAddress() {
-        return landlordAddress;
+        return address;
     }
 
     @Override
     public String toString() {
         return "Landlord{" +
                 "landlordId=" + landlordId +
-                ", landlordFirstName='" + landlordFirstName + '\'' +
-                ", landlordLastName='" + landlordLastName + '\'' +
-                ", landlordEmail='" + landlordEmail + '\'' +
-                ", landlordPassword='" + landlordPassword + '\'' +
-                ", landlordPhone='" + landlordPhone + '\'' +
-                ", landlordAddress='" + landlordAddress + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 
     public static class Builder {
         private String landlordId;
-        private String landlordFirstName;
-        private String landlordLastName;
-        private String landlordEmail;
-        private String landlordPassword;
-        private String landlordPhone;
-        private String landlordAddress;
+        private String firstName;
+        private String lastName;
+        private String contactNumber;
+        private String email;
+        private String password;
+        private String address;
 
         public Builder setLandlordId(String landlordId) {
             this.landlordId = landlordId;
             return this;
         }
 
-        public Builder setLandlordFirstName(String landlordFirstName) {
-            this.landlordFirstName = landlordFirstName;
+        public Builder setFirstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
-        public Builder setLandlordLastName(String landlordLastName) {
-            this.landlordLastName = landlordLastName;
+        public Builder setLastName(String lastName) {
+            this.lastName = lastName;
             return this;
         }
 
-        public Builder setLandlordEmail(String landlordEmail) {
-            this.landlordEmail = landlordEmail;
+        public Builder setContactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
             return this;
         }
 
-        public Builder setLandlordPassword(String landlordPassword) {
-            this.landlordPassword = landlordPassword;
+        public Builder setEmail(String email) {
+            this.email = email;
             return this;
         }
 
-        public Builder setLandlordPhone(String landlordPhone) {
-            this.landlordPhone = landlordPhone;
+        public Builder setPassword(String password) {
+            this.password = password;
             return this;
         }
 
-        public Builder setLandlordAddress(String landlordAddress) {
-            this.landlordAddress = landlordAddress;
+        public Builder setAddress(String landlordAddress) {
+            this.address = address;
             return this;
         }
 
         public Builder copy(Landlord landlord) {
             this.landlordId = landlord.landlordId;
-            this.landlordFirstName = landlord.landlordFirstName;
-            this.landlordLastName = landlord.landlordLastName;
-            this.landlordEmail = landlord.landlordEmail;
-            this.landlordPassword = landlord.landlordPassword;
-            this.landlordPhone = landlord.landlordPhone;
-            this.landlordAddress = landlord.landlordAddress;
+            this.firstName = landlord.firstName;
+            this.lastName = landlord.lastName;
+            this.contactNumber = landlord.contactNumber;
+            this.email = landlord.email;
+            this.password = landlord.password;
+            this.address = landlord.address;
             return this;
         }
 

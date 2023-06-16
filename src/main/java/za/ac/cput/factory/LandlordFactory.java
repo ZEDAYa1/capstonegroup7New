@@ -10,23 +10,23 @@ import za.ac.cput.util.Helper;
 
 public class LandlordFactory {
 
-    public static Landlord createLandlord(String landlordFirstName, String landlordLastName, String landlordEmail, String landlordPassword, String landlordPhone, String landlordAddress) {
+    public static Landlord createLandlord(String firstName, String lastName, String contactNumber, String email, String password, String address) {
 
         String landlordId = Helper.generateId();
 
-        if (!Helper.isValidEmail(landlordEmail))
+        if (!Helper.isValidEmail(email))
             return null;
 
-        if (Helper.isNullOrEmpty(landlordFirstName) || Helper.isNullOrEmpty(landlordLastName) || Helper.isNullOrEmpty(landlordPassword) || Helper.isNullOrEmpty(landlordPhone) || Helper.isNullOrEmpty(landlordAddress))
+        if (Helper.isNullOrEmpty(firstName) || Helper.isNullOrEmpty(lastName) || Helper.isNullOrEmpty(contactNumber) || Helper.isNullOrEmpty(password) || Helper.isNullOrEmpty(address))
             return null;
 
         return new Landlord.Builder().setLandlordId(landlordId)
-                .setLandlordFirstName(landlordFirstName)
-                .setLandlordLastName(landlordFirstName)
-                .setLandlordEmail(landlordEmail)
-                .setLandlordPassword(landlordPassword)
-                .setLandlordPhone(landlordPhone)
-                .setLandlordAddress(landlordAddress)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setContactNumber(contactNumber)
+                .setEmail(email)
+                .setPassword(password)
+                .setAddress(address)
                 .build();
 
     }

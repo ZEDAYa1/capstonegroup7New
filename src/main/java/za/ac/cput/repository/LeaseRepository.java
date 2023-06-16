@@ -34,7 +34,7 @@ public class LeaseRepository implements iLeaseRepository{
 
     @Override
     public Lease update(Lease lease) {
-        Lease oldLease = new read(lease.getLeaseId());
+        Lease oldLease = read(lease.getLeaseId());
         if(oldLease != null){
             leaseDB.remove(oldLease);
             leaseDB.add(lease);
