@@ -10,7 +10,6 @@ package za.ac.cput.util;
 import org.apache.commons.validator.routines.EmailValidator;
 // 220097429
 import java.util.Date;
-=======
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 // master
