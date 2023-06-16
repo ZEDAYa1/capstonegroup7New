@@ -13,7 +13,7 @@ class LandlordFactoryTest {
 
     @Test
     public void test() {
-        Landlord landlord = LandlordFactory.createLandlord("Zachary", "Carstens", "zachary.carstens@icloud.com", "1234567890", "0761148191", "123 ABC Street, Retreat, Cape Town, Western Cape, 7945");
+        Landlord landlord = LandlordFactory.createLandlord("Zachary", "Carstens", "0761148191", "zachary.carstens@icloud.com", "1234567890", "123 ABC Street, Retreat, Cape Town, Western Cape, 7945");
         System.out.println(landlord.toString());
         assertNotNull(landlord);
     }
