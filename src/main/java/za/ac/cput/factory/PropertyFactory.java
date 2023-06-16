@@ -8,32 +8,26 @@ package za.ac.cput.factory;
 
 import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Property;
-import za.ac.cput.domain.PropertyType;
 import za.ac.cput.util.Helper;
 
 public class PropertyFactory {
-    public static Property createProperty(PropertyType propertyType, Address address,
-                                          double rent, int bedsNum, int bathsNum, boolean garageAvailable) {
-        if (Helper.isNullOrEmpty(String.valueOf(propertyType)) || Helper.isNullOrEmpty(String.valueOf(address))
-                || Helper.isNullOrEmpty(String.valueOf(rent))
-                || Helper.isNullOrEmpty(String.valueOf(bedsNum))
-                || Helper.isNullOrEmpty(String.valueOf(bathsNum))
-                || Helper.isNullOrEmpty(String.valueOf(garageAvailable))) {
+    public static Property createProperty(Address address, double rentAmount,
+                                          String description) {
+        if (Helper.isNullOrEmpty(String.valueOf(address))
+                || Helper.isNullOrEmpty(String.valueOf(rentAmount))
+                || Helper.isNullOrEmpty(String.valueOf(description))) {
             return null;
         }
 
 
         String propertyID = Helper.generateId();
 
-        Property property = new Property.Builder().setPropertyID(propertyID)
-                .setPropertyType(propertyType)
+        Property property = new Property.Builder()
+                .setPropertyID(propertyID)
                 .setAddress(address)
-                .setRent(rent)
-                .setBedsNum(bedsNum)
-                .setBathsNum(bathsNum)
-                .setGarageAvailable(garageAvailable)
+                .setRentAmount(rentAmount)
+                .setDescription(description)
                 .build();
         return property;
-
     }
 }
