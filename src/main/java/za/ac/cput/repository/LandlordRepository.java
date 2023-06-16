@@ -9,7 +9,7 @@ import za.ac.cput.domain.Landlord;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LandlordRepository implements iLandlordRepository{
+public class LandlordRepository implements ILandlordRepository {
 
     private static LandlordRepository repository = null;
     private Set<Landlord> landlordDB = null;
