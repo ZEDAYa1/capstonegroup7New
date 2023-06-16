@@ -10,12 +10,9 @@ import java.util.Objects;
 
 public class Property {
     private String propertyID;
-    private PropertyType propertyType;
     private Address address;
-    private double rent;
-    private int bedsNum;
-    private int bathsNum;
-    private boolean garageAvailable;
+    private double rentAmount;
+    private String description;
 
 
 //    public Property() {
@@ -23,34 +20,25 @@ public class Property {
 
     private Property(Builder builder) {
         this.propertyID = builder.propertyID;
-        this.propertyType = builder.propertyType;
         this.address = builder.address;
-        this.rent = builder.rent;
-        this.bedsNum = builder.bedsNum;
-        this.bathsNum = builder.bathsNum;
-        this.garageAvailable = builder.garageAvailable;
+        this.rentAmount = builder.rentAmount;
+        this.description = builder.description;
+
     }
 
     public String getPropertyID() {
         return propertyID;
     }
-    public PropertyType getPropertyType() {
-        return propertyType;
-    }
     public Address getAddress() {
         return address;
     }
-    public double getRent() {
-        return rent;
+
+    public double getRentAmount() {
+        return rentAmount;
     }
-    public int getBedsNum() {
-        return bedsNum;
-    }
-    public int getBathsNum() {
-        return bathsNum;
-    }
-    public boolean isGarageAvailable() {
-        return garageAvailable;
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -58,29 +46,25 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return Double.compare(property.rent, rent) == 0 && bedsNum == property.bedsNum
-                && bathsNum == property.bathsNum && garageAvailable == property.garageAvailable
+        return Double.compare(property.rentAmount, rentAmount) == 0
                 && Objects.equals(propertyID, property.propertyID)
-                && Objects.equals(propertyType, property.propertyType)
-                && Objects.equals(address, property.address);
+                && Objects.equals(address, property.address)
+                && Objects.equals(description, property.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyID, propertyType, address,
-                rent, bedsNum, bathsNum, garageAvailable);
+        return Objects.hash(propertyID, address,
+                rentAmount, description);
     }
 
     @Override
     public String toString() {
         return "Property{" +
                 "propertyID='" + propertyID + '\'' +
-                ", propertyType=" + propertyType +
                 ", address=" + address +
-                ", rent=" + rent +
-                ", bedsNum=" + bedsNum +
-                ", bathsNum=" + bathsNum +
-                ", garageAvailable=" + garageAvailable +
+                ", rent=" + rentAmount +
+                ", description=" + description +
                 '}';
     }
 
@@ -88,10 +72,8 @@ public class Property {
     public static class Builder{
         private String propertyID;
         private Address address;
-        private PropertyType propertyType;
-        private double rent;
-        private int bedsNum, bathsNum;
-        private boolean garageAvailable;
+        private double rentAmount;
+        private String description;
 
         public Builder setPropertyID(String propertyID) {
             this.propertyID = propertyID;
@@ -103,39 +85,21 @@ public class Property {
             return this;
         }
 
-        public Builder setPropertyType(PropertyType propertyType) {
-            this.propertyType = propertyType;
+        public Builder setRentAmount(double rentAmount) {
+            this.rentAmount = rentAmount;
             return this;
         }
 
-        public Builder setRent(double rent) {
-            this.rent = rent;
-            return this;
-        }
-
-        public Builder setBedsNum(int bedsNum) {
-            this.bedsNum = bedsNum;
-            return this;
-        }
-
-        public Builder setBathsNum(int bathsNum) {
-            this.bathsNum = bathsNum;
-            return this;
-        }
-
-        public Builder setGarageAvailable(boolean garageAvailable) {
-            this.garageAvailable = garageAvailable;
+        public Builder setDescription(String description) {
+            this.description = description;
             return this;
         }
 
         public Builder copy(Property property){
             this.propertyID = property.propertyID;
             this.address = property.address;
-            this.propertyType = property.propertyType;
-            this.rent = property.rent;
-            this.bedsNum = property.bedsNum;
-            this.bathsNum = property.bathsNum;
-            this.garageAvailable = property.garageAvailable;
+            this.rentAmount = property.rentAmount;
+            this.description = property.description;
             return this;
         }
 
