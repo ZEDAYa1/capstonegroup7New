@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LandlordRepositoryTest {
 
     private static LandlordRepository repository = LandlordRepository.getRepository();
-    private static Landlord landlord = LandlordFactory.createLandlord("Zachary", "Carstens", "zachary.carstens@icloud.com", "1234567890", "0761148191", "123 ABC Street, Retreat, Cape Town, Western Cape, 7945");
+    private static Landlord landlord = LandlordFactory.createLandlord("Zachary", "Carstens", "0761148191", "zachary.carstens@icloud.com", "1234567890", "123 ABC Street, Retreat, Cape Town, Western Cape, 7945");
 
     @Test
     void a_create() {
@@ -34,8 +34,8 @@ class LandlordRepositoryTest {
 
     @Test
     void c_update() {
-        Landlord updated = new Landlord.Builder().copy(landlord).setLandlordFirstName("Kyle")
-                .setLandlordLastName("Adams")
+        Landlord updated = new Landlord.Builder().copy(landlord).setFirstName("Kyle")
+                .setLastName("Adams")
                 .build();
         assertNotNull(repository.update(updated));
         System.out.println("Updated: " + updated);
