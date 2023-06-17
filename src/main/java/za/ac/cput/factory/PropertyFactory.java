@@ -6,7 +6,6 @@
 * */
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Property;
 import za.ac.cput.util.Helper;
 

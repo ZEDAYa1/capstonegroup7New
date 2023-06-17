@@ -9,7 +9,6 @@ package za.ac.cput.factory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Property;
 import java.util.concurrent.TimeUnit;
 

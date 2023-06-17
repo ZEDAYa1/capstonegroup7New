@@ -10,7 +10,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.domain.Property;
-import za.ac.cput.factory.AddressFactory;
 import za.ac.cput.factory.PropertyFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
