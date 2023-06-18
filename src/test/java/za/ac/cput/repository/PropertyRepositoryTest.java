@@ -10,7 +10,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.domain.Property;
-import za.ac.cput.factory.AddressFactory;
 import za.ac.cput.factory.PropertyFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,8 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class PropertyRepositoryTest {
     private static PropertyRepository repository = PropertyRepository.getRepository();
-    private static Property property = PropertyFactory.createProperty(AddressFactory.createAddress("8", "PostGraduateStreet", "Belhar", "Western Cape"),
-            45000, "Property is close to schools, shopping centers and other amenities");
+    private static Property property = PropertyFactory.createProperty("8 PostGraduate Street Belhar",45000,"Property is close to schools, shopping centers and other amenities");
 
     @Test
     void a_create() {
