@@ -6,12 +6,11 @@
 * */
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Property;
 import za.ac.cput.util.Helper;
 
 public class PropertyFactory {
-    public static Property createProperty(Address address, double rentAmount,
+    public static Property createProperty(String address, double rentAmount,
                                           String description) {
         if (Helper.isNullOrEmpty(String.valueOf(address))
                 || Helper.isNullOrEmpty(String.valueOf(rentAmount))
