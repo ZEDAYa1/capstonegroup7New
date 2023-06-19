@@ -6,7 +6,6 @@
 package za.ac.cput.service;
 
 import za.ac.cput.domain.Landlord;
-
 import java.util.Set;
 
 public interface LandlordService extends IService<Landlord, String> {

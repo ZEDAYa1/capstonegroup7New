@@ -56,5 +56,4 @@ public class LandlordServiceImpl implements LandlordService {
         return repository.getAll();
     }
 
-
 }
