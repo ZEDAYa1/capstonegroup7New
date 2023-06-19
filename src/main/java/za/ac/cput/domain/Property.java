@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Property {
     private String propertyID;
-    private Address address;
+    private String address;
     private double rentAmount;
     private String description;
 
@@ -29,7 +29,7 @@ public class Property {
     public String getPropertyID() {
         return propertyID;
     }
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -71,7 +71,7 @@ public class Property {
     //Builder pattern
     public static class Builder{
         private String propertyID;
-        private Address address;
+        private String address;
         private double rentAmount;
         private String description;
 
@@ -80,7 +80,7 @@ public class Property {
             return this;
         }
 
-        public Builder setAddress(Address address) {
+        public Builder setAddress(String address) {
             this.address = address;
             return this;
         }
