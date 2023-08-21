@@ -8,7 +8,7 @@ package za.ac.cput.repository;
 import za.ac.cput.domain.Agency;
 import java.util.Set;
 
-public interface IAgencyRepository extends iRepository<Agency, String>{
+public interface IAgencyRepository extends IRepository<Agency, String>{
 
     public Set<Agency> getAll();
 
