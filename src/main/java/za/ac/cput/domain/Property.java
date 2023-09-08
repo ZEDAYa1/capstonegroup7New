@@ -6,17 +6,26 @@
  * */
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Property {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String propertyID;
     private String address;
     private double rentAmount;
     private String description;
 
 
-//    public Property() {
-//    }
+    public Property() {
+    }
 
     private Property(Builder builder) {
         this.propertyID = builder.propertyID;

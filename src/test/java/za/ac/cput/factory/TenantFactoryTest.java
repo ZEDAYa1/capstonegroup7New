@@ -1,6 +1,6 @@
 /*
  * TenantFactoryTest.java
- * This is the test for the client entity
+ * This is the test for the tenant entity
  * Author: Tshegofatso Molefe {219001235}
  * Date: 8 April 2023
  * */
