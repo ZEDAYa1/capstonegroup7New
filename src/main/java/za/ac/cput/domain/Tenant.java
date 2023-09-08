@@ -1,13 +1,23 @@
 /*
  * Tenant.java
- * This is the client entity
+ * This is the tenant entity
  * Author: Tshegofatso Molefe {219001235}
  * Date: 6 April 2023
  * */
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
+
+@Entity
 public class Tenant {
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
     private String tenantID;
     private String leaseID;
     private String firstName;
@@ -15,8 +25,8 @@ public class Tenant {
     private String email;
     private String contactNumber;
 
-    private Tenant(){
-    }
+//    private Tenant(){
+//    }
 
     public Tenant(Builder builder) {
         this.tenantID = builder.tenantID;
@@ -25,6 +35,10 @@ public class Tenant {
         this.lastName = builder.lastName;
         this.email = builder.email;
         this.contactNumber = builder.contactNumber;
+    }
+
+    public Tenant() {
+
     }
 
     public String getTenantID() {

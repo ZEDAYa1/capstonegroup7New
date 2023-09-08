@@ -18,9 +18,9 @@ public class TenantFactory {
         String tenantID = Helper.generateId();
         String leaseID = Helper.generateId();
 
-        if (!Helper.isValidEmail(email)) {
-            return null;
-        }
+//        if (!Helper.isValidEmail(email)) {
+//            return null;
+//        }
 
         Tenant tenant = new Tenant.Builder().setTenantID(tenantID)
                 .setLeaseID(leaseID)
