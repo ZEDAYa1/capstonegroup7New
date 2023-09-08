@@ -1,3 +1,3 @@
 # UML Diagram
 
-![Group7](https://user-images.githubusercontent.com/101814558/230781524-8b5917ee-5d56-4b7d-9be7-d3fb75b3e9ae.png)
+![Capstone drawio](https://github.com/Tshego-Molefe/capstonegroup7/assets/101814558/4b9e4713-6f6a-4bbf-b6e7-2cddc28de4d5)

@@ -8,7 +8,7 @@ package za.ac.cput.repository;
 import za.ac.cput.domain.Landlord;
 import java.util.Set;
 
-public interface ILandlordRepository extends iRepository<Landlord, String>{
+public interface ILandlordRepository extends IRepository<Landlord, String>{
 
     public Set<Landlord> getAll();
 

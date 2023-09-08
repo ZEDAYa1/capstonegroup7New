@@ -9,6 +9,6 @@ import za.ac.cput.domain.Agent;
 
 import java.util.Set;
 
-public interface IAgentRepository extends iRepository<Agent, String> {
+public interface IAgentRepository extends IRepository<Agent, String> {
     public Set<Agent> getAll();
 }

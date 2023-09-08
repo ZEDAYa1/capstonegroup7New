@@ -3,7 +3,7 @@ package za.ac.cput.repository;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import za.ac.cput.domain.Client;
+//import za.ac.cput.domain.Client;
 import za.ac.cput.repository.maintenanceRepository;
 import za.ac.cput.domain.maintenance;
 import za.ac.cput.factory.maintenanceFactory;

@@ -6,6 +6,8 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Review;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,4 +25,22 @@ class ReviewFactoryTest {
         System.out.println(review.toString());
         assertNotNull(review);
     }
+    @Test
+    public void test_equality() {
+        Review review = ReviewFactory.createReview(7, "House was clean and very fresh");
+        Review review1 = ReviewFactory.createReview(7,"House was clean and very fresh");
+        assertEquals(review,review1);
+    }
+    @Test
+    @Timeout(15) //Seconds
+    public void timeOutTest() {
+        Review review = ReviewFactory.createReview(10,"No complaints about the house");
+        try {
+            Thread.sleep(600);
+            assertEquals(review.getReviewId(),review.getReviewId());
+        } catch (InterruptedException ie){
+            ie.printStackTrace();
+        }
+    }
 }
+

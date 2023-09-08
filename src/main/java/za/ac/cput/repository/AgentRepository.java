@@ -5,11 +5,12 @@
  * */
 package za.ac.cput.repository;
 
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Agent;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Repository
 public class AgentRepository implements IAgentRepository{
     private static AgentRepository repository =null;
     private Set<Agent> agentDB = null;

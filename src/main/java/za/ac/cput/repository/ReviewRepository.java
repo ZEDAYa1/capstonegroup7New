@@ -5,18 +5,19 @@
  * */
 package za.ac.cput.repository;
 
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Review;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Repository
 public class ReviewRepository implements IReviewRepository {
     private static ReviewRepository repository = null;
     private Set<Review> reviewDB = null;
     private ReviewRepository(){
         reviewDB = new HashSet<Review>();
     }
-    static ReviewRepository getRepository(){
+    public static ReviewRepository getRepository(){
         if (repository == null){
             repository = new ReviewRepository();
         }
