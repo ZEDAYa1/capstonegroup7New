@@ -24,7 +24,7 @@ class TenantServiceImplTest {
     @Autowired
     private TenantServiceImpl service;
 
-    private static Tenant tenant = TenantFactory.createTenant("Jace", "Herondale", "jherondale@email.com", "0966598574");
+    private static Tenant tenant = TenantFactory.createTenant("William", "Herondale", "willandtess@email.com", "0762201549");
 
     @Test
     void a_create() {
