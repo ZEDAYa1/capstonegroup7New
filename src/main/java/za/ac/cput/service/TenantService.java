@@ -8,7 +8,8 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.Tenant;
 import java.util.Set;
+import java.util.List;
 
 public interface TenantService extends IService<Tenant, String> {
-    Set<Tenant> getAll();
+    List<Tenant> getAll();
 }

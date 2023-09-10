@@ -1,66 +1,52 @@
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Property;
-import za.ac.cput.domain.Tenant;
 import za.ac.cput.repository.PropertyRepository;
 import za.ac.cput.service.PropertyService;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
-    private static PropertyServiceImpl service = null;
-    private PropertyRepository repository = null;
+    private PropertyRepository repository;
 
-    private PropertyServiceImpl(){
-        if(repository == null){
-            repository = PropertyServiceImpl.getRepository();
-        }
+    @Autowired
+    private PropertyServiceImpl(PropertyRepository repository) {
+        this.repository = repository;
     }
 
-   private static PropertyRepository getRepository(){
-        return PropertyRepository.getRepository();
-   }
-
-   public static PropertyServiceImpl getService(){
-        if (service==null){
-            service = new PropertyServiceImpl();
-        }
-        return service;
-   }
-
-   @Override
-    public Property create(Property property){
-        Property created = repository.create(property);
-        return created;
-   }
 
     @Override
-    public Property read(String id) {
-        Property readProperty = repository.read(id);
-        return readProperty;
+    public Property create(Property property) {
+        return this.repository.save(property);
+    }
+
+    @Override
+    public Property read(String propertyID) {
+        return this.repository.findById(propertyID).orElse(null);
     }
 
     @Override
     public Property update(Property property) {
-        Property updated = repository.update(property);
-        return updated;
+        if (this.repository.existsById(property.getPropertyID()))
+            return this.repository.save(property);
+        return null;
     }
 
     @Override
-    public boolean delete(String propertyID){
-        boolean success = repository.delete(propertyID);
-        return success;
+    public boolean delete(String propertyID) {
+        if (this.repository.existsById(propertyID)) {
+            this.repository.deleteById(propertyID);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Set<Property> findAll() {
-        return repository.getAll();
-    }
-
-    @Override
-    public Set<Property> getAll(){
-        return repository.getAll();
+    public List<Property> getAll() {
+        return this.repository.findAll();
     }
 }
