@@ -8,51 +8,51 @@ package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Tenant;
-import za.ac.cput.repository.TenantRepository;
-import za.ac.cput.service.TenantService;
+import za.ac.cput.domain.Property;
+import za.ac.cput.repository.PropertyRepository;
+import za.ac.cput.service.PropertyService;
+
 import java.util.List;
 import java.util.Set;
 
 @Service
-public class TenantServiceImpl implements TenantService {
-    private TenantRepository repository;
+public class PropertyServiceImpl implements PropertyService {
+    private PropertyRepository repository;
 
     @Autowired
-    private TenantServiceImpl(TenantRepository repository) {
+    private PropertyServiceImpl(PropertyRepository repository) {
         this.repository = repository;
     }
 
+
     @Override
-    public Tenant create(Tenant tenant) {
-        return this.repository.save(tenant);
+    public Property create(Property property) {
+        return this.repository.save(property);
     }
 
     @Override
-    public Tenant read(String tenantID) {
-        return this.repository.findById(tenantID).orElse(null);
+    public Property read(String propertyID) {
+        return this.repository.findById(propertyID).orElse(null);
     }
 
     @Override
-    public Tenant update(Tenant tenant) {
-        if (this.repository.existsById(tenant.getTenantID())) {
-            return this.repository.save(tenant);
-        }
+    public Property update(Property property) {
+        if (this.repository.existsById(property.getPropertyID()))
+            return this.repository.save(property);
         return null;
     }
 
     @Override
-    public boolean delete(String tenantID) {
-        if (this.repository.existsById(tenantID)) {
-            this.repository.deleteById(tenantID);
+    public boolean delete(String propertyID) {
+        if (this.repository.existsById(propertyID)) {
+            this.repository.deleteById(propertyID);
             return true;
         }
         return false;
     }
 
     @Override
-    public List<Tenant> getAll() {
+    public List<Property> getAll() {
         return this.repository.findAll();
     }
-
 }
