@@ -6,67 +6,53 @@
  * */
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Tenant;
 import za.ac.cput.repository.TenantRepository;
 import za.ac.cput.service.TenantService;
-
+import java.util.List;
 import java.util.Set;
 
 @Service
-public class TenantServiceImpl implements TenantService{
-    private static TenantServiceImpl service = null;
-    private TenantRepository repository = null;
+public class TenantServiceImpl implements TenantService {
+    private TenantRepository repository;
 
-    private TenantServiceImpl(){
-        if (repository == null) {
-            repository = TenantServiceImpl.getRepository();
-        }
-    }
-
-    private static TenantRepository getRepository() {
-        return TenantRepository.getRepository();
-    }
-
-
-    public static TenantServiceImpl getService(){
-        if (service == null){
-            service = new TenantServiceImpl();
-        }
-        return service;
+    @Autowired
+    private TenantServiceImpl(TenantRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public Tenant create(Tenant tenant){
-        Tenant created = repository.create(tenant);
-        return created;
+    public Tenant create(Tenant tenant) {
+        return this.repository.save(tenant);
     }
 
     @Override
-    public Tenant read(String id) {
-        Tenant readTenent = repository.read(id);
-        return readTenent;
+    public Tenant read(String tenantID) {
+        return this.repository.findById(tenantID).orElse(null);
     }
 
     @Override
     public Tenant update(Tenant tenant) {
-        Tenant updated = repository.update(tenant);
-        return updated;
+        if (this.repository.existsById(tenant.getTenantID())) {
+            return this.repository.save(tenant);
+        }
+        return null;
     }
 
     @Override
-    public boolean delete(String tenantID){
-        boolean success = repository.delete(tenantID);
-        return success;
+    public boolean delete(String tenantID) {
+        if (this.repository.existsById(tenantID)) {
+            this.repository.deleteById(tenantID);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Set<Tenant> findAll() {
-        return repository.getAll();
+    public List<Tenant> getAll() {
+        return this.repository.findAll();
     }
 
-    @Override
-    public Set<Tenant> getAll(){
-        return repository.getAll();
-    }
 }
