@@ -15,38 +15,48 @@ import za.ac.cput.domain.Property;
 import za.ac.cput.factory.PropertyFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
 class PropertyServiceImplTest {
-@Autowired
+    @Autowired
+    private PropertyServiceImpl service;
 
-    private static PropertyServiceImpl propertyService = null;
-    private static Property property = PropertyFactory.createProperty("22 Green Street, Maple Tree Place, Cape Town", 3650, "Beautiful, well maintained area close to schools and shops");
-
-    @Test
-    void getService() {
-    }
+    private static Property property = PropertyFactory.createProperty("8 4th Avenue, Belgravia, 7764",
+            4800, "Beautiful property, Spacious, Close to most amenities");
 
     @Test
     void a_create() {
-//        Property created = propertyService.create(property);
-//        assertNotNull(property.getPropertyID(), created.getPropertyID());
-//        System.out.println("Property Created :" + created);
+        Property created = service.create(property);
+        assertEquals(property.getPropertyID(), created.getPropertyID());
+        System.out.println("Created: "+ created);
     }
 
     @Test
     void b_read() {
+        Property read = service.read(property.getPropertyID());
+        assertNotNull(read);
+        System.out.println("Read: "+ read);
     }
 
     @Test
     void c_update() {
+        Property newProperty = new Property.Builder().copy(property).setRentAmount(5800).build();
+        Property updated = service.update(newProperty);
+        assertEquals(newProperty.getRentAmount(), updated.getRentAmount());
+        System.out.println("updated: " + updated);
     }
 
     @Test
+    @Disabled
     void e_delete() {
+        boolean deleted = service.delete(property.getPropertyID());
+        assertNotNull(deleted);
+        System.out.println("Deleted: " + true);
     }
 
     @Test
     void d_getAll() {
+        System.out.println("Get All");
+        System.out.println(service.getAll());
     }
 }
