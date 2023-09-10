@@ -13,11 +13,13 @@ import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.TenantFactory;
 import za.ac.cput.service.TenantService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/tenant")
-public class TenantController {
+public class TenantController
+{
     @Autowired
     private TenantService tenantService;
 
@@ -28,8 +30,7 @@ public class TenantController {
 
     @PostMapping("/create")
     public Tenant create(@RequestBody Tenant tenant){
-        Tenant firstTenant = TenantFactory.createTenant(tenant.getFirstName(), tenant.getLastName(),tenant.getEmail(),tenant.getContactNumber());
-        return tenantService.create(firstTenant);
+        return tenantService.create(tenant);
     }
 
     @GetMapping("/read/{id}")
@@ -48,7 +49,7 @@ public class TenantController {
     }
 
     @GetMapping({"/getAll"})
-    public Set<Tenant> getAll(){
+    public List<Tenant> getAll(){
         return tenantService.getAll();
     }
 }
