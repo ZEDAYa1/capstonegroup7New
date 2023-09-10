@@ -9,16 +9,14 @@ import za.ac.cput.service.PropertyService;
 import java.util.Set;
 
 @RestController
-@RequestMapping
+@RequestMapping("/property")
 public class PropertyController {
     @Autowired
     private PropertyService propertyService;
 
     @PostMapping("/create")
     public Property create(@RequestBody Property property){
-        Property firstProperty = PropertyFactory.createProperty(property.getAddress(),
-                property.getRentAmount(),property.getDescription());
-        return propertyService.create(firstProperty);
+        return propertyService.create(property);
     }
 
     @GetMapping("/read/{id}")
@@ -32,12 +30,12 @@ public class PropertyController {
     }
 
     @DeleteMapping("/delete/{id}")
-        public boolean delete(@PathVariable String id){
-            return propertyService.delete(id);
-        }
+    public boolean delete(@PathVariable String id){
+        return propertyService.delete(id);
+    }
 
     @GetMapping({"/getAll"})
-    public Set<Property> getAll(){
+    public List<Property> getAll(){
         return propertyService.getAll();
     }
 }
