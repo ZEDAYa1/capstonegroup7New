@@ -10,7 +10,6 @@ import za.ac.cput.domain.Review;
 
 import java.util.HashSet;
 import java.util.Set;
-@Repository
 public class ReviewRepository implements IReviewRepository {
     private static ReviewRepository repository = null;
     private Set<Review> reviewDB = null;

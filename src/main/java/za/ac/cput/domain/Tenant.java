@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Tenant {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   //@GeneratedValue(strategy = GenerationType.AUTO)
     private String tenantID;
     private String leaseID;
     private String firstName;

@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Property {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String propertyID;
     private String address;
     private double rentAmount;

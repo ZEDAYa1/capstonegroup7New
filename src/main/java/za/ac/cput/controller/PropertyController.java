@@ -6,6 +6,7 @@ import za.ac.cput.domain.Property;
 import za.ac.cput.factory.PropertyFactory;
 import za.ac.cput.service.PropertyService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
