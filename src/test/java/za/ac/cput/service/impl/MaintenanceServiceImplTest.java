@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 class MaintenanceServiceImplTest {
 
-    private static Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
-    private static Maintenance maintenance2= MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2023-02-08"));
-    private static Maintenance maintenance3= MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2023-02-08"));
+    private static Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
+    private static Maintenance maintenance2= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2023-02-08"));
+    private static Maintenance maintenance3= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2023-02-08"));
 
 
     @Autowired

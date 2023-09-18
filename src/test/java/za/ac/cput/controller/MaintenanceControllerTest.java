@@ -35,7 +35,7 @@ class MaintenanceControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.maintenance = MaintenanceFactory.createMaintenance("101", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2023-09-15"));
+        this.maintenance = MaintenanceFactory.createMaintenance("101", LocalDate.parse("2023-09-15"));
         this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/maintenance/";
     }
 

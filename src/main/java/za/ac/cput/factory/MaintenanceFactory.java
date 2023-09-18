@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class MaintenanceFactory {
 
 
-    public static Maintenance createMaintenance(String description, String propertyID, String maintenanceDescription, LocalDate requestDate) {
+    public static Maintenance createMaintenance(String description, LocalDate requestDate) {
         if (Helper.isNullOrEmpty(String.valueOf(description)) || Helper.isNullOrEmpty(String.valueOf(requestDate)))
             return null;
 
