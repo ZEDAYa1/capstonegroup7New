@@ -1,12 +1,23 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Booking {
+@Entity
+public class Booking implements Serializable {
+    @Id
+    @Column(name = "booking_id")
     private String bookingId;
     private Date date;
     private String time;
     private String address;
+
+    protected Booking(){
+
+    }
 
     public Booking(String bookingId, Date date, String time, String address) {
         this.bookingId = bookingId;
