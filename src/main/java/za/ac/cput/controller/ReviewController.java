@@ -1,3 +1,8 @@
+/*
+ * Review.java
+ * Author: Sibusiso Dwayi(220226466)
+ * Date: 14 June 2023
+ * */
 package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +24,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @Autowired
-    public ReviewController(ReviewService reviewService) {
-        this.reviewService = reviewService;
+    public ReviewController(ReviewService reviewService) {this.reviewService = reviewService;
     }
 
     @PostMapping("save")

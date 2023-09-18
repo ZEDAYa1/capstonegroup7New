@@ -1,51 +1,64 @@
-/*
- * TenantController.java
- * This is the TenantController class
- * Author: Tshegofatso Molefe {219001235}
- * Date: 9 September 2023
- * */
-
 package za.ac.cput.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Property;
 import za.ac.cput.factory.PropertyFactory;
 import za.ac.cput.service.PropertyService;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/property")
+@RequestMapping("capstonegroup7/property/")
+@Slf4j
 public class PropertyController {
+    private final PropertyService propertyService;
+
     @Autowired
-    private PropertyService propertyService;
-
-    @PostMapping("/create")
-    public Property create(@RequestBody Property property){
-        return propertyService.create(property);
+    public PropertyController(PropertyService propertyService) {
+        this.propertyService = propertyService;
     }
 
-    @GetMapping("/read/{id}")
-    public Property read(@PathVariable String id){
-        return propertyService.read(id);
+    @PostMapping("save")
+    public ResponseEntity<Property> save(@RequestBody Property property) {
+        log.info("Save request: {}", property);
+        Property validatedProperty;
+        try {
+            validatedProperty = PropertyFactory.createProperty(
+                    property.getPropertyId(),
+                    property.getAddress(),
+                    property.getRentAmount(),
+                    property.getDescription()
+            );
+        } catch (IllegalArgumentException e) {
+            log.info("Save request error: {}", e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        Property save = propertyService.save(validatedProperty);
+        return ResponseEntity.ok(save);
     }
 
-    @PostMapping("/update")
-    public Property update(@RequestBody Property property){
-        return propertyService.update(property);
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        log.info("Delete request: {}", id);
+        this.propertyService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id){
-        return propertyService.delete(id);
+    @GetMapping("read/{id}")
+    public ResponseEntity<Property> readId(@PathVariable String id) {
+        log.info("Read request: {}", id);
+        Property property = this.propertyService.read(id);
+        return ResponseEntity.ok(property);
     }
 
-    @GetMapping({"/getAll"})
-    public List<Property> getAll(){
-        return propertyService.getAll();
+    @GetMapping("all")
+    public ResponseEntity<Set<Property>> findAll() {
+        Set<Property> properties = this.propertyService.findAll();
+        return ResponseEntity.ok(properties);
     }
 }
-
-

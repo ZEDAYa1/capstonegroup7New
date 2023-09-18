@@ -14,7 +14,7 @@ class MaintenanceFactoryTest {
 
     @Test
     public void test(){
-        Maintenance maintenance=MaintenanceFactory.createMaintenance("mould", "05c7a05d-2010-4e4d-95d2-1b012aaa12f5","Mould", LocalDate.parse("2022-02-19"));
+        Maintenance maintenance=MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
         System.out.println(maintenance.toString());
         assertNotNull(maintenance);
 
@@ -22,14 +22,14 @@ class MaintenanceFactoryTest {
     }
     @Test
     public void test_fail(){
-        Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", "05c7a05d-2010-4e4d-95d2-1b012aaa12f5","Mould", LocalDate.parse("2022-02-19"));
+        Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
         System.out.println(maintenance.toString());
         assertNotNull(maintenance);
 
     }
     @Test
     public void testEquality(){
-     Maintenance m1 =MaintenanceFactory.createMaintenance("mould", "05c7a05d-2010-4e4d-95d2-1b012aaa12f5","Mould", LocalDate.parse("2022-02-19"));
+     Maintenance m1 =MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
      Maintenance m2=m1;
      assertEquals(m1, m2);
 
@@ -38,8 +38,8 @@ class MaintenanceFactoryTest {
 
     @Test
     public void testIdentity(){
-        Maintenance ma1=MaintenanceFactory.createMaintenance("mould", "05c7a05d-2010-4e4d-95d2-1b012aaa12f5","Mould", LocalDate.parse("2022-02-19"));
-        Maintenance ma2=MaintenanceFactory.createMaintenance("mould", "05c7a05d-2010-4e4d-95d2-1b012aaa12f5","Mould", LocalDate.parse("2022-02-19"));
+        Maintenance ma1=MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
+        Maintenance ma2=MaintenanceFactory.createMaintenance("mould", maintenance.getPropertyID(), maintenance.getDescription(), LocalDate.parse("2022-02-19"));
         assertNotSame(ma1, ma2);
 
     }
