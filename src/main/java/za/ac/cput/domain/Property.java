@@ -1,43 +1,38 @@
-/*
- * Property.java
- * This is the property entity
- * Author: Tshegofatso Molefe {219001235}
- * Date: 6 April 2023
- * */
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Property {
-
+public class Property implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private String propertyID;
+    @Column(name = "property_id")
+    private String propertyId;
+
+    @NotNull
     private String address;
+
     private double rentAmount;
+
     private String description;
 
-
-    public Property() {
-    }
+    protected Property() {}
 
     private Property(Builder builder) {
-        this.propertyID = builder.propertyID;
+        this.propertyId = builder.propertyId;
         this.address = builder.address;
         this.rentAmount = builder.rentAmount;
         this.description = builder.description;
-
     }
 
-    public String getPropertyID() {
-        return propertyID;
+    public String getPropertyId() {
+        return propertyId;
     }
+
     public String getAddress() {
         return address;
     }
@@ -55,37 +50,25 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return Double.compare(property.rentAmount, rentAmount) == 0
-                && Objects.equals(propertyID, property.propertyID)
-                && Objects.equals(address, property.address)
-                && Objects.equals(description, property.description);
+        return Double.compare(property.rentAmount, rentAmount) == 0 &&
+                Objects.equals(propertyId, property.propertyId) &&
+                Objects.equals(address, property.address) &&
+                Objects.equals(description, property.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyID, address,
-                rentAmount, description);
+        return Objects.hash(propertyId, address, rentAmount, description);
     }
 
-    @Override
-    public String toString() {
-        return "Property{" +
-                "propertyID='" + propertyID + '\'' +
-                ", address=" + address +
-                ", rent=" + rentAmount +
-                ", description=" + description +
-                '}';
-    }
-
-    //Builder pattern
-    public static class Builder{
-        private String propertyID;
+    public static class Builder {
+        private String propertyId;
         private String address;
         private double rentAmount;
         private String description;
 
-        public Builder setPropertyID(String propertyID) {
-            this.propertyID = propertyID;
+        public Builder setPropertyId(String propertyId) {
+            this.propertyId = propertyId;
             return this;
         }
 
@@ -104,17 +87,26 @@ public class Property {
             return this;
         }
 
-        public Builder copy(Property property){
-            this.propertyID = property.propertyID;
+        public Builder copy(Property property) {
+            this.propertyId = property.propertyId;
             this.address = property.address;
             this.rentAmount = property.rentAmount;
             this.description = property.description;
             return this;
         }
 
-        public Property build(){
-            return new Property(this); //Anonymous object
+        public Property build() {
+            return new Property(this);
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Property{" +
+                "propertyId='" + propertyId + '\'' +
+                ", address='" + address + '\'' +
+                ", rentAmount=" + rentAmount +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

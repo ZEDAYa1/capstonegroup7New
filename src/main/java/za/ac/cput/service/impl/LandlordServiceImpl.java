@@ -6,7 +6,6 @@
 package za.ac.cput.service.impl;
 
 import za.ac.cput.domain.Landlord;
-import za.ac.cput.repository.LandlordRepository;
 import za.ac.cput.service.LandlordService;
 import java.util.Set;
 

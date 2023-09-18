@@ -10,54 +10,54 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Review;
-import za.ac.cput.factory.AgentFactory;
 import za.ac.cput.factory.ReviewFactory;
-import za.ac.cput.service.ReviewService;
-import za.ac.cput.service.impl.AgentServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
-//import static za.ac.cput.service.impl.AgentServiceImplTest.reviewService;
-@SpringBootTest
-@TestMethodOrder(MethodOrderer.MethodName.class)
-class ReviewServiceImplTest {
-    //private static ReviewServiceImpl reviewService = null;
-    @Autowired
-    private static ReviewService reviewService = null;
-    private static Review review = ReviewFactory.createReview(10,"Very clean");
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
+public class ReviewServiceImplTest {
+    private static final Review review1 = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
+    private static final Review review2 = ReviewFactory.createReview("87654321","00334466", "12345678", "7","Very dirty");
+    private static final Review review3 = ReviewFactory.createReview("00334466","12345678", "87654321","10","Cockroaches in cupboards");
+
+    @Autowired
+    private ReviewServiceImpl service;
 
     @Test
-    void a_create() {
-        Review created = reviewService.create(review);
-        assertEquals(review.getReviewId(),created.getReviewId());
-        System.out.println("Created: "+ created);
+    void a_save() {
+        System.out.println("Created: ");
+        Review created1 = service.save(review1);
+        assertNotNull(created1);
+        System.out.println(created1);
+
+        Review created2 = service.save(review2);
+        assertNotNull(created2);
+        System.out.println(created2);
+
+        Review created3 = service.save(review3);
+        assertNotNull(created3);
+        System.out.println(created3);
     }
 
     @Test
     void b_read() {
-        Review read = reviewService.read(review.getReviewId());
-        assertNotNull(read);
-        System.out.println("Read: "+ read);
+        Review read = service.read(review1.getReviewId());
+        assertEquals(read.getReviewId(), review1.getReviewId());
+        System.out.println("Show agent: " + read);
     }
 
     @Test
-    void c_update() {
-        Review newReview = new Review.Builder().copy(review).setComment("Bad to Worse").build();
-        Review updated = reviewService.update(newReview);
-        assertEquals(newReview.getReviewId(),updated.getReviewId());
-        System.out.println("Updated: "+ updated);
+    void f_delete() {
+        boolean success = service.delete(review3.getReviewId());
+        assertTrue(success);
+        System.out.println("Delete agent: " + success);
     }
+
     @Test
-    void e_delete() {
-        boolean deleted = ReviewServiceImpl.getService().delete(review.getReviewId());
-        assertNotNull((deleted));
-        System.out.println("Deleted "+ true );
-    }
-    @Test
-    void d_getAll() {
-        System.out.println("Get all: ");
-        System.out.println(reviewService.getAll());
+    void d_getALl() {
+        System.out.println("Show all agents: ");
+        System.out.println(service.findAll());
     }
 }

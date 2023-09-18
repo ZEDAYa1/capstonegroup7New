@@ -1,58 +1,50 @@
-/*
- * TenantServiceImpl.java
- * This is the TenantService Implementation class
- * Author: Tshegofatso Molefe {219001235}
- * Date: 20 June 2023
- * */
 package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Tenant;
-import za.ac.cput.repository.TenantRepository;
+import za.ac.cput.repository.ITenantRepository;
 import za.ac.cput.service.TenantService;
 
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TenantServiceImpl implements TenantService {
-    private TenantRepository repository;
+
+    private final ITenantRepository repository;
 
     @Autowired
-    private TenantServiceImpl(TenantRepository repository) {
+    public TenantServiceImpl(ITenantRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Tenant create(Tenant tenant) {
+    public Tenant save(Tenant tenant) {
         return this.repository.save(tenant);
     }
 
     @Override
-    public Tenant read(String tenantID) {
-        return this.repository.findById(tenantID).orElse(null);
+    public Tenant read(String s) {
+        return this.repository.findById(s).orElse(null);
     }
 
     @Override
-    public Tenant update(Tenant tenant) {
-        if (this.repository.existsById(tenant.getTenantID())) {
-            return this.repository.save(tenant);
-        }
-        return null;
-    }
-
-    @Override
-    public boolean delete(String tenantID) {
-        if (this.repository.existsById(tenantID)) {
-            this.repository.deleteById(tenantID);
+    public boolean delete(String s) {
+        if (this.repository.existsById(s)) {
+            this.repository.deleteById(s);
             return true;
         }
         return false;
     }
 
     @Override
-    public List<Tenant> getAll() {
-        return this.repository.findAll();
+    public Set<Tenant> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Tenant> getAll() {
+        return null;
     }
 }

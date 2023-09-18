@@ -3,50 +3,49 @@ package za.ac.cput.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Property;
-import za.ac.cput.repository.PropertyRepository;
+import za.ac.cput.repository.IPropertyRepository;
 import za.ac.cput.service.PropertyService;
 
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
-    private PropertyRepository repository;
+
+    private final IPropertyRepository repository;
 
     @Autowired
-    private PropertyServiceImpl(PropertyRepository repository) {
+    public PropertyServiceImpl(IPropertyRepository repository) {
         this.repository = repository;
     }
 
-
     @Override
-    public Property create(Property property) {
+    public Property save(Property property) {
         return this.repository.save(property);
     }
 
     @Override
-    public Property read(String propertyID) {
-        return this.repository.findById(propertyID).orElse(null);
+    public Property read(String s) {
+        return this.repository.findById(s).orElse(null);
     }
 
     @Override
-    public Property update(Property property) {
-        if (this.repository.existsById(property.getPropertyID()))
-            return this.repository.save(property);
-        return null;
-    }
-
-    @Override
-    public boolean delete(String propertyID) {
-        if (this.repository.existsById(propertyID)) {
-            this.repository.deleteById(propertyID);
+    public boolean delete(String s) {
+        if (this.repository.existsById(s)) {
+            this.repository.deleteById(s);
             return true;
         }
         return false;
     }
 
     @Override
-    public List<Property> getAll() {
-        return this.repository.findAll();
+    public Set<Property> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Property> getAll() {
+        return null;
     }
 }
+

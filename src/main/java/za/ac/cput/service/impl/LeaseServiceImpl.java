@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Lease;
 import za.ac.cput.service.LeaseService;
-import za.ac.cput.repository.LeaseRepository;
+import za.ac.cput.repository.ILeaseRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class LeaseServiceImpl implements LeaseService {
-    private LeaseRepository repository;
+    private ILeaseRepository repository;
     @Autowired
-    LeaseServiceImpl(LeaseRepository repository){
+    LeaseServiceImpl(ILeaseRepository repository){
         this.repository = repository;
     }
 

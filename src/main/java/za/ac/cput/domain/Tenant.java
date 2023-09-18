@@ -1,63 +1,63 @@
-/*
- * Tenant.java
- * This is the tenant entity
- * Author: Tshegofatso Molefe {219001235}
- * Date: 6 April 2023
- * */
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Tenant {
+public class Tenant implements Serializable {
+    @Id
+    @Column(name = "tenant_id")
+    private String tenantId;
 
-   @Id
-   //@GeneratedValue(strategy = GenerationType.AUTO)
-    private String tenantID;
-    private String leaseID;
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
-    private String email;
+
     private String contactNumber;
 
-//    private Tenant(){
-//    }
+    private String email;
 
-    public Tenant(Builder builder) {
-        this.tenantID = builder.tenantID;
-        this.leaseID = builder.leaseID;
+    private String leaseId;
+
+    protected Tenant() {}
+
+    private Tenant(Builder builder) {
+        this.tenantId = builder.tenantId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
-        this.email = builder.email;
         this.contactNumber = builder.contactNumber;
+        this.email = builder.email;
+        this.leaseId = builder.leaseId;
     }
 
-    public Tenant() {
-
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public String getTenantID() {
-        return tenantID;
-    }
-    public String getLeaseID() {
-        return leaseID;
-    }
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
     public String getEmail() {
         return email;
     }
-    public String getContactNumber() {
-        return contactNumber;
+
+    public String getLeaseId() {
+        return leaseId;
     }
 
     @Override
@@ -65,40 +65,29 @@ public class Tenant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tenant tenant = (Tenant) o;
-        return Objects.equals(tenantID, tenant.tenantID) && Objects.equals(leaseID, tenant.leaseID) &&
-                Objects.equals(firstName, tenant.firstName) && Objects.equals(lastName, tenant.lastName) &&
-                Objects.equals(email, tenant.email) && Objects.equals(contactNumber, tenant.contactNumber);
+        return Objects.equals(tenantId, tenant.tenantId) &&
+                Objects.equals(firstName, tenant.firstName) &&
+                Objects.equals(lastName, tenant.lastName) &&
+                Objects.equals(contactNumber, tenant.contactNumber) &&
+                Objects.equals(email, tenant.email) &&
+                Objects.equals(leaseId, tenant.leaseId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tenantID, leaseID, firstName, lastName, email, contactNumber);
+        return Objects.hash(tenantId, firstName, lastName, contactNumber, email, leaseId);
     }
 
-    @Override
-    public String toString() {
-        return "Tenant{" +
-                "tenantID='" + tenantID + '\'' +
-                ", leaseID='" + leaseID + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                '}';
-    }
+    public static class Builder {
+        private String tenantId;
+        private String firstName;
+        private String lastName;
+        private String contactNumber;
+        private String email;
+        private String leaseId;
 
-//Builder Pattern
-
-    public static class Builder{
-        private String tenantID, leaseID, firstName, lastName, email, contactNumber;
-
-        public Builder setTenantID(String tenantID) {
-            this.tenantID = tenantID;
-            return this;
-        }
-
-        public Builder setLeaseID(String leaseID) {
-            this.leaseID = leaseID;
+        public Builder setTenantId(String tenantId) {
+            this.tenantId = tenantId;
             return this;
         }
 
@@ -112,27 +101,45 @@ public class Tenant {
             return this;
         }
 
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
         public Builder setContactNumber(String contactNumber) {
             this.contactNumber = contactNumber;
             return this;
         }
 
-        public Builder copy(Tenant tenant){
-            this.tenantID = tenant.tenantID;
-            this.firstName = tenant.firstName;
-            this.lastName = tenant.lastName;
-            this.email = tenant.email;
-            this.contactNumber = tenant.contactNumber;
+        public Builder setEmail(String email) {
+            this.email = email;
             return this;
         }
 
-        public Tenant build(){
+        public Builder setLeaseId(String leaseId) {
+            this.leaseId = leaseId;
+            return this;
+        }
+
+        public Builder copy(Tenant tenant) {
+            this.tenantId = tenant.tenantId;
+            this.firstName = tenant.firstName;
+            this.lastName = tenant.lastName;
+            this.contactNumber = tenant.contactNumber;
+            this.email = tenant.email;
+            this.leaseId = tenant.leaseId;
+            return this;
+        }
+
+        public Tenant build() {
             return new Tenant(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Tenant{" +
+                "tenantId='" + tenantId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", leaseId='" + leaseId + '\'' +
+                '}';
     }
 }

@@ -15,15 +15,15 @@ public class TenantFactory {
                 || Helper.isNullOrEmpty(contactNumber)) {
             return null;
         }
-        String tenantID = Helper.generateId();
-        String leaseID = Helper.generateId();
+        String tenantId = Helper.generateId();
+        String leaseId = Helper.generateId();
 
 //        if (!Helper.isValidEmail(email)) {
 //            return null;
 //        }
 
-        Tenant tenant = new Tenant.Builder().setTenantID(tenantID)
-                .setLeaseID(leaseID)
+        Tenant tenant = new Tenant.Builder().setTenantId(tenantId)
+                .setLeaseId(leaseId)
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)

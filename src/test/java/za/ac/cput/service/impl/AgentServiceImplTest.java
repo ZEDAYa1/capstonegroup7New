@@ -5,7 +5,6 @@
  * */
 package za.ac.cput.service.impl;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -13,47 +12,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Agent;
 import za.ac.cput.factory.AgentFactory;
-import za.ac.cput.service.impl.AgentServiceImpl;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
+
 @TestMethodOrder(MethodOrderer.MethodName.class)
-class AgentServiceImplTest {
+@SpringBootTest
+public class AgentServiceImplTest {
+    private static final Agent agent1 = AgentFactory.createAgent("12345678","sibusiso", "dwayi","0842874758","sibu@gmail.com","Sbudwayi","143 sir lowry road");
+    private static final Agent agent2 = AgentFactory.createAgent("87654321","soso", "moni", "087287475","sos@gmail.com","SosoMoni","144 SIr Lowry road");
+    private static final Agent agent3 = AgentFactory.createAgent("00334466","luyolo", "nzima","0610796008","luyolo@gmail.com","Luyolonzima", "Victor road");
+
     @Autowired
-    private static  AgentServiceImpl agentService = null;
-    private  Agent agent = AgentFactory.createAgent("Sibusiso","Dwayi","0847525412","Sibu@gmail.com","Sbu03","134 Sir Lowry Road");
+    private AgentServiceImpl service;
 
     @Test
-    void a_create() {
-        Agent created = agentService.create(agent);
-        assertEquals(agent.getAgentId(),created.getAgentId());
-        System.out.println("Created: "+ created);
+    void a_save() {
+        System.out.println("Created: ");
+        Agent created1 = service.save(agent1);
+        assertNotNull(created1);
+        System.out.println(created1);
+
+        Agent created2 = service.save(agent2);
+        assertNotNull(created2);
+        System.out.println(created2);
+
+        Agent created3 = service.save(agent3);
+        assertNotNull(created3);
+        System.out.println(created3);
     }
 
     @Test
     void b_read() {
-        Agent read = agentService.read(agent.getAgentId());
-        assertNotNull(read);
-        System.out.println("Read: "+ read);
+        Agent read = service.read(agent1.getAgentId());
+        assertEquals(read.getAgentId(), agent1.getAgentId());
+        System.out.println("Show agent: " + read);
     }
 
     @Test
-    void c_update() {
-        Agent newAgent = new Agent.AgentBuilder().copy(agent).setFirstName("Sibu").build();
-        Agent updated = agentService.update(newAgent);
-        assertEquals(newAgent.getFirstName(),updated.getFirstName());
-        System.out.println("Updated: "+ updated);
+    void f_delete() {
+        boolean success = service.delete(agent3.getAgentId());
+        assertTrue(success);
+        System.out.println("Delete agent: " + success);
     }
+
     @Test
-    void e_delete() {
-        boolean deleted = AgentServiceImpl.getService().delete(agent.getAgentId());
-        assertNotNull((deleted));
-        System.out.println("Deleted "+ true );
-    }
-    @Test
-    void d_getAll() {
-        System.out.println("Get all: ");
-        System.out.println(agentService.getAll());
+    void d_getALl() {
+        System.out.println("Show all agents: ");
+        System.out.println(service.findAll());
     }
 }

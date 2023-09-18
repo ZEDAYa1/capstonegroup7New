@@ -1,5 +1,5 @@
 /*
- * AgentServiceImplTest.java
+ * RevieweControllerImplTest.java
  * Author: Sibusiso Dwayi(220226466)
  * Date: 14 June 2023
  * */
@@ -12,32 +12,33 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.domain.Tenant;
-import za.ac.cput.factory.TenantFactory;
+import za.ac.cput.domain.Review;
+import za.ac.cput.factory.ReviewFactory;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//sonwabiso Moni
+//219275041
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class TenantControllerTest {
+class ReviewControllerTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private TenantController controller;
+    private ReviewController controller;
     @Autowired private TestRestTemplate restTemplate;
 
-    private Tenant tenant;
+    private Review review;
     private String baseUrl;
 
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.tenant = TenantFactory.createTenant("Tshego", "Molefe", "Tshego@gmail.com", "084251752");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/tenant/";
+        this.review = ReviewFactory.createReview("12345678","87654321","00334466","5","Very cleany road");
+        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/agent/";
     }
 
     @Order(1)
@@ -45,9 +46,9 @@ class TenantControllerTest {
     void save() {
         String url = baseUrl + "save";
         System.out.println(url);
-        ResponseEntity<Tenant> response = this.restTemplate
+        ResponseEntity<Review> response = this.restTemplate
                 .withBasicAuth("username", "password")
-                .postForEntity(url, this.tenant, Tenant.class);
+                .postForEntity(url, this.review, Review.class);
         System.out.println(response);
         assertAll(
                 () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
@@ -58,7 +59,7 @@ class TenantControllerTest {
     @Order(3)
     @Test
     void delete() {
-        String url = baseUrl + "delete/" + this.tenant.getTenantId();
+        String url = baseUrl + "delete/" + this.review.getReviewId();
         System.out.println(url);
         this.restTemplate.delete(url);
     }
@@ -66,11 +67,11 @@ class TenantControllerTest {
     @Order(2)
     @Test
     void readId() {
-        String url = baseUrl + "read/" + this.tenant.getTenantId();
+        String url = baseUrl + "read/" + this.review.getReviewId();
         System.out.println(url);
-        ResponseEntity<Tenant> response = this.restTemplate
-                .withBasicAuth("username", "password")
-                .getForEntity(url, Tenant.class);
+        ResponseEntity<Review> response = this.restTemplate
+                .withBasicAuth("username", "dwayi")
+                .getForEntity(url, Review.class);
         System.out.println(response);
         assertAll(
                 ()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -83,10 +84,10 @@ class TenantControllerTest {
     void findAll() {
         String url = baseUrl + "all";
         System.out.println(url);
-        ResponseEntity<Tenant []> response =
+        ResponseEntity<Review []> response =
                 this.restTemplate
                         .withBasicAuth("username", "password")
-                        .getForEntity(url, Tenant[].class);
+                        .getForEntity(url, Review[].class);
         System.out.println(Arrays.asList(response.getBody()));
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),

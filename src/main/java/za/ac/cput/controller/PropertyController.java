@@ -1,3 +1,10 @@
+/*
+ * TenantController.java
+ * This is the TenantController class
+ * Author: Tshegofatso Molefe {219001235}
+ * Date: 9 September 2023
+ * */
+
 package za.ac.cput.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;

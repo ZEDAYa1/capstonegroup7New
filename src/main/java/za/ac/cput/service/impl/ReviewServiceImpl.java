@@ -5,52 +5,52 @@
  * */
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Review;
-import za.ac.cput.repository.ReviewRepository;
+import za.ac.cput.repository.IReviewRepository;
 import za.ac.cput.service.ReviewService;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
-    private static ReviewServiceImpl service = null;
-    private static ReviewRepository repository = null;
-    private ReviewServiceImpl(){
-        repository = ReviewRepository.getRepository();
+
+    private final IReviewRepository repository;
+
+    @Autowired
+    public ReviewServiceImpl(IReviewRepository repository) {
+        this.repository = repository;
     }
-    public static ReviewServiceImpl getService(){
-        if (service == null){
-            service = new ReviewServiceImpl();
+
+    @Override
+    public Review save(Review review) {
+        return this.repository.save(review);
+    }
+
+    @Override
+    public Review read(String s) {
+        return this.repository.findById(s).orElse(null);
+    }
+
+    @Override
+    public boolean delete(String s) {
+        if (this.repository.existsById(s)) {
+            this.repository.deleteById(s);
+            return true;
         }
-        return service;
+        return false;
     }
 
-    @Override
-    public Review create(Review review) {
-        Review created = repository.create(review);
-        return created;
-    }
 
     @Override
-    public Review read(String reviewId) {
-        Review readReview = repository.read(reviewId);
-        return readReview;
-    }
-
-    @Override
-    public Review update(Review review) {
-        Review updated = repository.update(review);
-        return null;
-    }
-
-    @Override
-    public boolean delete(String reviewId) {
-        boolean success = repository.delete(reviewId);
-        return success;
+    public Set<Review> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Set<Review> getAll() {
-        return repository.getAll();
+        return null;
     }
 }
