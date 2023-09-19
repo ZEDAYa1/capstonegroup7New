@@ -6,5 +6,5 @@ import java.util.List;
 
 
 public interface LeaseService extends IService <Lease, String> {
-    public List<Lease> getAll();
+    //public List<Lease> getAll();
 }

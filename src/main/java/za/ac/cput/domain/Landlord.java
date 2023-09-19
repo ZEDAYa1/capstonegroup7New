@@ -5,13 +5,24 @@
 */
 package za.ac.cput.domain;
 
-public class Landlord {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
+public class Landlord implements Serializable {
+    @Id
+    @Column(name = "landlord_id")
     private String landlordId;
 
-    private String firstName;
+    @NotNull
+    private String firstname;
 
-    private String lastName;
+    @NotNull
+    private String lastname;
 
     private String contactNumber;
 
@@ -21,13 +32,13 @@ public class Landlord {
 
     private String address;
 
-    private Landlord() {
+    protected Landlord() {
     }
 
-    public Landlord(Builder builder) {
+    private Landlord(Builder builder) {
         this.landlordId = builder.landlordId;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
+        this.firstname = builder.firstname;
+        this.lastname = builder.lastname;
         this.contactNumber = builder.contactNumber;
         this.email = builder.email;
         this.password = builder.password;
@@ -38,47 +49,50 @@ public class Landlord {
         return landlordId;
     }
 
-    public String getLandlordFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String getLandlordLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getLandlordPhone() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public String getLandlordEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public String getLandlordPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public String getLandlordAddress() {
+    public String getAddress() {
         return address;
     }
 
     @Override
-    public String toString() {
-        return "Landlord{" +
-                "landlordId=" + landlordId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Landlord landlord = (Landlord) o;
+        return Objects.equals(landlordId, landlord.landlordId) && Objects.equals(firstname, landlord.firstname)
+                && Objects.equals(lastname, landlord.lastname) && Objects.equals(contactNumber, landlord.contactNumber)
+                && Objects.equals(email, landlord.email) && Objects.equals(password, landlord.password)
+                && Objects.equals(address, landlord.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(landlordId, firstname, lastname, contactNumber, email, password, address);
     }
 
     public static class Builder {
         private String landlordId;
-        private String firstName;
-        private String lastName;
+        private String firstname;
+        private String lastname;
         private String contactNumber;
         private String email;
         private String password;
@@ -89,13 +103,13 @@ public class Landlord {
             return this;
         }
 
-        public Builder setFirstName(String firstName) {
-            this.firstName = firstName;
+        public Builder setFirstname(String firstname) {
+            this.firstname = firstname;
             return this;
         }
 
-        public Builder setLastName(String lastName) {
-            this.lastName = lastName;
+        public Builder setLastname(String lastname) {
+            this.lastname = lastname;
             return this;
         }
 
@@ -114,15 +128,15 @@ public class Landlord {
             return this;
         }
 
-        public Builder setAddress(String landlordAddress) {
+        public Builder setAddress(String address) {
             this.address = address;
             return this;
         }
 
         public Builder copy(Landlord landlord) {
             this.landlordId = landlord.landlordId;
-            this.firstName = landlord.firstName;
-            this.lastName = landlord.lastName;
+            this.firstname = landlord.firstname;
+            this.lastname = landlord.lastname;
             this.contactNumber = landlord.contactNumber;
             this.email = landlord.email;
             this.password = landlord.password;
@@ -133,7 +147,18 @@ public class Landlord {
         public Landlord build() {
             return new Landlord(this);
         }
-
     }
 
+    @Override
+    public String toString() {
+        return "Landlord{" +
+                "landlordId='" + landlordId + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
