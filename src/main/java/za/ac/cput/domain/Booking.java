@@ -4,14 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Booking implements Serializable {
     @Id
     @Column(name = "booking_id")
     private String bookingId;
-    private Date date;
+    private LocalDate date;
     private String time;
     private String address;
 
@@ -19,7 +19,7 @@ public class Booking implements Serializable {
 
     }
 
-    public Booking(String bookingId, Date date, String time, String address) {
+    public Booking(String bookingId, LocalDate date, String time, String address) {
         this.bookingId = bookingId;
         this.date = date;
         this.time = time;
@@ -37,7 +37,7 @@ public class Booking implements Serializable {
         return bookingId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -53,7 +53,7 @@ public class Booking implements Serializable {
         this.bookingId = bookingId;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -77,7 +77,7 @@ public class Booking implements Serializable {
 
     public static class Builder{
         private String bookingId;
-        private Date date;
+        private LocalDate date;
         private String time;
         private String address;
 
@@ -86,7 +86,7 @@ public class Booking implements Serializable {
             return this;
         }
 
-        public Builder setDate(Date date){
+        public Builder setDate(LocalDate date){
             this.date = date;
             return this;
         }
