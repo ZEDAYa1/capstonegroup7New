@@ -18,7 +18,7 @@ import za.ac.cput.service.ReviewService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/capstonegroup7/review")
 @Slf4j
 public class ReviewController {
     private final ReviewService reviewService;

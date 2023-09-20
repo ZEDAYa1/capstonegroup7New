@@ -6,16 +6,43 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import za.ac.cput.domain.Landlord;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LandlordFactoryTest {
-
     @Test
-    public void test() {
-        Landlord landlord = LandlordFactory.createLandlord("Zachary", "Carstens", "0761148191", "zachary.carstens@icloud.com", "1234567890", "123 ABC Street, Retreat, Cape Town, Western Cape, 7945");
+    void test() {
+        Landlord landlord = LandlordFactory.createLandlord("12345678", "John", "Doe", "0842874758", "johndoe@gmail.com", "password","123 Main Street");
         System.out.println(landlord.toString());
         assertNotNull(landlord);
     }
 
+    @Test
+    void test_fail() {
+        Landlord landlord = LandlordFactory.createLandlord("", "John", "Doe", "0842874758", "johndoe@gmail.com", "password","123 Main Street");
+        System.out.println(landlord.toString());
+        assertNotNull(landlord);
+    }
+
+    @Test
+    public void test_equality() {
+        Landlord landlord1 = LandlordFactory.createLandlord("12345678", "John", "Doe", "0842874758", "johndoe@gmail.com", "password","123 Main Street");
+        Landlord landlord2 = LandlordFactory.createLandlord("12345678", "John", "Doe", "0842874758", "johndoe@gmail.com", "password","123 Main Street");
+        assertEquals(landlord1, landlord2);
+    }
+
+    @Test
+    @Timeout(1) // Seconds
+    public void timeOutTest() {
+        Landlord landlord = LandlordFactory.createLandlord("12345678", "John", "Doe", "0842874758", "johndoe@gmail.com", "password","123 Main Street");
+        try {
+            Thread.sleep(600);
+            assertEquals(landlord.getLandlordId(), landlord.getLandlordId());
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
 }
