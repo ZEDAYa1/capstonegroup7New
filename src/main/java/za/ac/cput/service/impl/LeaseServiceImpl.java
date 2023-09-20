@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Lease;
 import za.ac.cput.service.LeaseService;
 import za.ac.cput.repository.ILeaseRepository;
-
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,7 +17,7 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public Lease create(Lease lease) {
+    public Lease save(Lease lease) {
         return this.repository.save(lease);
     }
 
@@ -45,7 +44,13 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public List<Lease> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toList());
+    public Set<Lease> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Lease> getAll() {
+        return null;
     }
 }
+
