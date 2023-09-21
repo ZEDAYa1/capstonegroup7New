@@ -33,7 +33,7 @@ public class AgentController {
         log.info("Save request: {}", agent);
         Agent validatedAgent;
         try {
-            validatedAgent = AgentFactory.createAgent(agent.getAgentId(), agent.getFirstname(), agent.getLastname(),agent.getContactnumber(), agent.getEmail(), agent.getPassword(), agent.getAddress());
+            validatedAgent = AgentFactory.createAgent(agent.getFirstname(), agent.getLastname(),agent.getContactnumber(), agent.getEmail(), agent.getPassword(), agent.getAddress());
         } catch (IllegalArgumentException e) {
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

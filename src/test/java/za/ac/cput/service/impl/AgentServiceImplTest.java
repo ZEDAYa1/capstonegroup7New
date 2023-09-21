@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class AgentServiceImplTest {
-    private static final Agent agent1 = AgentFactory.createAgent("12345678","sibusiso", "dwayi","0842874758","sibu@gmail.com","Sbudwayi","143 sir lowry road");
-    private static final Agent agent2 = AgentFactory.createAgent("87654321","soso", "moni", "087287475","sos@gmail.com","SosoMoni","144 SIr Lowry road");
-    private static final Agent agent3 = AgentFactory.createAgent("00334466","luyolo", "nzima","0610796008","luyolo@gmail.com","Luyolonzima", "Victor road");
+    private static final Agent agent1 = AgentFactory.createAgent("sibusiso","dwayi", "0842874758","sibu@gmail.com","Sbudwayi","143 sir lowry road");
+    private static final Agent agent2 = AgentFactory.createAgent("soso","moni", "087287475", "sos@gmail.com","SosoMoni","144 Main road");
+    private static final Agent agent3 = AgentFactory.createAgent("luyolo","nzima", "0610796008","luyolo@gmail.com","Luyolonzima","10 Dorset street");
 
     @Autowired
     private AgentServiceImpl service;

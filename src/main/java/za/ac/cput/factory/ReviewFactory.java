@@ -10,21 +10,19 @@ import za.ac.cput.util.Helper;
 
 public class ReviewFactory {
 
-    public static Review createReview(String reviewId, String propertyId, String tenantId, String rating, String comment){
-        Helper.checkStringParam("reviewId", reviewId);
-        Helper.checkStringParam("propertyId", propertyId);
-        Helper.checkStringParam("tenantId", tenantId);
-        Helper.checkStringParam("rating", rating);
-        Helper.checkStringParam("comment", comment);
+    public static Review createReview(Integer rating, String comment) {
+        if (Helper.isNullOrEmpty(String.valueOf(rating)) || Helper.isNullOrEmpty(comment)) {
+            return null;
+        }
+        String reviewId = Helper.generateId();
+        String propertyId = Helper.generateId();
+        String tenantId = Helper.generateId();
 
         return new Review.Builder().setReviewId(reviewId)
                 .setPropertyId(propertyId)
                 .setTenantId(tenantId)
-                .setRating(rating)
+                .setRating(String.valueOf(rating))
                 .setComment(comment)
                 .build();
-
-
     }
-
 }

@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class TenantServiceImplTest {
-    private static Tenant tenant = TenantFactory.createTenant("William", "Herondale", "willandtess@email.com", "0762201549");
-    private static Tenant tenant2 = TenantFactory.createTenant("William", "Herondale", "willandtess@email.com", "0762201549");
-    private static Tenant tenant3 = TenantFactory.createTenant("William", "Herondale", "willandtess@email.com", "0762201549");
+    private static Tenant tenant = TenantFactory.createTenant("William", "Herondale", "willandtess@gmail.com", "0762201549");
+    private static Tenant tenant2 = TenantFactory.createTenant("James", "Bond", "Jamesbond@gmail.com", "0760254818");
+    private static Tenant tenant3 = TenantFactory.createTenant("Radford", "Burger", "Radford@gmail.com", "084520052");
 
     @Autowired
     private TenantServiceImpl service;

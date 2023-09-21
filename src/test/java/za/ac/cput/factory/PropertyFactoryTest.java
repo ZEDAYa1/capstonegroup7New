@@ -18,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class PropertyFactoryTest {
     @Test
     public void test1() {
-        Property property = PropertyFactory.createProperty("14", "South Point Belhar",5600,"Property is close to schools, shopping centers and other amenities");
+        Property property = PropertyFactory.createProperty("14South Point Belhar",5600,"Property is close to schools, shopping centers and other amenities");
         System.out.println(property.toString());
         assertNotNull(property);
     }
     @Test
     public void test2() {
-        Property property = PropertyFactory.createProperty("10 Varsity Street Belhar","10 Varsity Street Belhar",20502,"Property close to transport");
+        Property property = PropertyFactory.createProperty("14South Point Belhar",5600,"Property is close to schools, shopping centers and other amenities");
         System.out.println(property.toString());
         assertNotNull(property);
     }
@@ -33,14 +33,14 @@ class PropertyFactoryTest {
     //Testing Equality
     @Test
     public void testNotEqual(){
-        Property p1 = PropertyFactory.createProperty("10 Varsity Stree Belhar","Varsity Stree Belhar",25000,"Property is close to schools, shopping centers and other amenities");
-        Property p2 = PropertyFactory.createProperty("02 Main Stree Cape Town"," Main Stree Cape Town",24000,"Property is close to schools, shopping centers and other amenities");
+        Property p1 = PropertyFactory.createProperty("10 Varsity Stree Belhar",25000,"Property is close to schools, shopping centers and other amenities");
+        Property p2 = PropertyFactory.createProperty("02 Main Stree Cape Town",24000,"Property is close to schools, shopping centers and other amenities");
         assertNotEquals(p1, p2);
     }
 
     @Test
     public void testEquality(){
-        Property prop1 = PropertyFactory.createProperty("10 Varsity Street Belhar","Varsity Street Belhar",24000,"Varsity Street Belhar");
+        Property prop1 = PropertyFactory.createProperty("10 Varsity Street Belhar",24000,"Varsity Street Belhar");
         Property prop2 = prop1;
         assertEquals(prop1, prop2);
     }
@@ -49,14 +49,14 @@ class PropertyFactoryTest {
     //Failing Test
     @Test
     public void failTest(){
-        Property p = PropertyFactory.createProperty("","",50000,"Property is close to schools, shopping centers and other amenities");
+        Property p = PropertyFactory.createProperty("",50000,"Property is close to schools, shopping centers and other amenities");
         failTest();
     }
 
     @Timeout(value = 120, unit = TimeUnit.MILLISECONDS)
     @Test
     public void testTimeout(){
-        Property property = PropertyFactory.createProperty("10" ,"Varsity Street Belhar",25150,"Property is close to schools, shopping centers and other amenities");
+        Property property = PropertyFactory.createProperty("10 Varsity Street Belhar",25150,"Property is close to schools, shopping centers and other amenities");
         for (int i = 0; i < 3000; i++) {
             System.out.println(i);
         }
@@ -66,7 +66,7 @@ class PropertyFactoryTest {
     @Disabled
     @Test
     public void disableTest(){
-        Property property = PropertyFactory.createProperty("10 ","Varsity Street Belhar",15000,"Property is close to schools, shopping centers and other amenities");
+        Property property = PropertyFactory.createProperty("10 Varsity Street Belhar",15000,"Property is close to schools, shopping centers and other amenities");
         System.out.println(property.toString());
 
     }

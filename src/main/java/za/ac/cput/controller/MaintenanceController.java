@@ -29,7 +29,7 @@ public class MaintenanceController {
         log.info("Save request: {}", maintenance);
         Maintenance validatedMaintenance;
         try {
-            validatedMaintenance = MaintenanceFactory.createMaintenance(maintenance.getRequestId(), maintenance.getPropertyID(),maintenance.getDescription(), maintenance.getRequestDate());
+            validatedMaintenance = MaintenanceFactory.createMaintenance(maintenance.getDescription(), maintenance.getRequestDate());
         } catch (IllegalArgumentException e) {
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

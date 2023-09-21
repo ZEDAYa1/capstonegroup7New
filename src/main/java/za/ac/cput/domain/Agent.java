@@ -5,8 +5,6 @@
  * */
 package za.ac.cput.domain;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

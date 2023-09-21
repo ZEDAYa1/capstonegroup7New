@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FeaturesServiceImplTest {
 
     private static Features features= FeaturesFactory.buildFeatures("outdoor",true,true,5,5,5,true,true);
-    private static Features features2= FeaturesFactory.buildFeatures("outdoor",true,true,5,5,5,true,true);
+    private static Features features2= FeaturesFactory.buildFeatures("outdoor",true,true,4,4,4,false,true);
 
-    private static Features features3= FeaturesFactory.buildFeatures("outdoor",true,true,5,5,5,true,true);
+    private static Features features3= FeaturesFactory.buildFeatures("outdoor",true,true,3,3,3,true,false);
 
     @Autowired
     private FeaturesServiceImpl service;
@@ -25,33 +25,33 @@ class FeaturesServiceImplTest {
     @Test
     void a_save() {
         Features created = service.save(features);
-        assertEquals(features.getPropertyID(), created.getPropertyID());
+        assertEquals(features.getPropertyId(), created.getPropertyId());
         System.out.println("Created: "+ created);
 
         Features created2 = service.save(features2);
-        assertEquals(features2.getPropertyID(), created2.getPropertyID());
+        assertEquals(features2.getPropertyId(), created2.getPropertyId());
         System.out.println("Created: "+ created2);
 
         Features created3 = service.save(features3);
-        assertEquals(features3.getPropertyID(), created3.getPropertyID());
+        assertEquals(features3.getPropertyId(), created3.getPropertyId());
         System.out.println("Created: "+ created3);
     }
     @Test
     void b_read() {
-        Features read = service.read(features.getPropertyID());
-        assertEquals(read.getPropertyID(), features.getPropertyID());
+        Features read = service.read(features.getPropertyId());
+        assertEquals(read.getPropertyId(), features.getPropertyId());
         System.out.println("Show features: " + read);
     }
 
     @Test
     void f_delete() {
-        boolean success = service.delete(features.getPropertyID());
+        boolean success = service.delete(features.getPropertyId());
         assertTrue(success);
         System.out.println("Delete fatuires: " + success);
     }
 
     @Test
-    void getAll() {
+    void d_getAll() {
      System.out.println("Show All:");
      System.out.println(service.getAll());
 

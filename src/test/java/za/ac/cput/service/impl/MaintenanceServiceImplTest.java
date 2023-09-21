@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 class MaintenanceServiceImplTest {
 
-    private static Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
-    private static Maintenance maintenance2= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2023-02-08"));
-    private static Maintenance maintenance3= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2023-02-08"));
+    private static Maintenance maintenance= MaintenanceFactory.createMaintenance("mould",  LocalDate.parse("2022-02-19"));
+    private static Maintenance maintenance2= MaintenanceFactory.createMaintenance("locker", LocalDate.parse("2023-05-17"));
+    private static Maintenance maintenance3= MaintenanceFactory.createMaintenance("lights", LocalDate.parse("2023-08-23"));
 
 
     @Autowired
@@ -47,7 +47,7 @@ class MaintenanceServiceImplTest {
     }
 
     @Test
-    void delete() {
+    void f_delete() {
         boolean success = service.delete(maintenance3.getRequestId());
         assertNotNull(!success);
         System.out.println("Deleted :" + success);
@@ -55,7 +55,7 @@ class MaintenanceServiceImplTest {
     }
 
     @Test
-    void getAll() {
+    void d_getAll() {
         System.out.println("Show All:");
         System.out.println(service.getAll());
     }

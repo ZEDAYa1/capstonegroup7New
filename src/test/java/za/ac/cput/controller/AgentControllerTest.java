@@ -36,7 +36,7 @@ class AgentControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.agent = AgentFactory.createAgent("102","Sibusiso","Dwayi","0842874758","22022@gmail.com","Sbusisodwayi","143 Sir lowry road");
+        this.agent = AgentFactory.createAgent("Sibusiso","Dwayi","0842874758","22022@gmail.com","Sbusisodwayi","143 Sir lowry road");
         this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/agent/";
     }
 

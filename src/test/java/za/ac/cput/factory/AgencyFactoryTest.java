@@ -15,29 +15,29 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class AgencyFactoryTest {
     @Test
     void test() {
-        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        Agency agency = AgencyFactory.createAgency("Zachary", "0842874758", "zac@gmail.com", "143 sir lowry road");
         System.out.println(agency.toString());
         assertNotNull(agency);
     }
 
     @Test
     void test_fail() {
-        Agency agency = AgencyFactory.createAgency("", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        Agency agency = AgencyFactory.createAgency("Zachary", "0842874758", "zac@gmail.com", "143 sir lowry road");
         System.out.println(agency.toString());
         assertNotNull(agency);
     }
 
     @Test
     public void test_equality() {
-        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
-        Agency agency2 = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        Agency agency = AgencyFactory.createAgency("Zachary", "0842874758", "zac@gmail.com", "143 sir lowry road");
+        Agency agency2 = AgencyFactory.createAgency("Zachary", "0842874758", "zac@gmail.com", "143 sir lowry road");
         assertEquals(agency, agency2);
     }
 
     @Test
     @Timeout(1) //Seconds
     public void timeOutTest() {
-        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        Agency agency = AgencyFactory.createAgency("Zachary", "0842874758", "zac@gmail.com", "143 sir lowry road");
         try {
             Thread.sleep(600);
             assertEquals(agency.getAgencyId(), agency.getAgencyId());

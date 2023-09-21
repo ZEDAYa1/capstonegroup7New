@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class ReviewServiceImplTest {
-    private static final Review review1 = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
-    private static final Review review2 = ReviewFactory.createReview("87654321","00334466", "12345678", "7","Very dirty");
-    private static final Review review3 = ReviewFactory.createReview("00334466","12345678", "87654321","10","Cockroaches in cupboards");
+    private static final Review review1 = ReviewFactory.createReview(5,"Very clean");
+    private static final Review review2 = ReviewFactory.createReview(7,"Very dirty");
+    private static final Review review3 = ReviewFactory.createReview(10,"Cockroaches in cupboards");
 
     @Autowired
     private ReviewServiceImpl service;

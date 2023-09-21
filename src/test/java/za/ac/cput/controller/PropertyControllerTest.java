@@ -33,7 +33,7 @@ class PropertyControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.property = PropertyFactory.createProperty("P001", "123 Main St", 2000.0, "Spacious 2-bedroom apartment");
+        this.property = PropertyFactory.createProperty("123 Main St", 2000.0, "Spacious 2-bedroom apartment");
         this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/property/";
     }
 

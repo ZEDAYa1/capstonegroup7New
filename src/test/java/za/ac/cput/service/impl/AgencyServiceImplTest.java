@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class AgencyServiceImplTest {
-    private static final Agency agency1 = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
-    private static final Agency agency2 = AgencyFactory.createAgency("87654321","soso", "087287475","sos@gmail.com","144 SIr Lowry road");
-    private static final Agency agency3 = AgencyFactory.createAgency("00334466","luyolo","0610796008","luyolo@gmail.com","Victor road");
+    private static final Agency agency1 = AgencyFactory.createAgency("Zachary", "087287475", "zac@gmail.com", "143 sir lowry road");
+    private static final Agency agency2 = AgencyFactory.createAgency("Soso","0842874758", "soso@gmail.com","144 Dorset road");
+    private static final Agency agency3 = AgencyFactory.createAgency("Tshego","0610796008","tshego@gmail.com","10 Main road");
 
     @Autowired
     private AgencyServiceImpl service;

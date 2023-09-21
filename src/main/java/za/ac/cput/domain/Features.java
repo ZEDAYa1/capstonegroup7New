@@ -4,6 +4,10 @@ package za.ac.cput.domain;
 //219275041
 
 
+
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -13,7 +17,7 @@ public class Features implements Serializable {
 
 
     @Id
-    private String propertyID;
+    private String propertyId;
 
     private boolean kitchen ;
     private boolean garage;
@@ -37,7 +41,7 @@ public class Features implements Serializable {
         this.size= builder.size;
         this.bedrooms= builder.bedrooms;
         this.bathrooms= builder.bathrooms;
-        this.propertyID= builder.propertyID;
+        this.propertyId= builder.propertyId;
         this.lounge= builder.lounge;
         this.kitchen= builder.kitchen;
 
@@ -77,8 +81,8 @@ public class Features implements Serializable {
         return laundry;
     }
 
-    public String getPropertyID() {
-        return propertyID;
+    public String getPropertyId() {
+        return propertyId;
     }
 
     @Override
@@ -86,12 +90,12 @@ public class Features implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Features features = (Features) o;
-        return kitchen == features.kitchen && garage == features.garage && Double.compare(size, features.size) == 0 && bathrooms == features.bathrooms && bedrooms == features.bedrooms && lounge == features.lounge && laundry == features.laundry && Objects.equals(pool, features.pool) && Objects.equals(propertyID, features.propertyID);
+        return kitchen == features.kitchen && garage == features.garage && Double.compare(size, features.size) == 0 && bathrooms == features.bathrooms && bedrooms == features.bedrooms && lounge == features.lounge && laundry == features.laundry && Objects.equals(pool, features.pool) && Objects.equals(propertyId, features.propertyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kitchen, garage, size, bathrooms, bedrooms, pool, lounge, laundry, propertyID);
+        return Objects.hash(kitchen, garage, size, bathrooms, bedrooms, pool, lounge, laundry, propertyId);
     }
 
     @Override
@@ -105,7 +109,7 @@ public class Features implements Serializable {
                 ", pool='" + pool + '\'' +
                 ", lounge=" + lounge +
                 ", laundry=" + laundry +
-                ", propertyID='" + propertyID + '\'' +
+                ", propertyId='" + propertyId + '\'' +
                 '}';
     }
 
@@ -126,7 +130,7 @@ public class Features implements Serializable {
 
         private boolean lounge;
         private boolean laundry;
-        private String propertyID;
+        private String propertyId;
 
 
         public Builder setKitchen(boolean kitchen) {
@@ -169,8 +173,8 @@ public class Features implements Serializable {
             return this;
         }
 
-        public Builder setPropertyID(String propertyID) {
-            this.propertyID = propertyID;
+        public Builder setPropertyId(String propertyId) {
+            this.propertyId = propertyId;
             return this;
         }
 
@@ -183,7 +187,7 @@ public class Features implements Serializable {
            this.bathrooms= features.bathrooms;
            this.bedrooms= features.bedrooms;
            this.garage= features.garage;
-           this.propertyID= features.propertyID;
+           this.propertyId= features.propertyId;
             return this;
 
         }

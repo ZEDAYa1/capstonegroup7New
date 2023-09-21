@@ -9,7 +9,7 @@ import java.awt.print.Book;
 import java.util.List;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/booking/")
 public class BookingController {
     private BookingService bookingService;
 
