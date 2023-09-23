@@ -1,5 +1,7 @@
 package za.ac.cput.util;
 
+//220097429
+import java.time.LocalDate;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.Date;
@@ -18,6 +20,13 @@ public class Helper {
 
     }
     public static boolean isDateNull(Date date){
+        if(date == null ){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isDateNull(LocalDate date){
         if(date == null ){
             return true;
         }

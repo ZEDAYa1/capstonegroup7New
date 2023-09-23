@@ -1,26 +1,34 @@
 package za.ac.cput.domain;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Lease {
+@Entity
+public class Lease implements Serializable {
+    @Id
+    @Column(name = "lease_Id")
     private String leaseId;
-    private String lessor;
-    private String lessee;
-    private Date startDate;
-    private Date endDate;
+    private String terms;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Lease(String leaseId, String lessor, String lessee, Date startDate, Date endDate) {
+    protected Lease(){
+
+    }
+
+    public Lease(String leaseId, String terms, LocalDate startDate, LocalDate endDate) {
         this.leaseId = leaseId;
-        this.lessor = lessor;
-        this.lessee = lessee;
+        this.terms = terms;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
     public Lease(Builder builder) {
         this.leaseId = builder.leaseId;
-        this.lessor = builder.lessor;
-        this.lessee = builder.lessee;
+        this.terms = builder.terms;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
     }
@@ -29,19 +37,15 @@ public class Lease {
         return leaseId;
     }
 
-    public String getLessor() {
-        return lessor;
+    public String getTerms() {
+        return terms;
     }
 
-    public String getLessee() {
-        return lessee;
-    }
-
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -49,19 +53,15 @@ public class Lease {
         this.leaseId = leaseId;
     }
 
-    public void setLessor(String lessor) {
-        this.lessor = lessor;
+    public void setTerms(String terms) {
+        this.terms = terms;
     }
 
-    public void setLessee(String lessee) {
-        this.lessee = lessee;
-    }
-
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -69,8 +69,7 @@ public class Lease {
     public String toString() {
         return "Lease{" +
                 "leaseId='" + leaseId + '\'' +
-                ", lessor='" + lessor + '\'' +
-                ", lessee='" + lessee + '\'' +
+                ", terms='" + terms + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';
@@ -78,40 +77,33 @@ public class Lease {
 
     public static class Builder{
         private String leaseId;
-        private String lessor;
-        private String lessee;
-        private Date startDate;
-        private Date endDate;
+        private String terms;
+        private LocalDate startDate;
+        private LocalDate endDate;
 
         public Builder setLeaseId(String leaseId){
             this.leaseId = leaseId;
             return this;
         }
 
-        public Builder setLessor(String lessor){
-            this.lessor = lessor;
+        public Builder setTerms(String terms){
+            this.terms = terms;
             return this;
         }
 
-        public Builder setLessee(String lessee){
-            this.lessee = lessee;
-            return this;
-        }
-
-        public Builder setStartDate(Date startDate){
+        public Builder setStartDate(LocalDate startDate){
             this.startDate = startDate;
             return this;
         }
 
-        public Builder setEndDate(Date endDate) {
+        public Builder setEndDate(LocalDate endDate) {
             this.endDate = endDate;
             return this;
         }
 
         public Builder copy(Lease lease){
             this.leaseId = lease.leaseId;
-            this.lessor = lease.lessor;
-            this.lessee = lease.lessee;
+            this.terms = lease.terms;
             this.startDate = lease.startDate;
             this.endDate = lease.endDate;
             return null;
