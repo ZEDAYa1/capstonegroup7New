@@ -5,10 +5,11 @@
  * */
 package za.ac.cput.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Agent;
 
-import java.util.Set;
+@Repository
+public interface IAgentRepository extends JpaRepository<Agent, String> {
 
-public interface IAgentRepository extends IRepository<Agent, String> {
-    public Set<Agent> getAll();
 }

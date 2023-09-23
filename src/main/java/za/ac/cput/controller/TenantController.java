@@ -1,55 +1,59 @@
 package za.ac.cput.controller;
 
-/*
- * TenantController.java
- * This is the TenantController class
- * Author: Tshegofatso Molefe {219001235}
- * Date: 20 August 2023
- * */
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.TenantFactory;
 import za.ac.cput.service.TenantService;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/tenant")
-public class TenantController
-{
+@RequestMapping("capstonegroup7/tenant/")
+@Slf4j
+public class TenantController {
+    private final TenantService tenantService;
+
     @Autowired
-    private TenantService tenantService;
-
-//    @RequestMapping({"/", "/home"})
-//     String home() {
-//        return "Hello World!";
-//    }
-
-    @PostMapping("/create")
-    public Tenant create(@RequestBody Tenant tenant){
-        return tenantService.create(tenant);
+    public TenantController(TenantService tenantService) {
+        this.tenantService = tenantService;
     }
 
-    @GetMapping("/read/{id}")
-    public Tenant read(@PathVariable String id){
-        return tenantService.read(id);
+    @PostMapping("save")
+    public ResponseEntity<Tenant> save(@RequestBody Tenant tenant) {
+        log.info("Save request: {}", tenant);
+        Tenant validatedTenant;
+        try {
+            validatedTenant = TenantFactory.createTenant(tenant.getTenantId(), tenant.getLeaseId(), tenant.getFirstName(),tenant.getLastName());
+        } catch (IllegalArgumentException e) {
+            log.info("Save request error: {}", e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        Tenant save = tenantService.save(validatedTenant);
+        return ResponseEntity.ok(save);
     }
 
-    @PostMapping("/update")
-    public Tenant update(@RequestBody Tenant tenant){
-        return tenantService.update(tenant);
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        log.info("Delete request: {}", id);
+        this.tenantService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id ){
-        return tenantService.delete(id);
+    @GetMapping("read/{id}")
+    public ResponseEntity<Tenant> readId(@PathVariable String id) {
+        log.info("Read request: {}", id);
+        Tenant tenant = this.tenantService.read(id);
+        return ResponseEntity.ok(tenant);
     }
 
-    @GetMapping({"/getAll"})
-    public List<Tenant> getAll(){
-        return tenantService.getAll();
+    @GetMapping("all")
+    public ResponseEntity<Set<Tenant>> findAll() {
+        Set<Tenant> tenants = this.tenantService.findAll();
+        return ResponseEntity.ok(tenants);
     }
 }

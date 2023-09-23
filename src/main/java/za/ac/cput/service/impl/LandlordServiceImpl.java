@@ -5,55 +5,51 @@
 */
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Landlord;
-import za.ac.cput.repository.LandlordRepository;
+import za.ac.cput.repository.ILandlordRepository;
 import za.ac.cput.service.LandlordService;
-import java.util.Set;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Service
 public class LandlordServiceImpl implements LandlordService {
 
-    private static LandlordServiceImpl service = null;
+    private final ILandlordRepository repository;
 
-    private static LandlordRepository repository = null;
-
-    private LandlordServiceImpl() {
-        repository = LandlordRepository.getRepository();
+    @Autowired
+    public LandlordServiceImpl(ILandlordRepository repository) {
+        this.repository = repository;
     }
 
-    public static LandlordServiceImpl getService() {
-        if (service == null) {
-            service = new LandlordServiceImpl();
+    @Override
+    public Landlord save(Landlord landlord) {
+        return this.repository.save(landlord);
+    }
+
+    @Override
+    public Landlord read(String s) {
+        return this.repository.findById(s).orElse(null);
+    }
+
+    @Override
+    public boolean delete(String s) {
+        if (this.repository.existsById(s)) {
+            this.repository.deleteById(s);
+            return true;
         }
-        return service;
+        return false;
     }
 
     @Override
-    public Landlord create(Landlord landlord) {
-        Landlord created = repository.create(landlord);
-        return created;
-    }
-
-    @Override
-    public Landlord read(String landlordId) {
-        Landlord readLandlord = repository.read(landlordId);
-        return readLandlord;
-    }
-
-    @Override
-    public Landlord update(Landlord landlord) {
-        Landlord updated = repository.update(landlord);
-        return updated;
-    }
-
-    @Override
-    public boolean delete(String landlordId) {
-        boolean success = repository.delete(landlordId);
-        return success;
+    public Set<Landlord> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Set<Landlord> getAll() {
-        return repository.getAll();
+        return null;
     }
-
 }

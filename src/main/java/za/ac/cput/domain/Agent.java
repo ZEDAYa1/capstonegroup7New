@@ -5,134 +5,155 @@
  * */
 package za.ac.cput.domain;
 
-public class Agent {
-    private String agentId;
-    private String firstName;
-    private String lastName;
-    private String contactNumber;
-    private String email;
-    private String password;
-    private String address;
-    private String agencyId;
-    private Agent(){
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 
-    }
-    private Agent(AgentBuilder builder){
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+public class Agent implements Serializable {
+    @Id
+    @Column(name = "agent_id")
+    private String agentId;
+
+    @NotNull
+    private String firstname;
+
+    @NotNull
+    private String lastname;
+
+    private String contactnumber;
+
+    private String email;
+
+    private String password;
+
+    private String address;
+
+
+    protected Agent(){}
+
+    private Agent (Builder builder){
         this.agentId = builder.agentId;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.contactNumber = builder.contactNumber;
+        this.firstname = builder.firstname;
+        this.lastname = builder.lastname;
+        this.contactnumber = builder.contactnumber;
         this.email = builder.email;
         this.password = builder.password;
-        this.address = builder.agencyId;
+        this.address = builder.address;
+
+
     }
 
     public String getAgentId() {
         return agentId;
     }
-
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
-
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
-
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContactnumber() {
+        return contactnumber;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getPassword() {
         return password;
     }
-
     public String getAddress() {
         return address;
     }
 
-    public String getAgencyId() {
-        return agencyId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agent agent = (Agent) o;
+        return Objects.equals(agentId, agent.agentId) && Objects.equals(firstname, agent.firstname) && Objects.equals(lastname, agent.lastname)&& Objects.equals(contactnumber, agent.contactnumber)&& Objects.equals(email, agent.email)&& Objects.equals(password, agent.password)&& Objects.equals(address, agent.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(agentId, firstname, lastname, contactnumber, email, password, address);
+    }
+
+    public static class Builder{
+        private String agentId;
+        private String firstname;
+        private String lastname;
+
+        private String contactnumber;
+
+        private String email;
+
+        private String password;
+
+        private String address;
+
+        public Builder setAgentId(String agentId) {
+            this.agentId = agentId;
+            return this;
+        }
+
+        public Builder setFirstname(String firstname) {
+            this.firstname = firstname;
+            return this;
+        }
+
+        public Builder setLastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+        }
+        public Builder setContactnumber(String contactnumber) {
+            this.contactnumber = contactnumber;
+            return this;
+        }
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+        public Builder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder copy(Agent agent){
+            this.agentId = agent.agentId;
+            this.firstname = agent.firstname;
+            this.lastname = agent.lastname;
+            this.contactnumber = agent.contactnumber;
+            this.email = agent.email;
+            this.password = agent.password;
+            this.address =agent.address;
+            return this;
+        }
+
+        public Agent build(){
+            return new Agent(this);
+        }
     }
 
     @Override
     public String toString() {
         return "Agent{" +
                 "agentId='" + agentId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", contactnumber='" + contactnumber + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
-                ", agencyId='" + agencyId + '\'' +
                 '}';
     }
-    public static class AgentBuilder{
-        private String agentId;
-        private String firstName;
-        private String lastName;
-        private String contactNumber;
-        private String email;
-        private String password;
-        private String address;
-        private String agencyId;
-
-        public AgentBuilder setAgentId(String agentId) {
-            this.agentId = agentId;
-            return this;
-        }
-
-        public AgentBuilder setFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public AgentBuilder setLastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public AgentBuilder setContactNumber(String contactNumber) {
-            this.contactNumber = contactNumber;
-            return this;
-        }
-
-        public AgentBuilder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public AgentBuilder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public AgentBuilder setAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public AgentBuilder setAgencyId(String agencyId) {
-            this.agencyId = agencyId;
-            return this;
-        }
-        public AgentBuilder copy(Agent agent){
-            this.agentId = agent.agentId;
-            this.firstName = agent.firstName;
-            this.lastName = agent.lastName;
-            this.contactNumber = agent.contactNumber;
-            this.email = agent.email;
-            this.password = agent.password;
-            this.address = agent.agencyId;
-            return this;
-        }
-        public Agent build(){
-            return new Agent(this);
-        }
-    }
-    }
+}

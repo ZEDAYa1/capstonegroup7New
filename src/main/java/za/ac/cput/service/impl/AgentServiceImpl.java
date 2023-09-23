@@ -5,51 +5,53 @@
  * */
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Agent;
-import za.ac.cput.repository.AgentRepository;
+import za.ac.cput.repository.IAgentRepository;
 import za.ac.cput.service.AgentService;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class AgentServiceImpl implements AgentService {
-    private static AgentServiceImpl service = null;
-    private static AgentRepository repository =null;
-    private AgentServiceImpl(){
-        repository = AgentRepository.getRepository();
+
+    private final IAgentRepository repository;
+
+    @Autowired
+    public AgentServiceImpl(IAgentRepository repository) {
+        this.repository = repository;
     }
-    public static AgentServiceImpl getService(){
-        if (service == null){
-            service = new AgentServiceImpl();
+
+    @Override
+    public Agent save(Agent agent) {
+        return this.repository.save(agent);
+    }
+
+    @Override
+    public Agent read(String s) {
+        return this.repository.findById(s).orElse(null);
+    }
+
+    @Override
+    public boolean delete(String s) {
+        if (this.repository.existsById(s)) {
+            this.repository.deleteById(s);
+            return true;
         }
-        return service;
+        return false;
     }
 
-    @Override
-    public Agent create(Agent agent) {
-        Agent created = repository.create(agent);
-        return created;
-    }
 
     @Override
-    public Agent read(String agentId) {
-        Agent readAgent = repository.read(agentId);
-        return readAgent;
+    public Set<Agent> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Agent update(Agent agent) {
-        Agent updated = repository.update(agent);
-        return updated;
-    }
-
-    @Override
-    public boolean delete(String agentId) {
-        boolean success = repository.delete(agentId);
-        return success;
-    }
     @Override
     public Set<Agent> getAll() {
-        return repository.getAll();
+        return null;
     }
 }
+

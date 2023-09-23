@@ -9,25 +9,26 @@ import za.ac.cput.domain.Agent;
 import za.ac.cput.util.Helper;
 
 public class AgentFactory {
-    public static Agent createAgent(String firstName, String lastName, String contactNumber, String email, String password, String address){
-        if (Helper.isNullOrEmpty(firstName) || Helper.isNullOrEmpty(lastName) || Helper.isNullOrEmpty(contactNumber) || Helper.isNullOrEmpty(password) || Helper.isNullOrEmpty(address)) {
-            return null;
-        }
-        if (!Helper.isValidEmail(email)) {
-            return null;
-        }
-        String agentId = Helper.generateId();
-        String agencyId = Helper.generateId();
 
-        return new Agent.AgentBuilder().setAgentId(agentId)
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setContactNumber(contactNumber)
+    public static Agent createAgent(String agentId, String firstname, String lastname, String contactnumber,String email, String password, String address){
+        Helper.checkStringParam("agentId", agentId);
+        Helper.checkStringParam("firstname", firstname);
+        Helper.checkStringParam("lastname", lastname);
+        Helper.checkStringParam("contactnumber", contactnumber);
+        Helper.checkStringParam("email", email);
+        Helper.checkStringParam("password", password);
+        Helper.checkStringParam("address", address);
+
+        return new Agent.Builder().setAgentId(agentId)
+                .setFirstname(firstname)
+                .setLastname(lastname)
+                .setContactnumber(contactnumber)
                 .setEmail(email)
                 .setPassword(password)
                 .setAddress(address)
-                .setAgencyId(agencyId)
                 .build();
 
+
     }
+
 }

@@ -1,78 +1,96 @@
 /*
- * TenantControllerTest.java
- * This is the test class for TenantController
- * Author: Tshegofatso Molefe {219001235}
- * Date: 5 September 2023
+ * AgentServiceImplTest.java
+ * Author: Sibusiso Dwayi(220226466)
+ * Date: 14 June 2023
  * */
 package za.ac.cput.controller;
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.TenantFactory;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
-@SpringBootTest(webEnvironment =  SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TenantControllerTest {
-    private static Tenant tenant = TenantFactory.createTenant("Tshego", "Molefe", "tshegomolefe@email.com", "0818006416");
+
+    @LocalServerPort
+    private int port;
+
     @Autowired
-    private TestRestTemplate restTemplate;
-    private final String baseURL = "http://localhost:8080/tenant";
-    @Test
-    void a_create() {
-        String url = baseURL + "/create";
-        ResponseEntity<Tenant> postResponse = restTemplate.postForEntity(url, tenant, Tenant.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        Tenant createdTenant = postResponse.getBody();
-        System.out.println("Saved data "+ createdTenant);
-        assertEquals(tenant.getTenantID(), createdTenant.getTenantID());
+    private TenantController controller;
+    @Autowired private TestRestTemplate restTemplate;
+
+    private Tenant tenant;
+    private String baseUrl;
+
+    @BeforeEach
+    void setUp() {
+        assertNotNull(controller);
+        this.tenant = TenantFactory.createTenant("Tshego", "Molefe", "Tshego@gmail.com", "084251752");
+        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/tenant/";
     }
 
+    @Order(1)
     @Test
-    void b_read() {
-        String url = baseURL + "/read/" + tenant.getTenantID();
-        System.out.println("URL: " + url);
-        ResponseEntity<Tenant> response = restTemplate.getForEntity(url, Tenant.class);
-        assertEquals(tenant.getTenantID(), response.getBody().getTenantID());
-        System.out.println(response.getBody());
-    }
-
-    @Test
-    void c_update() {
-        Tenant updated = new Tenant.Builder().copy(tenant).setContactNumber("0794024391").build();
-        String url = baseURL + "/update";
-        System.out.println("URL: "+ url);
-        System.out.println("Post data: " + updated);
-        ResponseEntity<Tenant> response = restTemplate.postForEntity(url, updated, Tenant.class);
-        assertNotNull(response.getBody());
-    }
-
-    @Test
-    void e_delete() {
-        String url = baseURL + "/delete" + tenant.getTenantID();
-        System.out.println("URL: "+ url);
-        restTemplate.delete(url);
-    }
-
-    @Test
-    void d_getAll() {
-        String url = baseURL + "/getAll";
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println("Show all: ");
+    void save() {
+        String url = baseUrl + "save";
+        System.out.println(url);
+        ResponseEntity<Tenant> response = this.restTemplate
+                .withBasicAuth("username", "password")
+                .postForEntity(url, this.tenant, Tenant.class);
         System.out.println(response);
-        System.out.println(response.getBody());
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
+    }
+
+    @Order(3)
+    @Test
+    void delete() {
+        String url = baseUrl + "delete/" + this.tenant.getTenantId();
+        System.out.println(url);
+        this.restTemplate.delete(url);
+    }
+
+    @Order(2)
+    @Test
+    void readId() {
+        String url = baseUrl + "read/" + this.tenant.getTenantId();
+        System.out.println(url);
+        ResponseEntity<Tenant> response = this.restTemplate
+                .withBasicAuth("username", "password")
+                .getForEntity(url, Tenant.class);
+        System.out.println(response);
+        assertAll(
+                ()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                ()-> assertNotNull(response.getBody())
+        );
+    }
+
+    @Order(4)
+    @Test
+    void findAll() {
+        String url = baseUrl + "all";
+        System.out.println(url);
+        ResponseEntity<Tenant []> response =
+                this.restTemplate
+                        .withBasicAuth("username", "password")
+                        .getForEntity(url, Tenant[].class);
+        System.out.println(Arrays.asList(response.getBody()));
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertEquals(1, response.getBody().length)
+        );
     }
 }

@@ -6,16 +6,43 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import za.ac.cput.domain.Agency;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class AgencyFactoryTest {
-
     @Test
-    public void test() {
-        Agency agency = AgencyFactory.createAgency("Brooks and Michaels", "0217627492", "brooksandmichaels@mail.com", "333 Main Road, Kenilworth, Cape Town, Western Cape, 7708");
+    void test() {
+        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
         System.out.println(agency.toString());
         assertNotNull(agency);
     }
 
+    @Test
+    void test_fail() {
+        Agency agency = AgencyFactory.createAgency("", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        System.out.println(agency.toString());
+        assertNotNull(agency);
+    }
+
+    @Test
+    public void test_equality() {
+        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        Agency agency2 = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        assertEquals(agency, agency2);
+    }
+
+    @Test
+    @Timeout(1) //Seconds
+    public void timeOutTest() {
+        Agency agency = AgencyFactory.createAgency("12345678", "sibusiso", "0842874758", "sibu@gmail.com", "143 sir lowry road");
+        try {
+            Thread.sleep(600);
+            assertEquals(agency.getAgencyId(), agency.getAgencyId());
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
 }

@@ -1,14 +1,25 @@
 package za.ac.cput.domain;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Booking {
+@Entity
+public class Booking implements Serializable {
+    @Id
+    @Column(name = "booking_id")
     private String bookingId;
-    private Date date;
+    private LocalDate date;
     private String time;
     private String address;
 
-    public Booking(String bookingId, Date date, String time, String address) {
+    protected Booking(){
+
+    }
+
+    public Booking(String bookingId, LocalDate date, String time, String address) {
         this.bookingId = bookingId;
         this.date = date;
         this.time = time;
@@ -26,7 +37,7 @@ public class Booking {
         return bookingId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -42,7 +53,7 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -66,7 +77,7 @@ public class Booking {
 
     public static class Builder{
         private String bookingId;
-        private Date date;
+        private LocalDate date;
         private String time;
         private String address;
 
@@ -75,7 +86,7 @@ public class Booking {
             return this;
         }
 
-        public Builder setDate(Date date){
+        public Builder setDate(LocalDate date){
             this.date = date;
             return this;
         }

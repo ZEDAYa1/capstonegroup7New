@@ -4,22 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Booking;
 import za.ac.cput.service.BookingService;
-import za.ac.cput.repository.BookingRepository;
-
-import java.util.List;
+import za.ac.cput.repository.IBookingRepository;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class BookingServiceImpl implements BookingService {
 
-    private BookingRepository repository;
+    private IBookingRepository repository;
     @Autowired
-    BookingServiceImpl(BookingRepository repository){
+    BookingServiceImpl(IBookingRepository repository){
         this.repository = repository;
     }
 
     @Override
-    public Booking create(Booking booking) {
+    public Booking save(Booking booking) {
         return this.repository.save(booking);
     }
 
@@ -46,7 +45,12 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> getall() {
-        return this.repository.findAll().stream().collect(Collectors.toList());
+    public Set<Booking> findAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Booking> getAll() {
+        return null;
     }
 }

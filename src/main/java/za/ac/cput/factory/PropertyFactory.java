@@ -10,7 +10,7 @@ import za.ac.cput.domain.Property;
 import za.ac.cput.util.Helper;
 
 public class PropertyFactory {
-    public static Property createProperty(String address, double rentAmount,
+    public static Property createProperty(String address, String propertyAddress, double rentAmount,
                                           String description) {
         if (Helper.isNullOrEmpty(String.valueOf(address))
                 || Helper.isNullOrEmpty(String.valueOf(rentAmount))
@@ -19,10 +19,10 @@ public class PropertyFactory {
         }
 
 
-        String propertyID = Helper.generateId();
+        String propertyId = Helper.generateId();
 
         Property property = new Property.Builder()
-                .setPropertyID(propertyID)
+                .setPropertyId(propertyId)
                 .setAddress(address)
                 .setRentAmount(rentAmount)
                 .setDescription(description)

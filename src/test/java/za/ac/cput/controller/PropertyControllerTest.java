@@ -1,81 +1,86 @@
-/*
- * PropertyControllerTest.java
- * This is the test class for PropertyController
- * Author: Tshegofatso Molefe {219001235}
- * Date: 5 September 2023
+package za.ac.cput.controller;/*
+ * AgentServiceImplTest.java
+ * Author: Sibusiso Dwayi(220226466)
+ * Date: 14 June 2023
  * */
-
-package za.ac.cput.controller;
-
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Property;
 import za.ac.cput.factory.PropertyFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PropertyControllerTest {
-    private static Property property = PropertyFactory.createProperty("10 Varsity Street, Belhar, 7493", 5600.0,
-            "Spacious, Well maintained, close to shops and schools");
+
+    @LocalServerPort
+    private int port;
 
     @Autowired
+    private PropertyController controller;
+    @Autowired
     private TestRestTemplate restTemplate;
-    private final String baseURL = "http://localhost:8080/property";
-    @Test
-    void a_create() {
-        String url = baseURL + "/create";
-        ResponseEntity<Property> postResponse = restTemplate.postForEntity(url, property, Property.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        Property createdProperty = postResponse.getBody();
-        System.out.println("Saved data "+ createdProperty);
-        assertEquals(property.getPropertyID(), createdProperty.getPropertyID());
+
+    private Property property;
+    private String baseUrl;
+
+    @BeforeEach
+    void setUp() {
+        assertNotNull(controller);
+        this.property = PropertyFactory.createProperty("P001", "123 Main St", 2000.0, "Spacious 2-bedroom apartment");
+        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/property/";
     }
 
+    @Order(1)
     @Test
-    void b_read() {
-        String url = baseURL + "/read/" + property.getPropertyID();
-        System.out.println("URL: " + url);
-        ResponseEntity<Property> response = restTemplate.getForEntity(url, Property.class);
-        assertEquals(property.getPropertyID(), response.getBody().getPropertyID());
-        System.out.println(response.getBody());
+    void save() {
+        String url = baseUrl + "save";
+        ResponseEntity<Property> response = this.restTemplate
+                .withBasicAuth("username", "password")
+                .postForEntity(url, this.property, Property.class);
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
     }
 
+    @Order(3)
     @Test
-    void c_update() {
-        Property updated = new Property.Builder().copy(property).setRentAmount(5690.00).build();
-        String url = baseURL + "/update";
-        System.out.println("URL: "+ url);
-        System.out.println("Post data: " + updated);
-        ResponseEntity<Property> response = restTemplate.postForEntity(url, updated, Property.class);
-        assertNotNull(response.getBody());
+    void delete() {
+        String url = baseUrl + "delete/" + this.property.getPropertyId();
+        this.restTemplate.delete(url);
     }
 
+    @Order(2)
     @Test
-    void e_delete() {
-        String url = baseURL + "/delete" + property.getPropertyID();
-        System.out.println("URL: "+ url);
-        restTemplate.delete(url);
+    void readId() {
+        String url = baseUrl + "read/" + this.property.getPropertyId();
+        ResponseEntity<Property> response = this.restTemplate
+                .withBasicAuth("username", "password")
+                .getForEntity(url, Property.class);
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
     }
 
+    @Order(4)
     @Test
-    void d_getAll() {
-        String url = baseURL + "/getAll";
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println("Show all: ");
-        System.out.println(response);
-        System.out.println(response.getBody());
+    void findAll() {
+        String url = baseUrl + "all";
+        ResponseEntity<Property[]> response =
+                this.restTemplate
+                        .withBasicAuth("username", "password")
+                        .getForEntity(url, Property[].class);
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertEquals(1, response.getBody().length)
+        );
     }
 }

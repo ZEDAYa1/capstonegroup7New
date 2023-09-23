@@ -1,21 +1,20 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Timeout;
-import za.ac.cput.domain.Amenities;
-import za.ac.cput.factory.maintenanceFactory;
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.maintenance;
+import org.junit.jupiter.api.Timeout;
+import za.ac.cput.domain.Maintenance;
 
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class maintenanceFactoryTest {
+class MaintenanceFactoryTest {
 
     @Test
     public void test(){
-        maintenance maintenance=maintenanceFactory.createmaintenance("CapeTown","SonwabisoMoni","10 dorset street","22115414");
+        Maintenance maintenance=MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
         System.out.println(maintenance.toString());
         assertNotNull(maintenance);
 
@@ -23,15 +22,15 @@ class maintenanceFactoryTest {
     }
     @Test
     public void test_fail(){
-        maintenance maintenance= maintenanceFactory.createmaintenance("george","soso","geggrt","225555");
+        Maintenance maintenance= MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
         System.out.println(maintenance.toString());
         assertNotNull(maintenance);
 
     }
     @Test
     public void testEquality(){
-     maintenance m1=maintenanceFactory.createmaintenance("george","sonwabiso","10 dorset","29878");
-     maintenance m2=m1;
+     Maintenance m1 =MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
+     Maintenance m2=m1;
      assertEquals(m1, m2);
 
     }
@@ -39,8 +38,8 @@ class maintenanceFactoryTest {
 
     @Test
     public void testIdentity(){
-        maintenance ma1=maintenanceFactory.createmaintenance("george","sonwabiso","10 dorset","29878");
-        maintenance ma2=maintenanceFactory.createmaintenance("george","sonwabiso","10 dorset","29878");
+        Maintenance ma1=MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
+        Maintenance ma2=MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
         assertNotSame(ma1, ma2);
 
     }

@@ -7,34 +7,34 @@ package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Review;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ReviewFactoryTest {
     @Test
-    void test() {
-        Review review = ReviewFactory.createReview(6,"The were insects in the stove");
+    void test_pass() {
+        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
         System.out.println(review.toString());
         assertNotNull(review);
     }
     @Test
     void test_fail() {
-        Review review = ReviewFactory.createReview(-1, "");
+        Review review = ReviewFactory.createReview("","87654321", "00334466","5","Very clean");
         System.out.println(review.toString());
         assertNotNull(review);
     }
     @Test
     public void test_equality() {
-        Review review = ReviewFactory.createReview(7, "House was clean and very fresh");
-        Review review1 = ReviewFactory.createReview(7,"House was clean and very fresh");
+        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
+        Review review1 = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
         assertEquals(review,review1);
     }
     @Test
     @Timeout(15) //Seconds
     public void timeOutTest() {
-        Review review = ReviewFactory.createReview(10,"No complaints about the house");
+        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
         try {
             Thread.sleep(600);
             assertEquals(review.getReviewId(),review.getReviewId());

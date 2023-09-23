@@ -1,10 +1,9 @@
 package za.ac.cput.service;
 
 import za.ac.cput.domain.Lease;
-
-import java.util.List;
+import java.util.Set;
 
 
 public interface LeaseService extends IService <Lease, String> {
-    public List<Lease> getAll();
+    public Set<Lease> getAll();
 }

@@ -5,10 +5,20 @@
 */
 package za.ac.cput.domain;
 
-public class Agency {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
+public class Agency implements Serializable {
+    @Id
+    @Column(name = "agency_id")
     private String agencyId;
 
+    @NotNull
     private String name;
 
     private String contactNumber;
@@ -17,11 +27,14 @@ public class Agency {
 
     private String address;
 
-    private Agency(){
-    }
+    protected Agency() {}
 
-    public Agency(Builder builder) {
+    private Agency(Builder builder) {
         this.agencyId = builder.agencyId;
+        this.name = builder.name;
+        this.contactNumber = builder.contactNumber;
+        this.email = builder.email;
+        this.address = builder.address;
     }
 
     public String getAgencyId() {
@@ -45,14 +58,20 @@ public class Agency {
     }
 
     @Override
-    public String toString() {
-        return "Agency{" +
-                "agencyId='" + agencyId + '\'' +
-                ", name='" + name + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agency agency = (Agency) o;
+        return Objects.equals(agencyId, agency.agencyId) &&
+                Objects.equals(name, agency.name) &&
+                Objects.equals(contactNumber, agency.contactNumber) &&
+                Objects.equals(email, agency.email) &&
+                Objects.equals(address, agency.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(agencyId, name, contactNumber, email, address);
     }
 
     public static class Builder {
@@ -99,7 +118,16 @@ public class Agency {
         public Agency build() {
             return new Agency(this);
         }
-
     }
 
+    @Override
+    public String toString() {
+        return "Agency{" +
+                "agencyId='" + agencyId + '\'' +
+                ", name='" + name + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

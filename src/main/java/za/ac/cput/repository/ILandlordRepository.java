@@ -5,11 +5,12 @@
 */
 package za.ac.cput.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Landlord;
 import java.util.Set;
 
-public interface ILandlordRepository extends IRepository<Landlord, String>{
-
-    public Set<Landlord> getAll();
+@Repository
+public interface ILandlordRepository extends JpaRepository<Landlord, String> {
 
 }
