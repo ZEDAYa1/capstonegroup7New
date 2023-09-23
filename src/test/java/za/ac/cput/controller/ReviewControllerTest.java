@@ -37,8 +37,8 @@ class ReviewControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.review = ReviewFactory.createReview("12345678","87654321","00334466","5","Very cleany road");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/agent/";
+        this.review = ReviewFactory.createReview(5,"Very cleany road");
+        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/reviews/";
     }
 
     @Order(1)

@@ -10,19 +10,23 @@ import za.ac.cput.util.Helper;
 
 public class AgencyFactory {
 
-    public static Agency createAgency(String agencyId, String name, String contactNumber, String email, String address) {
-        Helper.checkStringParam("agencyId", agencyId);
-        Helper.checkStringParam("name", name);
-        Helper.checkStringParam("contactNumber", contactNumber);
-        Helper.checkStringParam("email", email);
-        Helper.checkStringParam("address", address);
+    public static Agency createAgency(String name, String contactNumber, String email, String address) {
 
-        return new Agency.Builder()
-                .setAgencyId(agencyId)
+        String agencyId = Helper.generateId();
+
+        if (!Helper.isValidEmail(email))
+            return null;
+
+        if (Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(contactNumber) || Helper.isNullOrEmpty(address))
+            return null;
+
+        return new Agency.Builder().setAgencyId(agencyId)
                 .setName(name)
                 .setContactNumber(contactNumber)
                 .setEmail(email)
                 .setAddress(address)
                 .build();
+
     }
+
 }

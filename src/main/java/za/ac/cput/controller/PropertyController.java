@@ -29,7 +29,6 @@ public class PropertyController {
         Property validatedProperty;
         try {
             validatedProperty = PropertyFactory.createProperty(
-                    property.getPropertyId(),
                     property.getAddress(),
                     property.getRentAmount(),
                     property.getDescription()

@@ -17,8 +17,6 @@ class MaintenanceFactoryTest {
         Maintenance maintenance=MaintenanceFactory.createMaintenance("mould", LocalDate.parse("2022-02-19"));
         System.out.println(maintenance.toString());
         assertNotNull(maintenance);
-
-
     }
     @Test
     public void test_fail(){

@@ -18,11 +18,11 @@ public class MaintenanceFactory {
         String requestId = Helper.generateId();
         String propertyId = Helper.generateId();
 
-        Maintenance maintenance = new Maintenance.Builder()
+        Maintenance maintenance = new Maintenance.Builder().setRequestId(requestId)
                 .setDescription(description)
                 .setRequestId(requestId)
                 .setRequestDate(requestDate)
-                .setPropertyID(propertyId)
+                .setPropertyId(propertyId)
                 .build();
         return maintenance;
 

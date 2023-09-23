@@ -17,14 +17,15 @@ public class FeaturesFactory {
             return null;
 
 
-        String PropertyID = Helper.generateId();
+        String propertyId = Helper.generateId();
 
-        Features features =new Features.Builder().setLounge(lounge)
+        Features features =new Features.Builder().setPropertyId(propertyId)
+                .setLounge(lounge)
                 .setSize(size)
                 .setPool(pool)
                 .setKitchen(kitchen)
                 .setBathrooms(bathrooms)
-                .setPropertyID(PropertyID)
+                .setPropertyId(propertyId)
                 .setLaundry(laundry)
                 .setBedrooms(bedrooms)
                 .setGarage(garage)

@@ -12,8 +12,10 @@ import za.ac.cput.service.BookingService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/booking")
 @Slf4j
+
+@RequestMapping("/booking/")
+
 public class BookingController {
     private final BookingService bookingService;
 

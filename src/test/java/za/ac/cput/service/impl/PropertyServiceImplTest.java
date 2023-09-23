@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class PropertyServiceImplTest {
-    private static Property property1 = PropertyFactory.createProperty("10 Varsity Street, Belhar, 7493", "10 Varsity Street, Belhar, 7493",
+    private static Property property1 = PropertyFactory.createProperty("10 Varsity Street, Belhar, 7493",
             5600,"Spacious, Well maintained, close to shops and schools");
-    private static Property property2 = PropertyFactory.createProperty("10 Varsity Street, Belhar, 7493", "10 Varsity Street, Belhar, 7493",
-            5600,"Spacious, Well maintained, close to shops and schools");
-    private static Property property3 = PropertyFactory.createProperty("10 Varsity Street, Belhar, 7493", "10 Varsity Street, Belhar, 7493",
-            5600,"Spacious, Well maintained, close to shops and schools");
+    private static Property property2 = PropertyFactory.createProperty("143 Main Street, Woodstock, 7500",
+            4500,"Small yard, Well maintained, very close to the beach");
+    private static Property property3 = PropertyFactory.createProperty("140 Dorset Street, Town, 8000",
+            7500,"Very Big, Town House, close to schools");
 
     @Autowired
     private PropertyServiceImpl service;

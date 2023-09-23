@@ -18,7 +18,7 @@ import za.ac.cput.service.ReviewService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/capstonegroup7/review")
+@RequestMapping("capstonegroup7/reviews")
 @Slf4j
 public class ReviewController {
     private final ReviewService reviewService;
@@ -32,7 +32,7 @@ public class ReviewController {
         log.info("Save request: {}", review);
         Review validatedReview;
         try {
-            validatedReview = ReviewFactory.createReview(review.getReviewId(), review.getPropertyId(), review.getTenantId(),review.getRating(), review.getComment());
+            validatedReview = ReviewFactory.createReview(Integer.valueOf(review.getRating()), review.getComment());
         } catch (IllegalArgumentException e) {
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

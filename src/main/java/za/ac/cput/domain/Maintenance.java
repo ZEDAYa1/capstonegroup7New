@@ -15,7 +15,7 @@ public class Maintenance implements Serializable {
 
     @Id
     private String requestId;
-    private String propertyID;
+    private String propertyId;
     public String description;
     public LocalDate requestDate;
 
@@ -25,7 +25,7 @@ public class Maintenance implements Serializable {
         this.requestId= builder.requestId;
         this.description= builder.description;
         this.requestDate=builder.requestDate;
-        this.propertyID= builder.propertyID;
+        this.propertyId= builder.propertyId;
 
 
 
@@ -36,8 +36,8 @@ public class Maintenance implements Serializable {
         return requestId;
     }
 
-    public String getPropertyID() {
-        return propertyID;
+    public String getPropertyId() {
+        return propertyId;
     }
 
     public String getDescription() {
@@ -53,19 +53,19 @@ public class Maintenance implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Maintenance that = (Maintenance) o;
-        return Objects.equals(requestId, that.requestId) && Objects.equals(propertyID, that.propertyID) && Objects.equals(description, that.description) && Objects.equals(requestDate, that.requestDate);
+        return Objects.equals(requestId, that.requestId) && Objects.equals(propertyId, that.propertyId) && Objects.equals(description, that.description) && Objects.equals(requestDate, that.requestDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestId, propertyID, description, requestDate);
+        return Objects.hash(requestId, propertyId, description, requestDate);
     }
 
     @Override
     public String toString() {
         return "Maintenance{" +
                 "requestId='" + requestId + '\'' +
-                ", propertyID='" + propertyID + '\'' +
+                ", propertyId='" + propertyId + '\'' +
                 ", description='" + description + '\'' +
                 ", requestDate=" + requestDate +
                 '}';
@@ -73,7 +73,7 @@ public class Maintenance implements Serializable {
 
     public static class Builder{
         private String requestId;
-        private String propertyID;
+        private String propertyId;
         public String description;
         public LocalDate requestDate;
 
@@ -82,8 +82,8 @@ public class Maintenance implements Serializable {
             return this;
         }
 
-        public Builder setPropertyID(String propertyID) {
-            this.propertyID = propertyID;
+        public Builder setPropertyId(String propertyId) {
+            this.propertyId = propertyId;
             return this;
         }
 
@@ -100,7 +100,7 @@ public class Maintenance implements Serializable {
         public Builder copy (Maintenance maintenance){
            this.requestId= maintenance.requestId;
            this.requestDate=maintenance.requestDate;
-           this.propertyID= maintenance.propertyID;
+           this.propertyId= maintenance.propertyId;
            this.description= maintenance.description;
 
             return this;
@@ -108,20 +108,6 @@ public class Maintenance implements Serializable {
         }
         public Maintenance build(){ return new Maintenance(this);}
 
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
 }
 

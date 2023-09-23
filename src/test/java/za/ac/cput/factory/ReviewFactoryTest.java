@@ -15,26 +15,26 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ReviewFactoryTest {
     @Test
     void test_pass() {
-        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
+        Review review = ReviewFactory.createReview(5,"Very clean");
         System.out.println(review.toString());
         assertNotNull(review);
     }
     @Test
     void test_fail() {
-        Review review = ReviewFactory.createReview("","87654321", "00334466","5","Very clean");
+        Review review = ReviewFactory.createReview(5,"Very clean");
         System.out.println(review.toString());
         assertNotNull(review);
     }
     @Test
     public void test_equality() {
-        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
-        Review review1 = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
+        Review review = ReviewFactory.createReview(5,"Very clean");
+        Review review1 = ReviewFactory.createReview(5,"Very clean");
         assertEquals(review,review1);
     }
     @Test
     @Timeout(15) //Seconds
     public void timeOutTest() {
-        Review review = ReviewFactory.createReview("12345678","87654321", "00334466","5","Very clean");
+        Review review = ReviewFactory.createReview(5,"Very clean");
         try {
             Thread.sleep(600);
             assertEquals(review.getReviewId(),review.getReviewId());

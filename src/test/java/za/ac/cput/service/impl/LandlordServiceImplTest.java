@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class LandlordServiceImplTest {
-    private static final Landlord landlord1 = LandlordFactory.createLandlord("12345678", "John", "Doe", "0842874758", "john@example.com","password","123 Main St");
-    private static final Landlord landlord2 = LandlordFactory.createLandlord("87654321", "Jane", "Smith", "0762584575", "jane@example.com","password","456 Elm St");
-    private static final Landlord landlord3 = LandlordFactory.createLandlord("00334466", "Alice", "Johnson", "0610259815", "alice@example.com","password","789 Oak St");
+    private static final Landlord landlord1 = LandlordFactory.createLandlord("John", "Doe", "0842874758", "john@gmail.com", "password","123 Main St");
+    private static final Landlord landlord2 = LandlordFactory.createLandlord("Jane", "Smith", "0762584575", "jane@example.com","password","456 Elm St");
+    private static final Landlord landlord3 = LandlordFactory.createLandlord( "Alice", "Johnson", "0610259815", "alice@example.com","password","789 Oak St");
 
     @Autowired
     private LandlordServiceImpl service;
