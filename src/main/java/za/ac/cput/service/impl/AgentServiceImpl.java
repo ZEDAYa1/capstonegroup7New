@@ -35,6 +35,11 @@ public class AgentServiceImpl implements AgentService {
     }
 
     @Override
+    public Agent update(Agent agent) {
+        return null;
+    }
+
+    @Override
     public boolean delete(String s) {
         if (this.repository.existsById(s)) {
             this.repository.deleteById(s);
