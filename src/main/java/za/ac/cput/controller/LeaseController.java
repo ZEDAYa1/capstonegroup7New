@@ -9,9 +9,12 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Lease;
 import za.ac.cput.factory.LeaseFactory;
 import za.ac.cput.service.LeaseService;
-
 import java.util.Set;
 
+/* LeaseController.java
+ *  This is a domain class for Lease entity
+ *  Zachariah Matsimella 220097429
+ */
 @RestController
 @RequestMapping("capstonegroup7/lease/")
 @Slf4j

@@ -6,6 +6,10 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/* Lease.java
+ *  This is a domain class for Lease entity
+ *  Zachariah Matsimella 220097429
+ */
 @Entity
 public class Lease implements Serializable {
     @Id
