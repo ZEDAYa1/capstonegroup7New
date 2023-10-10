@@ -23,7 +23,7 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public ResponseEntity<Property> save(@RequestBody Property property) {
         log.info("Save request: {}", property);
         Property validatedProperty;
@@ -41,21 +41,21 @@ public class PropertyController {
         return ResponseEntity.ok(save);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         log.info("Delete request: {}", id);
         this.propertyService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("read/{id}")
+    @GetMapping("/read/{id}")
     public ResponseEntity<Property> readId(@PathVariable String id) {
         log.info("Read request: {}", id);
         Property property = this.propertyService.read(id);
         return ResponseEntity.ok(property);
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<Set<Property>> findAll() {
         Set<Property> properties = this.propertyService.findAll();
         return ResponseEntity.ok(properties);
