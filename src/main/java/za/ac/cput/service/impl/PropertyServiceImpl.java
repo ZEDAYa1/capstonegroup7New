@@ -31,6 +31,8 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public Property update(Property property) {
+        if (this.repository.existsById(property.getPropertyId()))
+            return this.repository.save(property);
         return null;
     }
 

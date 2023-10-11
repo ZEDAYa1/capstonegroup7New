@@ -13,7 +13,7 @@ import za.ac.cput.service.TenantService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/tenant/")
+@RequestMapping("/capstonegroup7/tenant/")
 @Slf4j
 public class TenantController {
     private final TenantService tenantService;
@@ -23,7 +23,7 @@ public class TenantController {
         this.tenantService = tenantService;
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public ResponseEntity<Tenant> save(@RequestBody Tenant tenant) {
         log.info("Save request: {}", tenant);
         Tenant validatedTenant;
@@ -37,21 +37,21 @@ public class TenantController {
         return ResponseEntity.ok(save);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         log.info("Delete request: {}", id);
         this.tenantService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("read/{id}")
+    @GetMapping("/read/{id}")
     public ResponseEntity<Tenant> readId(@PathVariable String id) {
         log.info("Read request: {}", id);
         Tenant tenant = this.tenantService.read(id);
         return ResponseEntity.ok(tenant);
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<Set<Tenant>> findAll() {
         Set<Tenant> tenants = this.tenantService.findAll();
         return ResponseEntity.ok(tenants);
