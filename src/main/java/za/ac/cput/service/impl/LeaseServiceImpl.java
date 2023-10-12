@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Lease;
 import za.ac.cput.repository.ILeaseRepository;
 import za.ac.cput.service.LeaseService;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/* LeaseServiceImpl.java
+ *  This is a service implementation class for Lease entity.
+ *  Zachariah Matsimella 220097429
+ */
 @Service
 public class LeaseServiceImpl implements LeaseService {
     private ILeaseRepository repository;
