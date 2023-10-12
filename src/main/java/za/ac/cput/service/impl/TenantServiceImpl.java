@@ -30,6 +30,14 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
+    public Tenant update(Tenant tenant) {
+        if (this.repository.existsById(tenant.getTenantId())) {
+            return this.repository.save(tenant);
+        }
+        return null;
+    }
+
+    @Override
     public boolean delete(String s) {
         if (this.repository.existsById(s)) {
             this.repository.deleteById(s);
@@ -40,7 +48,8 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     public Set<Tenant> findAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.findAll().
+                stream().collect(Collectors.toSet());
     }
 
     @Override

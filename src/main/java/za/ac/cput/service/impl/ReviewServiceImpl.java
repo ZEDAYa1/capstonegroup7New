@@ -35,6 +35,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public Review update(Review review) {
+        return null;
+    }
+
+    @Override
     public boolean delete(String s) {
         if (this.repository.existsById(s)) {
             this.repository.deleteById(s);
@@ -46,7 +51,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Set<Review> findAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.findAll()
+                .stream().collect(Collectors.toSet());
     }
 
     @Override

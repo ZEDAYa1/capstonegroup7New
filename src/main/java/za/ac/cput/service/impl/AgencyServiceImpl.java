@@ -35,6 +35,11 @@ public class AgencyServiceImpl implements AgencyService {
     }
 
     @Override
+    public Agency update(Agency agency) {
+        return null;
+    }
+
+    @Override
     public boolean delete(String agencyId) {
         if (this.repository.existsById(agencyId)) {
             this.repository.deleteById(agencyId);

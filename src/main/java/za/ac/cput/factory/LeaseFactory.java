@@ -4,9 +4,12 @@ import za.ac.cput.domain.Lease;
 import za.ac.cput.util.Helper;
 import java.time.LocalDate;
 
-
+/* LeaseFactory.java
+ *  This is a factory class for Lease entity.
+ *  Zachariah Matsimella 220097429
+ */
 public class LeaseFactory {
-    public static Lease createLease(String terms, LocalDate startDate, LocalDate endDate){
+    public static Lease createLease(String leaseId, String terms, LocalDate startDate, LocalDate endDate){
         if(Helper.isNullOrEmpty(terms)
         ||Helper.isDateNull(startDate)
         ||Helper.isDateNull(endDate)){
@@ -14,7 +17,7 @@ public class LeaseFactory {
         }
 
 
-        String leaseId = Helper.generateId();
+        leaseId = Helper.generateId();
 
         Lease lease = new Lease.Builder().setLeaseId(leaseId)
                 .setTerms(terms)
