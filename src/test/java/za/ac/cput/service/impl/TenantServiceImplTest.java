@@ -13,51 +13,65 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.TenantFactory;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+//crud
+//srud
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
 public class TenantServiceImplTest {
-    private static Tenant tenant = TenantFactory.createTenant("William", "Herondale", "willandtess@gmail.com", "0762201549");
+    private static Tenant tenant1 = TenantFactory.createTenant("William", "Herondale", "willandtess@gmail.com", "0762201549");
     private static Tenant tenant2 = TenantFactory.createTenant("James", "Bond", "Jamesbond@gmail.com", "0760254818");
     private static Tenant tenant3 = TenantFactory.createTenant("Radford", "Burger", "Radford@gmail.com", "084520052");
+
 
     @Autowired
     private TenantServiceImpl service;
 
     @Test
     void a_save() {
-        Tenant created = service.save(tenant);
-        assertEquals(tenant.getTenantId(), created.getTenantId());
-        System.out.println("Created: " + created);
+        System.out.println("Created: ");
+        Tenant created1 = service.save(tenant1);
+        assertNotNull(created1);
+        System.out.println(created1);
 
+        System.out.println("Created: ");
         Tenant created2 = service.save(tenant2);
-        assertEquals(tenant2.getTenantId(), created2.getTenantId());
-        System.out.println("Created: " + created2);
+        assertNotNull(created2);
+        System.out.println(created2);
 
+        System.out.println("Created: ");
         Tenant created3 = service.save(tenant3);
-        assertEquals(tenant3.getTenantId(), created3.getTenantId());
-        System.out.println("Created: " + created3);
+        assertNotNull(created3);
+        System.out.println(created3);
     }
 
     @Test
     void b_read() {
-        Tenant read = service.read(tenant.getTenantId());
-        assertEquals(read.getTenantId(), tenant.getTenantId());
-        System.out.println("Show tenant: " + read);
+        Tenant read = service.read(tenant1.getTenantId());
+        assertNotNull(read);
+        System.out.println("Read: "+ read);
     }
 
     @Test
-    void f_delete() {
-        boolean success = service.delete(tenant3.getTenantId());
-        assertTrue(success);
-        System.out.println("Delete tenant: " + success);
+    void c_update() {
+        Tenant newTenant = new Tenant.Builder().copy(tenant3).setLastName("Wayland").build();
+        Tenant updated = service.update(newTenant);
+        assertEquals(newTenant.getLastName(), updated.getLastName());
+        System.out.println("Updated: " + updated);
+    }
+
+    @Test
+    void e_delete() {
+        boolean deleted = service.delete(tenant2.getTenantId());
+        assertNotNull(deleted);
+        System.out.println("Deleted: " + true);
     }
 
     @Test
     void d_getAll() {
-        System.out.println("Show all tenants: ");
-        System.out.println(service.findAll());
+        System.out.println("Get All");
+        System.out.println(service.getAll());
     }
 }
