@@ -8,6 +8,7 @@ package za.ac.cput.domain;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -16,7 +17,9 @@ import java.util.Objects;
 public class Features implements Serializable {
 
 
+
     @Id
+    @Column(name = "property_id")
     private String propertyId;
 
     private boolean kitchen ;

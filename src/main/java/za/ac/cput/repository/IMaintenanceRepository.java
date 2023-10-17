@@ -8,6 +8,5 @@ import za.ac.cput.domain.Maintenance;
 
 @Repository
 public interface IMaintenanceRepository extends JpaRepository<Maintenance,String> {
-//create,read,update,delete
-    //public Set<Maintenance> getAll();
+
 }

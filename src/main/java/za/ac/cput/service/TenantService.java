@@ -8,5 +8,4 @@ package za.ac.cput.service;
 import za.ac.cput.domain.Tenant;
 
 public interface TenantService extends IService <Tenant, String>{
-    //Set<Agent> getAll();
 }

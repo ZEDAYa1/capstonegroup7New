@@ -35,6 +35,11 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
     }
 
     @Override
+    public Features update(Features features) {
+        return null;
+    }
+
+    @Override
     public boolean delete(String propertyId){
     if (this.repository.existsById(propertyId)) {
         this.repository.deleteById(propertyId);
