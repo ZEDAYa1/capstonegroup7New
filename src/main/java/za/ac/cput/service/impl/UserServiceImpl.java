@@ -2,35 +2,35 @@ package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Property;
-import za.ac.cput.repository.IPropertyRepository;
-import za.ac.cput.service.PropertyService;
+import za.ac.cput.domain.User;
+import za.ac.cput.repository.IUserRepository;
+import za.ac.cput.service.UserService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class PropertyServiceImpl implements PropertyService {
+public class UserServiceImpl implements UserService {
 
-    private final IPropertyRepository repository;
+    private final IUserRepository repository;
 
     @Autowired
-    public PropertyServiceImpl(IPropertyRepository repository) {
+    public UserServiceImpl(IUserRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Property save(Property property) {
-        return this.repository.save(property);
+    public User save(User user) {
+        return this.repository.save(user);
     }
 
     @Override
-    public Property read(String s) {
+    public User read(String s) {
         return this.repository.findById(s).orElse(null);
     }
 
     @Override
-    public Property update(Property property) {
+    public User update(User user) {
         return null;
     }
 
@@ -43,14 +43,14 @@ public class PropertyServiceImpl implements PropertyService {
         return false;
     }
 
+
     @Override
-    public Set<Property> findAll() {
+    public Set<User> findAll() {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
-    public Set<Property> getAll() {
+    public Set<User> getAll() {
         return null;
     }
 }
-

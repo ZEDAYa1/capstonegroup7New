@@ -18,9 +18,10 @@ import za.ac.cput.service.AgentService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/agent/")
+@RequestMapping("capstonegroup7/agent") // Remove the trailing "/"
 @Slf4j
 public class AgentController {
+
     private final AgentService agentService;
 
     @Autowired

@@ -1,3 +1,8 @@
+/*
+ * AgentContollerImplTest.java
+ * Author: Sibusiso Dwayi(220226466)
+ * Date: 14 June 2023
+ * */
 package za.ac.cput.controller;
 
 import org.junit.jupiter.api.*;
@@ -7,36 +12,32 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.domain.Maintenance;
-import za.ac.cput.factory.MaintenanceFactory;
+import za.ac.cput.domain.Login;
+import za.ac.cput.factory.LoginFactory;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-//sonwabiso Moni
-//219275041
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class MaintenanceControllerTest {
+class  LoginControllerTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private MaintenanceController controller;
-    @Autowired
-    private TestRestTemplate restTemplate;
+    private LoginController controller;
+    @Autowired private TestRestTemplate restTemplate;
 
-    private Maintenance maintenance;
+    private Login login;
     private String baseUrl;
 
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.maintenance = MaintenanceFactory.createMaintenance( "Plumbing Fixing a leak", LocalDate.parse("2023-09-15"));
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/maintenance/";
+        this.login = LoginFactory.createLogin("sibusiso","password123");
+        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/login";
     }
 
     @Order(1)
@@ -44,12 +45,12 @@ class MaintenanceControllerTest {
     void save() {
         String url = baseUrl + "save";
         System.out.println(url);
-        ResponseEntity<Maintenance> response = this.restTemplate
-                .withBasicAuth("username", "password")
-                .postForEntity(url, this.maintenance, Maintenance.class);
+        ResponseEntity<Login> response = this.restTemplate
+                //.withBasicAuth("admin-user", "65ff7492d30")
+                .postForEntity(url, this.login, Login.class);
         System.out.println(response);
 //        assertAll(
-//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
 //                () -> assertNotNull(response.getBody())
 //        );
     }
@@ -57,7 +58,7 @@ class MaintenanceControllerTest {
     @Order(3)
     @Test
     void delete() {
-        String url = baseUrl + "delete/" + this.maintenance.getRequestId();
+        String url = baseUrl + "delete/" + this.login.getUsername();
         System.out.println(url);
         this.restTemplate.delete(url);
     }
@@ -65,15 +66,15 @@ class MaintenanceControllerTest {
     @Order(2)
     @Test
     void readId() {
-        String url = baseUrl + "read/" + this.maintenance.getRequestId();
+        String url = baseUrl + "read/" + this.login.getUsername();
         System.out.println(url);
-        ResponseEntity<Maintenance> response = this.restTemplate
-                .withBasicAuth("username", "password")
-                .getForEntity(url, Maintenance.class);
+        ResponseEntity<Login> response = this.restTemplate
+              //  .withBasicAuth("admin-user", "65ff7492d30")
+                .getForEntity(url, Login.class);
         System.out.println(response);
 //        assertAll(
-//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                () -> assertNotNull(response.getBody())
+//                ()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                ()-> assertNotNull(response.getBody())
 //        );
     }
 
@@ -82,11 +83,11 @@ class MaintenanceControllerTest {
     void findAll() {
         String url = baseUrl + "all";
         System.out.println(url);
-        ResponseEntity<Maintenance[]> response =
+        ResponseEntity<Login []> response =
                 this.restTemplate
-                        .withBasicAuth("username", "password")
-                        .getForEntity(url, Maintenance[].class);
-//        System.out.println(Arrays.asList(response.getBody()));
+              //          .withBasicAuth("admin-user", "65ff7492d30")
+                        .getForEntity(url, Login[].class);
+       // System.out.println(Arrays.asList(response.getBody()));
 //        assertAll(
 //                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
 //                () -> assertEquals(1, response.getBody().length)
