@@ -33,7 +33,6 @@ public class LeaseController {
         Lease validatedLease;
         try{
             validatedLease = LeaseFactory.createLease(
-                    lease.getLeaseId(),
                     lease.getTerms(),
                     lease.getStartDate(),
                     lease.getEndDate()
