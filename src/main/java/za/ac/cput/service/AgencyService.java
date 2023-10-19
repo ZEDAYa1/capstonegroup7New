@@ -10,6 +10,4 @@ import java.util.Set;
 
 public interface AgencyService extends IService<Agency, String> {
 
-    //Set<Agency> getAll();
-
 }

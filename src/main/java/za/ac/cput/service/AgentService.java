@@ -8,5 +8,4 @@ package za.ac.cput.service;
 import za.ac.cput.domain.Agent;
 
 public interface AgentService extends IService <Agent, String>{
-    //Set<Agent> getAll();
 }

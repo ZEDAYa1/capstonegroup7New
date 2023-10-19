@@ -16,7 +16,7 @@ import java.util.Set;
  *  Zachariah Matsimella 220097429
  */
 @RestController
-@RequestMapping("capstonegroup7/lease/")
+@RequestMapping("capstonegroup7/lease")
 @Slf4j
 public class LeaseController {
 
@@ -33,7 +33,6 @@ public class LeaseController {
         Lease validatedLease;
         try{
             validatedLease = LeaseFactory.createLease(
-                    lease.getLeaseId(),
                     lease.getTerms(),
                     lease.getStartDate(),
                     lease.getEndDate()
