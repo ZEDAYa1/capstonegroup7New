@@ -53,8 +53,8 @@ public class LandlordServiceImpl implements LandlordService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Landlord> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Landlord> getAll() {
+//        return null;
+//    }
 }

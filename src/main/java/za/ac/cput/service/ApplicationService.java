@@ -8,5 +8,5 @@ import java.util.Set;
  *  Zachariah Matsimella 220097429
  */
 public interface ApplicationService extends IService <Application, String> {
-    public Set<Application> getAll();
+    //public Set<Application> getAll();
 }

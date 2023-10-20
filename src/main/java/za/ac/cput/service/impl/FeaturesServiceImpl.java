@@ -53,10 +53,10 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Features> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Features> getAll() {
+//        return null;
+//    }
 
 
 }

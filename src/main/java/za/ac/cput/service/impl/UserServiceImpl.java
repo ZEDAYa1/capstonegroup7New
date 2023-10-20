@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<User> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<User> getAll() {
+//        return null;
+//    }
 }

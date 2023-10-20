@@ -48,9 +48,9 @@ public class PropertyServiceImpl implements PropertyService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Property> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Property> getAll() {
+//        return null;
+//    }
 }
 
