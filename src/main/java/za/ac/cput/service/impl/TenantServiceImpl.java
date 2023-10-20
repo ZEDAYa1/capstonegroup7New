@@ -48,8 +48,8 @@ public class TenantServiceImpl implements TenantService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Tenant> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Tenant> getAll() {
+//        return null;
+//    }
 }

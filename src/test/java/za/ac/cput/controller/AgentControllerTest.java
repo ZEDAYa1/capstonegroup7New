@@ -15,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Agent;
 import za.ac.cput.factory.AgentFactory;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -27,70 +25,60 @@ class AgentControllerTest {
     private int port;
 
     @Autowired
-    private AgentController controller;
-    @Autowired private TestRestTemplate restTemplate;
+    private TestRestTemplate restTemplate;
 
     private Agent agent;
     private String baseUrl;
 
     @BeforeEach
     void setUp() {
-        assertNotNull(controller);
-        this.agent = AgentFactory.createAgent("Sibusiso","Dwayi","0842874758","22022@gmail.com","Sbusisodwayi","143 Sir lowry road");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/agent";
+        this.agent = AgentFactory.createAgent("Sibusiso", "Dwayi", "0842874758", "22022@gmail.com", "Sbusisodwayi", "143 Sir lowry road");
+        this.baseUrl = "http://localhost:" + this.port + "/agents"; // Updated baseUrl
     }
 
     @Order(1)
     @Test
     void save() {
-        String url = baseUrl + "save";
-        System.out.println(url);
-        ResponseEntity<Agent> response = this.restTemplate
+        String url = baseUrl; // Updated URL to match the actual endpoint
+        ResponseEntity<Agent> response = restTemplate
                 .withBasicAuth("username", "password")
                 .postForEntity(url, this.agent, Agent.class);
-        System.out.println(response);
-//        assertAll(
-//                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
-//                () -> assertNotNull(response.getBody())
-//        );
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
     }
 
     @Order(3)
     @Test
     void delete() {
-        String url = baseUrl + "delete/" + this.agent.getAgentId();
-        System.out.println(url);
-        this.restTemplate.delete(url);
+        String url = baseUrl + "/" + this.agent.getAgentId(); // Updated URL
+        restTemplate.withBasicAuth("username", "password").delete(url);
     }
 
     @Order(2)
     @Test
     void readId() {
-        String url = baseUrl + "read/" + this.agent.getAgentId();
-        System.out.println(url);
-        ResponseEntity<Agent> response = this.restTemplate
+        String url = baseUrl + "/" + this.agent.getAgentId(); // Updated URL
+        ResponseEntity<Agent> response = restTemplate
                 .withBasicAuth("username", "dwayi")
                 .getForEntity(url, Agent.class);
-        System.out.println(response);
-//        assertAll(
-//                ()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                ()-> assertNotNull(response.getBody())
-//        );
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
     }
 
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
-        System.out.println(url);
-        ResponseEntity<Agent []> response =
-                this.restTemplate
-                        .withBasicAuth("username", "password")
-                        .getForEntity(url, Agent[].class);
-//        System.out.println(Arrays.asList(response.getBody()));
-//        assertAll(
-//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                () -> assertEquals(1, response.getBody().length)
-//        );
+        String url = baseUrl; // Updated URL
+        ResponseEntity<Agent[]> response = restTemplate
+                .withBasicAuth("username", "password")
+                .getForEntity(url, Agent[].class);
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertEquals(1, response.getBody().length)
+        );
     }
 }

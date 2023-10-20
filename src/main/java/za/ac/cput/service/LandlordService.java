@@ -10,6 +10,6 @@ import java.util.Set;
 
 public interface LandlordService extends IService<Landlord, String> {
 
-    Set<Landlord> getAll();
+    //Set<Landlord> getAll();
 
 }

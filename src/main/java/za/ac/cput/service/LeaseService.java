@@ -9,5 +9,5 @@ import java.util.Set;
  *  Zachariah Matsimella 220097429
  */
 public interface LeaseService extends IService <Lease, String> {
-    public Set<Lease> getAll();
+    //public Set<Lease> getAll();
 }

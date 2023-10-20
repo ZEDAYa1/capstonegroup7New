@@ -54,9 +54,9 @@ public class AgentServiceImpl implements AgentService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Agent> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Agent> getAll() {
+//        return null;
+//    }
 }
 

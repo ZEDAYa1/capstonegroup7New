@@ -54,7 +54,7 @@ public class MaintenanceController {
 
     @GetMapping("all")
     public ResponseEntity<Set<Maintenance>> findAll() {
-        Set<Maintenance> maintenances = this.maintenanceService.getAll();
+        Set<Maintenance> maintenances = this.maintenanceService.findAll();
         return ResponseEntity.ok(maintenances);
     }
 }

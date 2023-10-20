@@ -47,8 +47,8 @@ public class LoginServiceImpl implements LoginService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Login> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Login> getAll() {
+//        return null;
+//    }
 }
