@@ -22,25 +22,25 @@ public class ApplicationController {
         this.applicationService = applicationService;
     }
 
-    @PostMapping("/save")
+    @PostMapping("save")
     public Application createApplication(@RequestBody Application application) {
         return applicationService.save(application);
     }
 
 
-    @GetMapping("/read/{applicationId}")
+    @GetMapping("read/{id}")
     public Application getApplication(@PathVariable String id) {
         return applicationService.read(id);
     }
 
 
-    @DeleteMapping("/delete/{applicationId}")
+    @DeleteMapping("delete/{id}")
     public boolean deleteApplication(@PathVariable String id) {
         return applicationService.delete(id);
     }
 
 
-    @GetMapping("/all")
+    @GetMapping("all")
     public Set<Application> findAllApplications() {
         return applicationService.findAll();
     }

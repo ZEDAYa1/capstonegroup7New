@@ -22,17 +22,17 @@ public class AgentController {
         this.agentService = agentService;
     }
 
-    @GetMapping
+    @GetMapping("all")
     public Set<Agent> findAllAgents() {
         return agentService.findAll();
     }
 
-    @GetMapping("/{agentId}")
+    @GetMapping("read/{id}")
     public Agent getAgent(@PathVariable String id) {
         return agentService.read(id);
     }
 
-    @PostMapping
+    @PostMapping("save")
     public Agent createAgent(@RequestBody Agent agent) {
         return agentService.save(agent);
     }
@@ -43,7 +43,7 @@ public class AgentController {
 //        return agentService.update(id);
 //    }
 
-    @DeleteMapping("/{agentId}")
+    @DeleteMapping("delete/{id}")
     public boolean deleteAgent(@PathVariable String id) {
         return agentService.delete(id);
     }

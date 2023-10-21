@@ -22,12 +22,12 @@ public class LeaseController {
         this.leaseService = leaseService;
     }
 
-    @PostMapping("/save")
+    @PostMapping("save")
     public Lease saveLease(@RequestBody Lease lease) {
         return leaseService.save(lease);
     }
 
-    @GetMapping("/read/{leaseId}")
+    @GetMapping("read/{id}")
     public Lease getLease(@PathVariable String id) {
         return leaseService.read(id);
     }
@@ -38,12 +38,12 @@ public class LeaseController {
 //        return leaseService.update(lease);
 //    }
 
-    @DeleteMapping("/delete/{leaseId}")
-    public boolean deleteLease(@PathVariable String leaseID) {
-        return leaseService.delete(leaseID);
+    @DeleteMapping("delete/{id}")
+    public boolean deleteLease(@PathVariable String id) {
+        return leaseService.delete(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("all")
     public Set<Lease> findAllLeases() {
         return leaseService.findAll();
     }
