@@ -1,5 +1,6 @@
 package za.ac.cput.service.impl;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -44,6 +45,14 @@ class MaintenanceServiceImplTest {
         Maintenance read = service.read(maintenance.getRequestId());
         assertEquals(read.getRequestId(), maintenance.getRequestId());
         System.out.println("Show maintanance: " + read);
+    }
+
+    @Test
+    void c_update() {
+        Maintenance newMaintenance = new Maintenance.Builder().copy(maintenance3).setDescription("").build();
+        Maintenance updated = service.update(newMaintenance);
+        Assert.assertNotNull(maintenance3);
+        System.out.println("updated: " + updated);
     }
 
     @Test
