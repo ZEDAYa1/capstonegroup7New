@@ -3,6 +3,7 @@ package za.ac.cput.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Property;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.repository.IPropertyRepository;
 import za.ac.cput.service.PropertyService;
 
@@ -31,6 +32,9 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public Property update(Property property) {
+        if (this.repository.existsById(property.getPropertyId())) {
+            return this.repository.save(property);
+        }
         return null;
     }
 
