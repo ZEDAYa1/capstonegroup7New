@@ -53,7 +53,7 @@ class FeaturesServiceImplTest {
     @Test
     void d_getAll() {
      System.out.println("Show All:");
-     System.out.println(service.getAll());
+     System.out.println(service.findAll());
 
     }
 
