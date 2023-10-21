@@ -23,13 +23,13 @@ public class AgencyController {
     }
 
     @GetMapping("read/{id}")
-    public Agency getAgency(@PathVariable String agencyId) {
-        return agencyService.read(agencyId);
+    public Agency getAgency(@PathVariable String id) {
+        return agencyService.read(id);
     }
 
     @DeleteMapping("delete/{id}")
-    public boolean deleteAgency(@PathVariable String agencyId) {
-        return agencyService.delete(agencyId);
+    public boolean deleteAgency(@PathVariable String id) {
+        return agencyService.delete(id);
     }
 
     @GetMapping("all")

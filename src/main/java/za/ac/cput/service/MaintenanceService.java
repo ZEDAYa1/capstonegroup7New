@@ -7,6 +7,8 @@ import java.util.Set;
 //219275041
 public interface MaintenanceService {
 
+    Maintenance update(Maintenance maintenance);
+
     boolean delete(String requestId);
 
     Maintenance save(Maintenance maintenance);

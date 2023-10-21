@@ -34,7 +34,7 @@ class PropertyControllerTest {
     void setUp() {
         assertNotNull(controller);
         this.property = PropertyFactory.createProperty("123 Main St", 2000.0, "Spacious 2-bedroom apartment");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/property/";
+        this.baseUrl = "http://localhost:" + 50790 + "/properties";
     }
 
     @Order(1)
@@ -73,7 +73,8 @@ class PropertyControllerTest {
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
+        System.out.println(url);
         ResponseEntity<Property[]> response =
                 this.restTemplate
                         .withBasicAuth("username", "password")
