@@ -10,9 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.domain.Agency;
 import za.ac.cput.domain.Agent;
 import za.ac.cput.factory.AgentFactory;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -48,6 +50,13 @@ public class AgentServiceImplTest {
         System.out.println("Show agent: " + read);
     }
 
+    @Test
+    void c_update() {
+        Agent updatedAgent = new Agent.Builder().copy(agent2).setContactnumber("0856399745").build();
+        Agent updated = service.update(updatedAgent);
+        assertNotNull(agent2);
+        System.out.println("Updated: " + updated);
+    }
     @Test
     void f_delete() {
         boolean success = service.delete(agent3.getAgentId());

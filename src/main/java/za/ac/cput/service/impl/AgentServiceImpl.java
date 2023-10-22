@@ -36,6 +36,9 @@ public class AgentServiceImpl implements AgentService {
 
     @Override
     public Agent update(Agent agent) {
+        if (this.repository.existsById(agent.getAgentId())) {
+            return this.repository.save(agent);
+        }
         return null;
     }
 

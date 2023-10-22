@@ -8,6 +8,7 @@ package za.ac.cput.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Agency;
+import za.ac.cput.domain.Property;
 import za.ac.cput.repository.IAgencyRepository;
 import za.ac.cput.service.AgencyService;
 
@@ -36,6 +37,9 @@ public class AgencyServiceImpl implements AgencyService {
 
     @Override
     public Agency update(Agency agency) {
+        if (this.repository.existsById(agency.getAgencyId())) {
+            return this.repository.save(agency);
+        }
         return null;
     }
 

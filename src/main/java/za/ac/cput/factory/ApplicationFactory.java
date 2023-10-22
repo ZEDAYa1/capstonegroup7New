@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class ApplicationFactory {
     public static Application createApplication(boolean bankStatement, boolean paySlip, String status, String adress,
-                                                String email, String contactNumber, int id, String firstName, String lastName,
+                                                String email, String contactNumber, long id, String firstName, String lastName,
                                                 LocalDate applicationDate, String propertyId, String tenantId, boolean copyOfId, String references) {
         if (Helper.isNullOrEmpty(String.valueOf(bankStatement))
                 || Helper.isNullOrEmpty(String.valueOf(paySlip))

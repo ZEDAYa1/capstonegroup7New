@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
-
-    private IApplicationRepository repository;
+    private final IApplicationRepository repository;
 
     @Autowired
     ApplicationServiceImpl(IApplicationRepository repository){
@@ -35,6 +34,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public Application update(Application application) {
+        if (this.repository.existsById(application.getPropertyId())) {
+            return this.repository.save(application);
+        }
         return null;
     }
 
@@ -51,9 +53,4 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Set<Application> findAll() {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
-
-//    @Override
-//    public Set<Application> getAll() {
-//        return null;
-//    }
 }

@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class LeaseServiceImplTest {
 
-    private static Lease lease1 = LeaseFactory.createLease("","No smoking.", LocalDate.parse("2022-01-01"), LocalDate.parse("2023-01-01"));
+    private static Lease lease1 = LeaseFactory.createLease("No smoking.", LocalDate.parse("2022-01-01"), LocalDate.parse("2023-01-01"));
 
-    private static Lease lease2 = LeaseFactory.createLease("","No pets allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-12-01"));
+    private static Lease lease2 = LeaseFactory.createLease("No pets allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-12-01"));
 
-    private static Lease lease3 = LeaseFactory.createLease("","Only two adults allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-10-01"));
+    private static Lease lease3 = LeaseFactory.createLease("Only two adults allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-10-01"));
 
     @Autowired
     private LeaseServiceImpl service;
@@ -49,14 +49,14 @@ public class LeaseServiceImplTest {
         System.out.println("Reading lease: "+ readLease);
     }
 
-    /*@Test
+    @Test
     void c_update(){
-        Lease updateLease = service.update(lease1.getLeaseId());
+        Lease updateLease = service.update(lease1);
         assertNotEquals(lease1, updateLease);
         System.out.println("Before lease update: "+ lease1);
         System.out.println("After lease update: "+ updateLease);
     }
-*/
+
     @Test
     void d_delete(){
         boolean deleteLease = service.delete(lease1.getLeaseId());

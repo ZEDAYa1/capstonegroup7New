@@ -29,6 +29,8 @@ class ApplicationControllerTest {
     private int port;
 
     @Autowired
+    private ApplicationController controller;
+    @Autowired
     private TestRestTemplate restTemplate;
 
     private Application application;

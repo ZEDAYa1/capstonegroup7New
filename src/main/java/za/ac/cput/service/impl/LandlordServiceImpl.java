@@ -36,6 +36,9 @@ public class LandlordServiceImpl implements LandlordService {
 
     @Override
     public Landlord update(Landlord landlord) {
+        if (this.repository.existsById(landlord.getLandlordId())) {
+            return this.repository.save(landlord);
+        }
         return null;
     }
 

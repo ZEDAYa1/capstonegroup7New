@@ -31,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
+        if (this.repository.existsById(user.getUserId())) {
+            return this.repository.save(user);
+        }
         return null;
     }
 
