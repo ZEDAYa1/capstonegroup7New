@@ -34,7 +34,7 @@ public class LeaseControllerTest {
 
     @BeforeEach
     void setUp() {
-        this.lease = LeaseFactory.createLease("", "No children allowed.", LocalDate.parse("2021-01-01"), LocalDate.parse("2022-01-01"));
+        this.lease = LeaseFactory.createLease("No children allowed.", LocalDate.parse("2021-01-01"), LocalDate.parse("2022-01-01"));
         this.baseUrl = "http://localhost:" + 50790 + "/leases";
     }
 
