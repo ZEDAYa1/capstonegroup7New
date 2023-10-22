@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
-
     private final IApplicationRepository repository;
 
     @Autowired
@@ -54,9 +53,4 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Set<Application> findAll() {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
-
-//    @Override
-//    public Set<Application> getAll() {
-//        return null;
-//    }
 }

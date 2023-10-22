@@ -289,5 +289,4 @@ public class Application implements Serializable {
                     ", references='" + references + '\'' +
                     '}';
         }
-
 }

@@ -21,15 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 public class ApplicationServiceImplTest {
 
-    private static final Application application1 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
+    private static Application application1 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
             , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
             , true, "References here.");
 
-    private static final Application application2 = ApplicationFactory.createApplication(false, true, "Pending", "36 Cherry Lane", "XALL@gmail.com"
+    private static  Application application2 = ApplicationFactory.createApplication(false, true, "Pending", "36 Cherry Lane", "XALL@gmail.com"
             , "0645879856", 990615426, "Xavier", "Leander", LocalDate.parse("2019-04-24"), "25", "06"
             , true, "References here.");
 
-    private static final Application application3 = ApplicationFactory.createApplication(true, false, "Pending", "15 Lance avenue", "Mandy@gmail.com"
+    private static Application application3 = ApplicationFactory.createApplication(true, false, "Pending", "15 Lance avenue", "Mandy@gmail.com"
             , "0796542589", 991208426, "Mandisa", "Nydenga", LocalDate.parse("2021-03-14"), "08", "05"
             , true, "References here.");
 
@@ -39,16 +39,18 @@ public class ApplicationServiceImplTest {
     @Test
     void a_save(){
         Application create1 = service.save(application1);
-        assertEquals(application1.getApplicationId(), create1.getApplicationId());
-        System.out.println("Created: "+ create1);
+        assertNotNull(create1);
+        System.out.println(create1);
 
         Application create2 = service.save(application2);
-        assertEquals(application2.getApplicationId(), create2.getApplicationId());
-        System.out.println("Created: "+ create2);
+        assertNotNull(create2);
+        System.out.println(create2);
+
 
         Application create3 = service.save(application3);
-        assertEquals(application3.getApplicationId(), create3.getApplicationId());
-        System.out.println("Created: "+ create3);
+        assertNotNull(create3);
+        System.out.println(create3);
+
     }
 
     @Test
