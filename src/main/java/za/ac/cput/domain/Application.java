@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /* Application.java
  *  This is a domain class for Application entity.
@@ -193,27 +194,19 @@ public class Application implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Application{" +
-                "bankStatement=" + bankStatement +
-                ", paySlip=" + paySlip +
-                ", status='" + status + '\'' +
-                ", adress='" + adress + '\'' +
-                ", email='" + email + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", applicationDate=" + applicationDate +
-                ", propertyId='" + propertyId + '\'' +
-                ", tenantId='" + tenantId + '\'' +
-                ", applicationId='" + applicationId + '\'' +
-                ", copyOfId=" + copyOfId +
-                ", references='" + references + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Application)) return false;
+        Application that = (Application) o;
+        return bankStatement == that.bankStatement && paySlip == that.paySlip && id == that.id && copyOfId == that.copyOfId && Objects.equals(status, that.status) && Objects.equals(adress, that.adress) && Objects.equals(email, that.email) && Objects.equals(contactNumber, that.contactNumber) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(applicationDate, that.applicationDate) && Objects.equals(propertyId, that.propertyId) && Objects.equals(tenantId, that.tenantId) && Objects.equals(applicationId, that.applicationId) && Objects.equals(references, that.references);
     }
 
-    public static class Builder{
+    @Override
+    public int hashCode() {
+        return Objects.hash(bankStatement, paySlip, status, adress, email, contactNumber, id, firstName, lastName, applicationDate, propertyId, tenantId, applicationId, copyOfId, references);
+    }
+
+    public static class Builder {
         private boolean bankStatement;
         private boolean paySlip;
         private String status;
@@ -230,82 +223,82 @@ public class Application implements Serializable {
         private boolean copyOfId;
         private String references;
 
-        public Builder setBankStatement(boolean bankStatement){
+        public Builder setBankStatement(boolean bankStatement) {
             this.bankStatement = bankStatement;
             return this;
         }
 
-        public Builder setPaySlip(boolean paySlip){
+        public Builder setPaySlip(boolean paySlip) {
             this.paySlip = paySlip;
             return this;
         }
 
-        public Builder setStatus(String status){
+        public Builder setStatus(String status) {
             this.status = status;
             return this;
         }
 
-        public Builder setAdress(String adress){
+        public Builder setAdress(String adress) {
             this.adress = adress;
             return this;
         }
 
-        public Builder setEmail(String email){
+        public Builder setEmail(String email) {
             this.email = email;
             return this;
         }
 
-        public Builder setContactNumber(String contactNumber){
+        public Builder setContactNumber(String contactNumber) {
             this.contactNumber = contactNumber;
             return this;
         }
 
-        public Builder setId(long id){
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder setFirstName(String firstName){
+        public Builder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder setLastName(String lastName){
+        public Builder setLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public Builder setApplicationDate(LocalDate applicationDate){
+        public Builder setApplicationDate(LocalDate applicationDate) {
             this.applicationDate = applicationDate;
             return this;
         }
 
-        public Builder setPropertyId(String propertyId){
+        public Builder setPropertyId(String propertyId) {
             this.propertyId = propertyId;
             return this;
         }
 
-        public Builder setTenantId(String tenantId){
+        public Builder setTenantId(String tenantId) {
             this.tenantId = tenantId;
             return this;
         }
 
-        public Builder setApplicationId(String applicationId){
+        public Builder setApplicationId(String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder setCopyOfId(boolean copyOfId){
+        public Builder setCopyOfId(boolean copyOfId) {
             this.copyOfId = copyOfId;
             return this;
         }
 
-        public Builder setReferences(String references){
+        public Builder setReferences(String references) {
             this.references = references;
             return this;
         }
 
-        public Lease.Builder copy(Application application) {
+        public Application.Builder copy(Application application) {
             this.bankStatement = application.bankStatement;
             this.paySlip = application.paySlip;
             this.status = application.status;
@@ -321,11 +314,33 @@ public class Application implements Serializable {
             this.applicationId = application.applicationId;
             this.copyOfId = application.copyOfId;
             this.references = application.references;
-            return null;
+            return this;
         }
 
-        public Application build(){
+        public Application build() {
             return new Application(this);
         }
     }
+
+        @Override
+        public String toString() {
+            return "Application{" +
+                    "bankStatement=" + bankStatement +
+                    ", paySlip=" + paySlip +
+                    ", status='" + status + '\'' +
+                    ", adress='" + adress + '\'' +
+                    ", email='" + email + '\'' +
+                    ", contactNumber='" + contactNumber + '\'' +
+                    ", id=" + id +
+                    ", firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", applicationDate=" + applicationDate +
+                    ", propertyId='" + propertyId + '\'' +
+                    ", tenantId='" + tenantId + '\'' +
+                    ", applicationId='" + applicationId + '\'' +
+                    ", copyOfId=" + copyOfId +
+                    ", references='" + references + '\'' +
+                    '}';
+        }
+
 }
