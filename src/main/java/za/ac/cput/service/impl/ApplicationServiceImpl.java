@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-    private IApplicationRepository repository;
+    private final IApplicationRepository repository;
 
     @Autowired
     ApplicationServiceImpl(IApplicationRepository repository){

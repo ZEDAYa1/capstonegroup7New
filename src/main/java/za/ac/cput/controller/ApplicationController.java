@@ -24,9 +24,7 @@ import java.util.Set;
 @RequestMapping("/applications")
 @Slf4j
 public class ApplicationController {
-
     private final ApplicationService applicationService;
-
     @Autowired
     public ApplicationController(ApplicationService applicationService) {
         this.applicationService = applicationService;
