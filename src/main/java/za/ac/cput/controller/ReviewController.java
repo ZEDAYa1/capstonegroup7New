@@ -7,6 +7,7 @@ package za.ac.cput.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import za.ac.cput.domain.Property;
 import za.ac.cput.domain.Review;
 import za.ac.cput.service.ReviewService;
 
@@ -24,6 +25,10 @@ public class ReviewController {
     @PostMapping("save")
     public Review createReview(@RequestBody Review review) {
         return reviewService.save(review);
+    }
+    @PostMapping("/update")
+    public Review update(@RequestBody Review review){
+        return reviewService.update(review);
     }
     @DeleteMapping("delete/{id}")
     public boolean deleteReview(@PathVariable String id) {

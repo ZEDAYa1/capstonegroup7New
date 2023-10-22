@@ -57,6 +57,17 @@ class TenantControllerTest {
 
     @Order(3)
     @Test
+    void c_update() {
+        Tenant updated = new Tenant.Builder().copy(tenant).setContactNumber("0794024391").build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Tenant> response = restTemplate.postForEntity(url, updated, Tenant.class);
+        assertNull(response.getBody());
+    }
+
+    @Order(5)
+    @Test
     void delete() {
         String url = baseUrl + "delete/" + this.tenant.getTenantId();
         System.out.println(url);

@@ -8,6 +8,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Maintenance;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.MaintenanceFactory;
 
 import java.time.LocalDate;
@@ -54,12 +55,23 @@ class MaintenanceControllerTest {
 //        );
     }
 
-    @Order(3)
+    @Order(4)
     @Test
     void delete() {
         String url = baseUrl + "delete/" + this.maintenance.getRequestId();
         System.out.println(url);
         this.restTemplate.delete(url);
+    }
+
+    @Order(3)
+    @Test
+    void c_update() {
+        Maintenance updated = new Maintenance.Builder().copy(maintenance).setRequestDate(LocalDate.parse("2023-05-27")).build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Maintenance> response = restTemplate.postForEntity(url, updated, Maintenance.class);
+        assertNull(response.getBody());
     }
 
     @Order(2)
@@ -77,7 +89,7 @@ class MaintenanceControllerTest {
 //        );
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL

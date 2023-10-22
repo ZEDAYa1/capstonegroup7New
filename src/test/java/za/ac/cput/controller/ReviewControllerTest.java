@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Review;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.ReviewFactory;
 
 import java.util.Arrays;
@@ -56,7 +57,7 @@ class ReviewControllerTest {
 //        );
     }
 
-    @Order(3)
+    @Order(4)
     @Test
     void delete() {
         String url = baseUrl + "delete/" + this.review.getReviewId();
@@ -64,6 +65,16 @@ class ReviewControllerTest {
         this.restTemplate.delete(url);
     }
 
+    @Order(3)
+    @Test
+    void c_update() {
+        Review updated = new Review.Builder().copy(review).setRating("6").build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Review> response = restTemplate.postForEntity(url, updated, Review.class);
+        assertNull(response.getBody());
+    }
     @Order(2)
     @Test
     void readId() {
@@ -79,7 +90,7 @@ class ReviewControllerTest {
 //        );
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL

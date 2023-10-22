@@ -55,6 +55,11 @@ public class PropertyController {
         return ResponseEntity.ok(property);
     }
 
+    @PostMapping("/update")
+    public Property update(@RequestBody Property property){
+        return propertyService.update(property);
+    }
+
     @GetMapping("all")
     public ResponseEntity<Set<Property>> findAll() {
         Set<Property> properties = this.propertyService.findAll();

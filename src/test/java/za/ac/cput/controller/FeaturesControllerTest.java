@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Features;
 import za.ac.cput.domain.Property;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.FeaturesFactory;
 
 
@@ -61,11 +62,22 @@ class FeaturesControllerTest {
     }
 
 
-    @Order(3)
+    @Order(4)
     @Test
     void delete() {
         String url = baseUrl + "delete/" + this.features.getPropertyId();
         this.restTemplate.delete(url);
+    }
+
+    @Order(3)
+    @Test
+    void c_update() {
+        Features updated = new Features.Builder().copy(features).setBathrooms(2).build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Features> response = restTemplate.postForEntity(url, updated, Features.class);
+        assertNull(response.getBody());
     }
 
     @Order(2)
@@ -77,7 +89,7 @@ class FeaturesControllerTest {
                 .getForEntity(url, Property.class);
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL

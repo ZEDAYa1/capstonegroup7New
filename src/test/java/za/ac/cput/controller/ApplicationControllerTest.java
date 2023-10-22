@@ -14,6 +14,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Application;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.ApplicationFactory;
 
 import java.time.LocalDate;
@@ -70,18 +71,16 @@ class ApplicationControllerTest {
 //        );
     }
 
-//    @Order(3)
-//    @Test
-//    void update() {
-//        String url = baseUrl + "/update/" + this.application.getApplicationId(); // Updated URL
-//        ResponseEntity<Application> response = this.restTemplate
-//                .withBasicAuth("username", "password")
-//                .postForEntity(url, this.application, Application.class);
-//        assertAll(
-//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                () -> assertNotNull(response.getBody())
-//        );
-//    }
+    @Order(3)
+    @Test
+    void c_update() {
+        Application updated = new Application.Builder().copy(application).setContactNumber("0794024391").build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Application> response = restTemplate.postForEntity(url, updated, Application.class);
+        assertNull(response.getBody());
+    }
 
     @Order(4)
     @Test

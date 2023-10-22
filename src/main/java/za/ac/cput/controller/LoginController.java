@@ -3,6 +3,7 @@ package za.ac.cput.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Login;
+import za.ac.cput.domain.Property;
 import za.ac.cput.service.LoginService;
 
 import java.util.Set;
@@ -26,6 +27,10 @@ public class LoginController {
     @GetMapping("read/{id}")
     public Login read(@PathVariable String id) {
         return loginService.read(id);
+    }
+    @PostMapping("/update")
+    public Login update(@RequestBody Login login){
+        return loginService.update(login);
     }
 
     @PutMapping("update/{id}")

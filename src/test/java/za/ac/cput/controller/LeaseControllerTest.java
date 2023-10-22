@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Lease;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.LeaseFactory;
 
 import java.time.LocalDate;
@@ -66,15 +67,13 @@ public class LeaseControllerTest {
 
     @Order(3)
     @Test
-    void update() {
-        String url = baseUrl + "/update/" + this.lease.getLeaseId(); // Corrected the URL
-        ResponseEntity<Lease> response = restTemplate
-                .withBasicAuth("username", "password")
-                .postForEntity(url, this.lease, Lease.class);
-//        assertAll(
-//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                () -> assertNotNull(response.getBody())
-//        );
+    void c_update() {
+        Lease updated = new Lease.Builder().copy(lease).setTerms("Fixed contract").build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Lease> response = restTemplate.postForEntity(url, updated, Lease.class);
+        assertNull(response.getBody());
     }
 
     @Order(4)

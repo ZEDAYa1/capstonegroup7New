@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Login;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.LoginFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,7 +50,7 @@ class LoginControllerTest {
 //        );
     }
 
-    @Order(3)
+    @Order(4)
     @Test
     void delete() {
         String url = baseUrl + "/" + this.login.getUsername(); // Updated URL
@@ -69,7 +70,7 @@ class LoginControllerTest {
 //        );
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL

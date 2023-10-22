@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Agency;
 import za.ac.cput.domain.Agent;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.AgencyFactory; // Make sure to import the correct Factory class
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,11 +44,22 @@ class AgencyControllerTest {
 //        );
     }
 
-    @Order(3)
+    @Order(4)
     @Test
     void delete() {
         String url = baseUrl + "/" + this.agency.getAgencyId(); // Update URL
         restTemplate.withBasicAuth("username", "password").delete(url);
+    }
+
+    @Order(3)
+    @Test
+    void c_update() {
+        Agency updated = new Agency.Builder().copy(agency).setContactNumber("0794024391").build();
+        String url = baseUrl + "/update";
+        System.out.println("URL: "+ url);
+        System.out.println("Post data: " + updated);
+        ResponseEntity<Agency> response = restTemplate.postForEntity(url, updated, Agency.class);
+        assertNull(response.getBody());
     }
 
     @Order(2)
@@ -63,7 +75,7 @@ class AgencyControllerTest {
 //        );
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL

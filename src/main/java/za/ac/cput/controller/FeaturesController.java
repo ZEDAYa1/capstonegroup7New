@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import za.ac.cput.domain.Features;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.FeaturesFactory;
 import za.ac.cput.service.FeaturesService;
 
@@ -52,6 +53,11 @@ public class FeaturesController {
         log.info("Read request: {}", id);
         Features features= this.featuresService.read(id);
         return ResponseEntity.ok(features);
+    }
+
+    @PostMapping("/update")
+    public Features update(@RequestBody Features features){
+        return featuresService.update(features);
     }
 
     @GetMapping("all")

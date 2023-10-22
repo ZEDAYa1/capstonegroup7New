@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Application;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.ApplicationFactory;
 import za.ac.cput.service.ApplicationService;
 
@@ -67,6 +68,10 @@ public class ApplicationController {
         return ResponseEntity.ok(application);
     }
 
+    @PostMapping("/update")
+    public Application update(@RequestBody Application application){
+        return applicationService.update(application);
+    }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {

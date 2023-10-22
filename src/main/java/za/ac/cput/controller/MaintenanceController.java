@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Landlord;
 import za.ac.cput.domain.Maintenance;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.MaintenanceFactory;
 import za.ac.cput.service.LandlordService;
 import za.ac.cput.service.MaintenanceService;
@@ -38,6 +39,11 @@ public class MaintenanceController {
     @DeleteMapping("delete/{id}")
     public boolean deleteMaintenance(@PathVariable String id) {
         return maintenanceService.delete(id);
+    }
+
+    @PostMapping("/update")
+    public Maintenance update(@RequestBody Maintenance maintenance){
+        return maintenanceService.update(maintenance);
     }
 
     @GetMapping("all")

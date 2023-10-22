@@ -3,6 +3,7 @@ package za.ac.cput.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Agent;
+import za.ac.cput.domain.Property;
 import za.ac.cput.service.AgentService;
 
 import java.util.Set;
@@ -15,6 +16,11 @@ public class AgentController {
     @Autowired
     public AgentController(AgentService agentService) {
         this.agentService = agentService;
+    }
+
+    @PostMapping("/update")
+    public Agent update(@RequestBody Agent agent){
+        return agentService.update(agent);
     }
 
     @PostMapping("save")
