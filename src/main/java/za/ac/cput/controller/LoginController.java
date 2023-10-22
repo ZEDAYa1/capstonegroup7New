@@ -18,28 +18,28 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping
+    @PostMapping("save")
     public Login save(@RequestBody Login login) {
         return loginService.save(login);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("read/{id}")
     public Login read(@PathVariable String id) {
         return loginService.read(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public Login update(@PathVariable String id, @RequestBody Login login) {
         // Implement the update logic if needed
         return loginService.update(login);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public boolean delete(@PathVariable String id) {
         return loginService.delete(id);
     }
 
-    @GetMapping
+    @GetMapping("all")
     public Set<Login> findAll() {
         return loginService.findAll();
     }

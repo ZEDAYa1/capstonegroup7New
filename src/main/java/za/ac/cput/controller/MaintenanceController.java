@@ -14,7 +14,7 @@ import za.ac.cput.service.MaintenanceService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/maintenance")
+@RequestMapping("/maintenancies")
 @Slf4j
 public class MaintenanceController {
     private final MaintenanceService maintenanceService;

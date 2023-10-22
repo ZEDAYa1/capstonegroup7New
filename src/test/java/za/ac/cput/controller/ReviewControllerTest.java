@@ -38,7 +38,7 @@ class ReviewControllerTest {
     void setUp() {
         assertNotNull(controller);
         this.review = ReviewFactory.createReview(5,"Very cleany road");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/reviews/";
+        this.baseUrl = "http://localhost:" + 50790 + "/reviews";
     }
 
     @Order(1)
@@ -82,11 +82,10 @@ class ReviewControllerTest {
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
         System.out.println(url);
         ResponseEntity<Review []> response =
                 this.restTemplate
-                        .withBasicAuth("username", "password")
                         .getForEntity(url, Review[].class);
 //        System.out.println(Arrays.asList(response.getBody()));
 //        assertAll(

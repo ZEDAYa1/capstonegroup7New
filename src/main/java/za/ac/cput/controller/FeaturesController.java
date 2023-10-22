@@ -15,7 +15,7 @@ import za.ac.cput.service.FeaturesService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/features/")
+@RequestMapping("/features")
 @Slf4j
 public class FeaturesController {
 

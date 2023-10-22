@@ -29,6 +29,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public Maintenance read(String s) {
         return this.repository.findById(s).orElse(null);
     }
+
     @Override
     public Maintenance update(Maintenance maintenance) {
         if (this.repository.existsById(maintenance.getRequestId())) {

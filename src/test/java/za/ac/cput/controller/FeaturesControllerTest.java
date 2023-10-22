@@ -44,7 +44,7 @@ class FeaturesControllerTest {
     void setUp() {
         assertNotNull(controller);
         this.features = FeaturesFactory.buildFeatures("outdoor", true, true, 45, 45, 45, true, true);
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/features/";
+        this.baseUrl = "http://localhost:" + 50790 + "/features";
     }
 
     @Order(1)
@@ -80,7 +80,7 @@ class FeaturesControllerTest {
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
         System.out.println(url);
         ResponseEntity<Agent[]> response =
                 this.restTemplate

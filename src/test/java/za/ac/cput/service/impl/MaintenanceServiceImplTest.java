@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Maintenance;
 import za.ac.cput.factory.MaintenanceFactory;
 
@@ -50,10 +49,10 @@ class MaintenanceServiceImplTest {
 
     @Test
     void c_update() {
-        Maintenance updatedRequest = new Maintenance.Builder().copy(maintenance3).setRequestDate(LocalDate.parse("2023-08-28")).build();
-        Maintenance updated = service.update(updatedRequest);
+        Maintenance newMaintenance = new Maintenance.Builder().copy(maintenance3).setDescription("").build();
+        Maintenance updated = service.update(newMaintenance);
         Assert.assertNotNull(maintenance3);
-        System.out.println("Updated: " + updated);
+        System.out.println("updated: " + updated);
     }
 
     @Test

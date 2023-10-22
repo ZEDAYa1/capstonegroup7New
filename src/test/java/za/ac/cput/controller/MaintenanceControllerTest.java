@@ -36,7 +36,7 @@ class MaintenanceControllerTest {
     void setUp() {
         assertNotNull(controller);
         this.maintenance = MaintenanceFactory.createMaintenance( "Plumbing Fixing a leak", LocalDate.parse("2023-09-15"));
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/maintenance/";
+        this.baseUrl = "http://localhost:" + 50790 + "/maintenancies";
     }
 
     @Order(1)
@@ -80,7 +80,7 @@ class MaintenanceControllerTest {
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
         System.out.println(url);
         ResponseEntity<Maintenance[]> response =
                 this.restTemplate

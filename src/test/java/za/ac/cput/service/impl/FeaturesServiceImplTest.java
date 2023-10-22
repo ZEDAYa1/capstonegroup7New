@@ -6,6 +6,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Features;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.FeaturesFactory;
 
 import static org.junit.Assert.assertNotNull;
@@ -46,11 +47,12 @@ class FeaturesServiceImplTest {
 
     @Test
     void c_update() {
-        Features updatedFeatures = new Features.Builder().copy(features3).setBathrooms(2).build();
-        Features updated = service.update(updatedFeatures);
+        Features newFeatures = new Features.Builder().copy(features3).setGarage(true).build();
+        Features updated = service.update(newFeatures);
         assertNotNull(features3);
-        System.out.println("Updated: " + updated);
+        System.out.println("updated: " + updated);
     }
+
 
     @Test
     void f_delete() {
@@ -65,4 +67,8 @@ class FeaturesServiceImplTest {
      System.out.println(service.findAll());
 
     }
+
+
+
+
 }
