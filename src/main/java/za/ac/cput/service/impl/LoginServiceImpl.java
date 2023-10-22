@@ -30,6 +30,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login update(Login login) {
+        if (this.repository.existsById(login.getUsername())) {
+            return this.repository.save(login);
+        }
         return null;
     }
 

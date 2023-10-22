@@ -1,7 +1,7 @@
 /*
- * AgentServiceImplTest.java
- * Author: Sibusiso Dwayi(220226466)
- * Date: 14 June 2023
+ * TenantServiceImplTest.java
+ * Author: Tshegofatso Molefe(219001235)
+ * Date: 05 October 2023
  * */
 package za.ac.cput.service.impl;
 
@@ -24,7 +24,6 @@ public class TenantServiceImplTest {
     private static Tenant tenant1 = TenantFactory.createTenant("William", "Herondale", "willandtess@gmail.com", "0762201549");
     private static Tenant tenant2 = TenantFactory.createTenant("James", "Bond", "Jamesbond@gmail.com", "0760254818");
     private static Tenant tenant3 = TenantFactory.createTenant("Radford", "Burger", "Radford@gmail.com", "084520052");
-
 
     @Autowired
     private TenantServiceImpl service;

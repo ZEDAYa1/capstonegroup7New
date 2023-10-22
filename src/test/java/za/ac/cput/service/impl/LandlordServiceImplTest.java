@@ -49,6 +49,14 @@ public class LandlordServiceImplTest {
     }
 
     @Test
+    void c_update() {
+        Landlord updatedLandlord = new Landlord.Builder().copy(landlord2).setEmail("jane@gmail.com").build();
+        Landlord updated = service.update(updatedLandlord);
+        assertNotNull(landlord2);
+        System.out.println("Updated: " + updated);
+    }
+
+    @Test
     void f_delete() {
         boolean success = service.delete(landlord3.getLandlordId());
         assertTrue(success);
