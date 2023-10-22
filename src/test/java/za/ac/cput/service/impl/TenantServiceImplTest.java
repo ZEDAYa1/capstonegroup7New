@@ -1,7 +1,7 @@
 /*
- * AgentServiceImplTest.java
- * Author: Sibusiso Dwayi(220226466)
- * Date: 14 June 2023
+ * TenantServiceImplTest.java
+ * Author: Tshegofatso Molefe(219001235)
+ * Date: 05 October 2023
  * */
 package za.ac.cput.service.impl;
 
