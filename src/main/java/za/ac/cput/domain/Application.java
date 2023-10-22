@@ -13,6 +13,9 @@ import java.util.Objects;
  */
 @Entity
 public class Application implements Serializable {
+    @Id
+    @Column(name = "applicationId")
+    private String applicationId;
     private boolean bankStatement;
     private boolean paySlip;
     private String status;
@@ -25,33 +28,14 @@ public class Application implements Serializable {
     private LocalDate applicationDate;
     private String propertyId;
     private String tenantId;
-    @Id
-    @Column(name = "applicationId")
-    private String applicationId;
     private boolean copyOfId;
     private String references;
 
-    public Application(boolean bankStatement, boolean paySlip, String status, String adress, String email,
-                       String contactNumber, long id, String firstName, String lastName, LocalDate applicationDate,
-                       String propertyId, String tenantId, String applicationId, boolean copyOfId, String references) {
-        this.bankStatement = bankStatement;
-        this.paySlip = paySlip;
-        this.status = status;
-        this.adress = adress;
-        this.email = email;
-        this.contactNumber = contactNumber;
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.applicationDate = applicationDate;
-        this.propertyId = propertyId;
-        this.tenantId = tenantId;
-        this.applicationId = applicationId;
-        this.copyOfId = copyOfId;
-        this.references = references;
+    protected Application() {
+
     }
 
-    public Application(Builder builder){
+    private Application(Builder builder){
         this.bankStatement = builder.bankStatement;
         this.paySlip = builder.paySlip;
         this.status = builder.status;
@@ -69,40 +53,20 @@ public class Application implements Serializable {
         this.references = builder.references;
     }
 
-    protected Application() {
-
-    }
-
     public boolean isBankStatement() {
         return bankStatement;
-    }
-
-    public void setBankStatement(boolean bankStatement) {
-        this.bankStatement = bankStatement;
     }
 
     public boolean isPaySlip() {
         return paySlip;
     }
 
-    public void setPaySlip(boolean paySlip) {
-        this.paySlip = paySlip;
-    }
-
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getAdress() {
         return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
     }
 
     public String getEmail() {
@@ -117,10 +81,6 @@ public class Application implements Serializable {
         return contactNumber;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
     public long getId() {
         return id;
     }
@@ -133,24 +93,12 @@ public class Application implements Serializable {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public LocalDate getApplicationDate() {
         return applicationDate;
-    }
-
-    public void setApplicationDate(LocalDate applicationDate) {
-        this.applicationDate = applicationDate;
     }
 
     public String getPropertyId() {
@@ -165,32 +113,16 @@ public class Application implements Serializable {
         return tenantId;
     }
 
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
     public String getApplicationId() {
         return applicationId;
-    }
-
-    public void setApplicationId(String applicationId) {
-        this.applicationId = applicationId;
     }
 
     public boolean isCopyOfId() {
         return copyOfId;
     }
 
-    public void setCopyOfId(boolean copyOfId) {
-        this.copyOfId = copyOfId;
-    }
-
     public String getReferences() {
         return references;
-    }
-
-    public void setReferences(String references) {
-        this.references = references;
     }
 
     @Override
@@ -198,12 +130,27 @@ public class Application implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Application)) return false;
         Application that = (Application) o;
-        return bankStatement == that.bankStatement && paySlip == that.paySlip && id == that.id && copyOfId == that.copyOfId && Objects.equals(status, that.status) && Objects.equals(adress, that.adress) && Objects.equals(email, that.email) && Objects.equals(contactNumber, that.contactNumber) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(applicationDate, that.applicationDate) && Objects.equals(propertyId, that.propertyId) && Objects.equals(tenantId, that.tenantId) && Objects.equals(applicationId, that.applicationId) && Objects.equals(references, that.references);
+        return bankStatement == that.bankStatement &&
+                paySlip == that.paySlip &&
+                id == that.id &&
+                copyOfId == that.copyOfId &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(adress, that.adress) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(contactNumber, that.contactNumber) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(applicationDate, that.applicationDate) &&
+                Objects.equals(propertyId, that.propertyId) &&
+                Objects.equals(tenantId, that.tenantId) &&
+                Objects.equals(applicationId, that.applicationId) &&
+                Objects.equals(references, that.references);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bankStatement, paySlip, status, adress, email, contactNumber, id, firstName, lastName, applicationDate, propertyId, tenantId, applicationId, copyOfId, references);
+        return Objects.hash(bankStatement, paySlip, status, adress, email, contactNumber, id, firstName, lastName, applicationDate,
+                propertyId, tenantId, applicationId, copyOfId, references);
     }
 
     public static class Builder {
