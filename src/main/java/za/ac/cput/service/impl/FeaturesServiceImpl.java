@@ -36,6 +36,9 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
 
     @Override
     public Features update(Features features) {
+        if (this.repository.existsById(features.getPropertyId())) {
+            return this.repository.save(features);
+        }
         return null;
     }
 

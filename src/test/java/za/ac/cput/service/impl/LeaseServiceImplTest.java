@@ -49,14 +49,14 @@ public class LeaseServiceImplTest {
         System.out.println("Reading lease: "+ readLease);
     }
 
-    /*@Test
+    @Test
     void c_update(){
-        Lease updateLease = service.update(lease1.getLeaseId());
+        Lease updateLease = service.update(lease1);
         assertNotEquals(lease1, updateLease);
         System.out.println("Before lease update: "+ lease1);
         System.out.println("After lease update: "+ updateLease);
     }
-*/
+
     @Test
     void d_delete(){
         boolean deleteLease = service.delete(lease1.getLeaseId());

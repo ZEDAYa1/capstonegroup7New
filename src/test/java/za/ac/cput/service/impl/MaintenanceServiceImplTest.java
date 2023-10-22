@@ -1,10 +1,12 @@
 package za.ac.cput.service.impl;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.domain.Agent;
 import za.ac.cput.domain.Maintenance;
 import za.ac.cput.factory.MaintenanceFactory;
 
@@ -44,6 +46,14 @@ class MaintenanceServiceImplTest {
         Maintenance read = service.read(maintenance.getRequestId());
         assertEquals(read.getRequestId(), maintenance.getRequestId());
         System.out.println("Show maintanance: " + read);
+    }
+
+    @Test
+    void c_update() {
+        Maintenance updatedRequest = new Maintenance.Builder().copy(maintenance3).setRequestDate(LocalDate.parse("2023-08-28")).build();
+        Maintenance updated = service.update(updatedRequest);
+        Assert.assertNotNull(maintenance3);
+        System.out.println("Updated: " + updated);
     }
 
     @Test

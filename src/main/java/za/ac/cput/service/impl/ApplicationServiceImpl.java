@@ -35,6 +35,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public Application update(Application application) {
+        if (this.repository.existsById(application.getPropertyId())) {
+            return this.repository.save(application);
+        }
         return null;
     }
 

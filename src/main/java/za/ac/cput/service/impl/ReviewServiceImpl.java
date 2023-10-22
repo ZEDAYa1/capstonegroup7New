@@ -36,6 +36,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review update(Review review) {
+        if (this.repository.existsById(review.getReviewId())) {
+            return this.repository.save(review);
+        }
         return null;
     }
 
