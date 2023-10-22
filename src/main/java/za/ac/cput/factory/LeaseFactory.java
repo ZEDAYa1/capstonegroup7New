@@ -9,7 +9,7 @@ import java.time.LocalDate;
  *  Zachariah Matsimella 220097429
  */
 public class LeaseFactory {
-    public static Lease createLease(String leaseId, String terms, LocalDate startDate, LocalDate endDate){
+    public static Lease createLease(String terms, LocalDate startDate, LocalDate endDate){
         if(Helper.isNullOrEmpty(terms)
         ||Helper.isDateNull(startDate)
         ||Helper.isDateNull(endDate)){
@@ -17,7 +17,7 @@ public class LeaseFactory {
         }
 
 
-        leaseId = Helper.generateId();
+        String leaseId = Helper.generateId();
 
         Lease lease = new Lease.Builder().setLeaseId(leaseId)
                 .setTerms(terms)

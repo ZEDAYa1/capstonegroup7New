@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class LeaseServiceImplTest {
 
-    private static Lease lease1 = LeaseFactory.createLease("","No smoking.", LocalDate.parse("2022-01-01"), LocalDate.parse("2023-01-01"));
+    private static Lease lease1 = LeaseFactory.createLease("No smoking.", LocalDate.parse("2022-01-01"), LocalDate.parse("2023-01-01"));
 
-    private static Lease lease2 = LeaseFactory.createLease("","No pets allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-12-01"));
+    private static Lease lease2 = LeaseFactory.createLease("No pets allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-12-01"));
 
-    private static Lease lease3 = LeaseFactory.createLease("","Only two adults allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-10-01"));
+    private static Lease lease3 = LeaseFactory.createLease("Only two adults allowed.", LocalDate.parse("2022-01-01"), LocalDate.parse("2022-10-01"));
 
     @Autowired
     private LeaseServiceImpl service;

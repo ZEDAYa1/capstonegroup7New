@@ -18,7 +18,7 @@ public class Application implements Serializable {
     private String adress;
     private String email;
     private String contactNumber;
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private LocalDate applicationDate;
@@ -31,7 +31,7 @@ public class Application implements Serializable {
     private String references;
 
     public Application(boolean bankStatement, boolean paySlip, String status, String adress, String email,
-                       String contactNumber, int id, String firstName, String lastName, LocalDate applicationDate,
+                       String contactNumber, long id, String firstName, String lastName, LocalDate applicationDate,
                        String propertyId, String tenantId, String applicationId, boolean copyOfId, String references) {
         this.bankStatement = bankStatement;
         this.paySlip = paySlip;
@@ -120,11 +120,11 @@ public class Application implements Serializable {
         this.contactNumber = contactNumber;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -220,7 +220,7 @@ public class Application implements Serializable {
         private String adress;
         private String email;
         private String contactNumber;
-        private int id;
+        private long id;
         private String firstName;
         private String lastName;
         private LocalDate applicationDate;
@@ -260,7 +260,7 @@ public class Application implements Serializable {
             return this;
         }
 
-        public Builder setId(int id){
+        public Builder setId(long id){
             this.id = id;
             return this;
         }

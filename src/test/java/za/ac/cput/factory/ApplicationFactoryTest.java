@@ -17,7 +17,7 @@ public class ApplicationFactoryTest {
     @Test
     public void test(){
         Application application = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
-                , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
+                , "0874563254", 0010224567012, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
                 , true, "References here.");
         System.out.println(application.toString());
         assertNotNull(application);
@@ -25,10 +25,10 @@ public class ApplicationFactoryTest {
     @Test
     public void test_fail(){
         Application application1 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
-                , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
+                , "0874563254", 0010224567354, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
                 , true, "References here.");
         Application application2 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
-                , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
+                , "0874563254", 0010224567654, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
                 , true, "References here.");
         System.out.println("Application 1: "+ application1);
         System.out.println("Application 2: "+ application2);
@@ -38,7 +38,7 @@ public class ApplicationFactoryTest {
     @Test
     public void testEquality(){
         Application application1 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
-                , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
+                , "0874563254", 0010224567472, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
                 , true, "References here.");
         Application application2 = application1;
         assertEquals(application1, application2);
@@ -49,7 +49,7 @@ public class ApplicationFactoryTest {
     @Test
     public void testIdentity(){
         Application application1 = ApplicationFactory.createApplication(true, true, "Accepted", "20 Memory Lane", "James@gmail.com"
-                , "0874563254", 0010224567, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
+                , "0874563254", 0010224567321, "James", "Clarke", LocalDate.parse("2020-06-06"), "25", "12"
                 , true, "References here.");
         Application application2 = ApplicationFactory.createApplication(true, true, "Pending", "36 Cherry Lane", "XALL@gmail.com"
                 , "0645879856", 990615426, "Xavier", "Leander", LocalDate.parse("2019-04-24"), "25", "06"
