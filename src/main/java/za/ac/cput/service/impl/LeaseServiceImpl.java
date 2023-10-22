@@ -52,9 +52,9 @@ public class LeaseServiceImpl implements LeaseService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Lease> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Lease> getAll() {
+//        return null;
+//    }
 }
 

@@ -5,21 +5,15 @@
  * */
 package za.ac.cput.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Review;
-import za.ac.cput.factory.ReviewFactory;
 import za.ac.cput.service.ReviewService;
 
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/reviews")
-@Slf4j
+@RequestMapping("/reviews")
 public class ReviewController {
     private final ReviewService reviewService;
 
@@ -28,35 +22,21 @@ public class ReviewController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Review> save(@RequestBody Review review) {
-        log.info("Save request: {}", review);
-        Review validatedReview;
-        try {
-            validatedReview = ReviewFactory.createReview(Integer.valueOf(review.getRating()), review.getComment());
-        } catch (IllegalArgumentException e) {
-            log.info("Save request error: {}", e.getMessage());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Review save = reviewService.save(validatedReview);
-        return ResponseEntity.ok(save);
+    public Review createReview(@RequestBody Review review) {
+        return reviewService.save(review);
     }
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
-        log.info("Delete request{}", id);
-        this.reviewService.delete(id);
-        return ResponseEntity.noContent().build();
+    public boolean deleteReview(@PathVariable String id) {
+        return reviewService.delete(id);
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<Review> readId(@PathVariable String id) {
-        log.info("Read request: {}", id);
-        Review reviews = this.reviewService.read(id);
-        return ResponseEntity.ok(reviews);
+    public Review getReview(@PathVariable String id) {
+        return reviewService.read(id);
     }
 
     @GetMapping("all")
-    public ResponseEntity<Set<Review>> findAll() {
-        Set<Review> reviews = this.reviewService.findAll();
-        return ResponseEntity.ok(reviews);
+    public Set<Review> findAllReviews() {
+        return reviewService.findAll();
     }
 }

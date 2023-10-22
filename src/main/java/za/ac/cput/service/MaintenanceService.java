@@ -6,16 +6,16 @@ import java.util.Set;
 //sonwabiso Moni
 //219275041
 public interface MaintenanceService {
-    Maintenance create(Maintenance maintenance);
+
+    Maintenance update(Maintenance maintenance);
 
     boolean delete(String requestId);
 
     Maintenance save(Maintenance maintenance);
 
-
     Maintenance read(String s);
 
-    Set<Maintenance> getAll();
+    Set<Maintenance> findAll();
 //    Maintenance create(Maintenance maintenance);
 //
 //    boolean delete(String requestId);
@@ -23,16 +23,6 @@ public interface MaintenanceService {
 //    Set<Maintenance> getAll();
 //
 //    Set<Agent> findAll();
-//    Maintenance create(Maintenance maintenance);
-//
-//    boolean delete(String requestId);
-//
-//    Set<Maintenance> getAll();
-//    Maintenance create(Maintenance maintenance);
-//
-//
-//    boolean delete(String Id);
-//
-//    Set<Maintenance>getAll();
+
 
 }

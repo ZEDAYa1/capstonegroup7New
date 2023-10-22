@@ -55,8 +55,8 @@ public class ReviewServiceImpl implements ReviewService {
                 .stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Review> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Review> getAll() {
+//        return null;
+//    }
 }

@@ -18,11 +18,10 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
     this.repository = repository;
 }
 
-@Override
+    @Override
     public Features create(Features features){
     return this.repository.save(features);
 }
-
 
     @Override
     public Features save(Features features) {
@@ -36,6 +35,9 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
 
     @Override
     public Features update(Features features) {
+        if (this.repository.existsById(features.getPropertyId())) {
+            return this.repository.save(features);
+        }
         return null;
     }
 
@@ -53,10 +55,10 @@ private FeaturesServiceImpl(IFeaturesRepository repository) {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Features> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Features> getAll() {
+//        return null;
+//    }
 
 
 }

@@ -37,7 +37,7 @@ class TenantControllerTest {
     void setUp() {
         assertNotNull(controller);
         this.tenant = TenantFactory.createTenant("Tshego", "Molefe", "Tshego@gmail.com", "084251752");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/tenant/";
+        this.baseUrl = "http://localhost:" + 50790 + "/tenants";
     }
 
     @Order(1)
@@ -81,7 +81,7 @@ class TenantControllerTest {
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
         System.out.println(url);
         ResponseEntity<Tenant []> response =
                 this.restTemplate

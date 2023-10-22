@@ -6,8 +6,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Features;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.FeaturesFactory;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -44,6 +46,15 @@ class FeaturesServiceImplTest {
     }
 
     @Test
+    void c_update() {
+        Features newFeatures = new Features.Builder().copy(features3).setGarage(true).build();
+        Features updated = service.update(newFeatures);
+        assertNotNull(features3);
+        System.out.println("updated: " + updated);
+    }
+
+
+    @Test
     void f_delete() {
         boolean success = service.delete(features.getPropertyId());
         assertTrue(success);
@@ -53,7 +64,7 @@ class FeaturesServiceImplTest {
     @Test
     void d_getAll() {
      System.out.println("Show All:");
-     System.out.println(service.getAll());
+     System.out.println(service.findAll());
 
     }
 
