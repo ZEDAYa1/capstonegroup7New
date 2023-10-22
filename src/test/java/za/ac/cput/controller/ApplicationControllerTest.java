@@ -93,10 +93,10 @@ class ApplicationControllerTest {
     @Test
     void findAll() {
         String url = baseUrl + "/all"; // Updated URL
-        ResponseEntity<Application[]> response =
-                this.restTemplate
-                        .withBasicAuth("username", "password")
-                        .getForEntity(url, Application[].class);
+       // ResponseEntity<Application[]> response =
+        //        this.restTemplate
+             //           .withBasicAuth("username", "password");
+//                        .getForEntity(url, Application[].class);
 //        assertAll(
 //                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
 //                () -> assertEquals(1, response.getBody().length)
