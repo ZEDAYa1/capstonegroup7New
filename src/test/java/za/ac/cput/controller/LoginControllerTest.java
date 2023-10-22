@@ -15,42 +15,36 @@ import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Login;
 import za.ac.cput.factory.LoginFactory;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class  LoginControllerTest {
+class LoginControllerTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private LoginController controller;
-    @Autowired private TestRestTemplate restTemplate;
+    private TestRestTemplate restTemplate;
 
     private Login login;
     private String baseUrl;
 
     @BeforeEach
     void setUp() {
-        assertNotNull(controller);
-        this.login = LoginFactory.createLogin("sibusiso","password123");
-        this.baseUrl = "http://localhost:" + this.port + "/capstonegroup7/login";
+        this.login = LoginFactory.createLogin("sibusiso", "password123");
+        this.baseUrl = "http://localhost:" + 50790 + "/logins"; // Updated baseUrl
     }
 
     @Order(1)
     @Test
     void save() {
-        String url = baseUrl + "save";
-        System.out.println(url);
-        ResponseEntity<Login> response = this.restTemplate
-                //.withBasicAuth("admin-user", "65ff7492d30")
+        String url = baseUrl; // Updated URL to match the actual endpoint
+        ResponseEntity<Login> response = restTemplate
+                .withBasicAuth("username", "password")
                 .postForEntity(url, this.login, Login.class);
-        System.out.println(response);
 //        assertAll(
-//                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
 //                () -> assertNotNull(response.getBody())
 //        );
     }
@@ -58,39 +52,34 @@ class  LoginControllerTest {
     @Order(3)
     @Test
     void delete() {
-        String url = baseUrl + "delete/" + this.login.getUsername();
-        System.out.println(url);
-        this.restTemplate.delete(url);
+        String url = baseUrl + "/" + this.login.getUsername(); // Updated URL
+        restTemplate.withBasicAuth("username", "password").delete(url);
     }
 
     @Order(2)
     @Test
     void readId() {
-        String url = baseUrl + "read/" + this.login.getUsername();
-        System.out.println(url);
-        ResponseEntity<Login> response = this.restTemplate
-              //  .withBasicAuth("admin-user", "65ff7492d30")
+        String url = baseUrl + "/" + this.login.getUsername(); // Updated URL
+        ResponseEntity<Login> response = restTemplate
+                .withBasicAuth("username", "password")
                 .getForEntity(url, Login.class);
-        System.out.println(response);
 //        assertAll(
-//                ()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                ()-> assertNotNull(response.getBody())
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertNotNull(response.getBody())
 //        );
     }
 
     @Order(4)
     @Test
     void findAll() {
-        String url = baseUrl + "all";
+        String url = baseUrl + "/all"; // Updated URL
         System.out.println(url);
-        ResponseEntity<Login []> response =
-                this.restTemplate
-              //          .withBasicAuth("admin-user", "65ff7492d30")
-                        .getForEntity(url, Login[].class);
-       // System.out.println(Arrays.asList(response.getBody()));
+        ResponseEntity<Login[]> response = restTemplate
+                .withBasicAuth("username", "password")
+                .getForEntity(url, Login[].class);
 //        assertAll(
 //                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-//                () -> assertEquals(1, response.getBody().length)
+//                () -> assertTrue(response.getBody().length > 0)
 //        );
     }
 }

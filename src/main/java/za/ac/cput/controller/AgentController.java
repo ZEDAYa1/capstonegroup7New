@@ -5,23 +5,16 @@
  * */
 package za.ac.cput.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Agent;
-import za.ac.cput.factory.AgentFactory;
 import za.ac.cput.service.AgentService;
 
 import java.util.Set;
 
 @RestController
-@RequestMapping("capstonegroup7/agent") // Remove the trailing "/"
-@Slf4j
+@RequestMapping("/agents")
 public class AgentController {
-
     private final AgentService agentService;
 
     @Autowired
@@ -29,38 +22,30 @@ public class AgentController {
         this.agentService = agentService;
     }
 
-    @PostMapping("save")
-    public ResponseEntity<Agent> save(@RequestBody Agent agent) {
-        log.info("Save request: {}", agent);
-        Agent validatedAgent;
-        try {
-            validatedAgent = AgentFactory.createAgent(agent.getFirstname(), agent.getLastname(),agent.getContactnumber(), agent.getEmail(), agent.getPassword(), agent.getAddress());
-        } catch (IllegalArgumentException e) {
-            log.info("Save request error: {}", e.getMessage());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Agent save = agentService.save(validatedAgent);
-        return ResponseEntity.ok(save);
-    }
-
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
-        log.info("Delete request{}", id);
-        this.agentService.delete(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("all")
+    public Set<Agent> findAllAgents() {
+        return agentService.findAll();
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<Agent> readId(@PathVariable String id) {
-        log.info("Read request: {}", id);
-        Agent agent = this.agentService.read(id);
-        return ResponseEntity.ok(agent);
+    public Agent getAgent(@PathVariable String id) {
+        return agentService.read(id);
     }
 
-    @GetMapping("all")
-    public ResponseEntity<Set<Agent>> findAll() {
-        Set<Agent> agents = this.agentService.findAll();
-        return ResponseEntity.ok(agents);
+    @PostMapping("save")
+    public Agent createAgent(@RequestBody Agent agent) {
+        return agentService.save(agent);
     }
 
+//    @PutMapping("/{id}")
+//    public Agent updateAgent(@PathVariable String id, @RequestBody Agent agent) {
+//        // Implement the update logic
+//        return agentService.update(id);
+//    }
+
+    @DeleteMapping("delete/{id}")
+    public boolean deleteAgent(@PathVariable String id) {
+        return agentService.delete(id);
+    }
 }
+

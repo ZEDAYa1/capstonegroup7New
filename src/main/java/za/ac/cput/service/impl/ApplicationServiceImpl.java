@@ -1,3 +1,7 @@
+/* ApplicationServiceImpl.java
+ *  This is a service implementation class for Application entity.
+ *  Zachariah Matsimella 220097429
+ */
 package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +12,7 @@ import za.ac.cput.service.ApplicationService;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/* ApplicationServiceImpl.java
- *  This is a service implementation class for Application entity.
- *  Zachariah Matsimella 220097429
- */
+
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
@@ -34,6 +35,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public Application update(Application application) {
+        if(this.repository.existsById(application.getApplicationId())){
+            return this.repository.save(application);
+        }
         return null;
     }
 
@@ -51,8 +55,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Application> getAll() {
-        return null;
-    }
+//    @Override
+//    public Set<Application> getAll() {
+//        return null;
+//    }
 }
