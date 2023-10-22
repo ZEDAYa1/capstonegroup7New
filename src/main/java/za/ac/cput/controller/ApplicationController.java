@@ -16,6 +16,10 @@ import za.ac.cput.service.ApplicationService;
 
 import java.util.Set;
 
+/* ApplicationController.java
+ *  This is a controller class for Application entity.
+ *  Zachariah Matsimella 220097429
+ */
 @RestController
 @RequestMapping("/applications")
 @Slf4j
