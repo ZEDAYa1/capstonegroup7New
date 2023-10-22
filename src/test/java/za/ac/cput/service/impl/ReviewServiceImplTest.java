@@ -49,6 +49,13 @@ public class ReviewServiceImplTest {
     }
 
     @Test
+    void c_update() {
+        Review updatedReview = new Review.Builder().copy(review3).setRating("8").build();
+        Review updated = service.update(updatedReview);
+        assertNotNull(review3);
+        System.out.println("Updated: " + updated);
+    }
+    @Test
     void f_delete() {
         boolean success = service.delete(review3.getReviewId());
         assertTrue(success);

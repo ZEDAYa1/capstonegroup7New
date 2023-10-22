@@ -1,11 +1,13 @@
 package za.ac.cput.service.impl;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Application;
+import za.ac.cput.domain.Property;
 import za.ac.cput.factory.ApplicationFactory;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,14 +58,13 @@ public class ApplicationServiceImplTest {
         System.out.println("Reading application: "+ readApplication);
     }
 
-    /*@Test
-    void c_update(){
-        Application updateApplication = service.update(application1.getApplicationId());
-        assertNotEquals(application1, updateApplication);
-        System.out.println("Before lease update: "+ application1);
-        System.out.println("After lease update: "+ updateApplication);
+    @Test
+    void c_update() {
+        Application updatedApplication = new Application.Builder().setEmail("XALL@email.com").build();
+        Application updated = service.update(updatedApplication);
+        Assert.assertNotNull(application2);
+        System.out.println("updated: " + updated);
     }
-*/
     @Test
     void d_delete(){
         boolean deleteLease = service.delete(application1.getApplicationId());

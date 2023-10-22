@@ -11,8 +11,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Agency;
+import za.ac.cput.domain.Tenant;
 import za.ac.cput.factory.AgencyFactory;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -46,6 +48,14 @@ public class AgencyServiceImplTest {
         Agency read = service.read(agency1.getAgencyId());
         assertEquals(read.getAgencyId(), agency1.getAgencyId());
         System.out.println("Show agent: " + read);
+    }
+
+    @Test
+    void c_update() {
+        Agency updatedAgency = new Agency.Builder().copy(agency3).setEmail("tshego@email.com").build();
+        Agency updated = service.update(updatedAgency);
+        assertNotNull(agency3);
+        System.out.println("Updated: " + updated);
     }
 
     @Test
