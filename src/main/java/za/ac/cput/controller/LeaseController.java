@@ -12,9 +12,8 @@ import za.ac.cput.service.LeaseService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/leases") // Base URL mapping for the Lease service
+@RequestMapping("/leases")
 public class LeaseController {
-
     private final LeaseService leaseService;
 
     @Autowired
@@ -23,7 +22,7 @@ public class LeaseController {
     }
 
     @PostMapping("save")
-    public Lease saveLease(@RequestBody Lease lease) {
+    public Lease createLease(@RequestBody Lease lease) {
         return leaseService.save(lease);
     }
 
@@ -32,19 +31,13 @@ public class LeaseController {
         return leaseService.read(id);
     }
 
-//    @PostMapping("/update/{leaseID}")
-//    public Lease updateLease(@PathVariable String id, @RequestBody Lease lease) {
-//        lease.setLeaseId(leaseID);
-//        return leaseService.update(lease);
-//    }
-
     @DeleteMapping("delete/{id}")
     public boolean deleteLease(@PathVariable String id) {
         return leaseService.delete(id);
     }
 
     @GetMapping("all")
-    public Set<Lease> findAllLeases() {
+    public Set<Lease> findAllLease() {
         return leaseService.findAll();
     }
 }
